@@ -1,6 +1,7 @@
 <template>
   <div class="vector">
     <a-card
+      v-if="!props.readOnly"
       title="区域围栏"
       style="width: 300px"
     >
@@ -10,6 +11,7 @@
           shape="circle"
           ghost
           :disabled="!(vectorRef)"
+          @click="handleSubmit"
         >
           <template #icon>
             <check-circle-outlined />
@@ -22,7 +24,7 @@
         </a-button>
       </div>
       <div v-show="!reaOnlyRef">
-        <a-radio-group
+        <!-- <a-radio-group
           :value="typeRef"
           button-style="solid"
           @change="setType($event.target.value)"
@@ -33,7 +35,7 @@
           <a-radio-button :value="VECTOR_SHAPE_CIRCLE">
             圆形
           </a-radio-button>
-        </a-radio-group>
+        </a-radio-group> -->
         <a-button
           :disabled="!(vectorRef)"
           @click="stop"
@@ -52,9 +54,9 @@
 </template>
 
 <script>
-import { computed, defineComponent } from 'vue';
-// import { useService } from '@/composables/map';
+import { computed, defineComponent, reactive } from 'vue';
 import { CheckCircleOutlined } from '@ant-design/icons-vue';
+import GeoFenceService from '@/service/GeoFence';
 import use from './composable';
 import { VECTOR_SHAPE_POLYGON, VECTOR_SHAPE_CIRCLE } from './constant';
 
@@ -62,21 +64,53 @@ export default defineComponent({
   components: {
     CheckCircleOutlined,
   },
-  setup() {
-    // const service = useService();
+  props: {
+    gfid: {
+      type: String,
+      default: '',
+    },
+    readOnly: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props) {
     const {
       typeRef, drawerRef, vectorRef, editorRef,
-      // factory,
+      factory,
       start,
       stop,
       setType,
       clear,
-      // mountVector,
+      mountVector,
     } = use();
-
-    // service.getVector().then(mountVector);
-
     const reaOnlyRef = computed(() => !(drawerRef.value || editorRef.value));
+
+    const infoState = reactive({});
+
+    const service = new GeoFenceService();
+
+    if (props.gfid) {
+      service.detail(props.gfid).then((res) => {
+        const {
+          gfid, name, desc, ...rest
+        } = res;
+        Object.assign(infoState, { gfid, name, desc });
+        mountVector(rest);
+      });
+    }
+
+    const handleSubmit = () => {
+      const payload = {
+        ...factory.serializeVector(vectorRef.value),
+        ...infoState,
+      };
+      if (infoState.gfid) {
+        service.update(payload);
+      } else {
+        service.add(payload);
+      }
+    };
 
     return {
       typeRef,
@@ -90,6 +124,8 @@ export default defineComponent({
       stop,
       clear,
       reaOnlyRef,
+      handleSubmit,
+      props,
     };
   },
 });
