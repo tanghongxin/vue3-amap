@@ -1,7 +1,10 @@
 <template>
-  <div class="search">
+  <div
+    class="a-map__search"
+    :style="props.style"
+  >
     <a-input
-      id="search__input"
+      id="a-map__search-input"
       allow-clear
       placeholder="输入地名进行搜索"
     />
@@ -15,7 +18,14 @@ import {
 import { useInjectMap } from '@/composables/map';
 
 export default defineComponent({
-  setup() {
+  name: 'AMapSearch',
+  props: {
+    position: {
+      type: Object,
+      default: () => ({ bottom: '50px', left: '40px' }),
+    },
+  },
+  setup(props) {
     const { AMap, map } = useInjectMap();
     const state = shallowReactive({
       autoComplete: null,
@@ -23,7 +33,7 @@ export default defineComponent({
     });
 
     onMounted(() => {
-      state.autoComplete = new AMap.Autocomplete({ input: 'search__input' });
+      state.autoComplete = new AMap.Autocomplete({ input: 'a-map__search-input' });
       state.placeSearch = new AMap.PlaceSearch({ map });
 
       state.autoComplete.on('select', (e) => {
@@ -37,20 +47,20 @@ export default defineComponent({
       map.remove(state.placeSearch);
     });
 
-    return { state };
+    return { props, state };
   },
 });
 </script>
 
 <style>
-.search {
+.a-map__search {
   position: absolute;
   top: 40px;
   left: 90px;
   z-index: 1;
 }
 
-.search .ant-input-affix-wrapper {
+.a-map__search .ant-input-affix-wrapper {
   min-width: 320px;
   border-radius: 4px;
 }

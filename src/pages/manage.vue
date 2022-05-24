@@ -1,6 +1,9 @@
 <template>
-  <div>
-    <a-tabs type="card">
+  <div id="manage">
+    <a-tabs
+      v-model:activeKey="state.activeTabKey"
+      type="card"
+    >
       <template #rightExtra>
         <a-button
           :disabled="!state.dataSource.length"
@@ -16,11 +19,11 @@
         <div>
           <a-dropdown>
             <template #overlay>
-              <a-menu>
-                <a-menu-item key="circle">
+              <a-menu @click="handleAdd">
+                <a-menu-item :key="state.FENCE_SHAPE_CIRCLE">
                   圆形围栏
                 </a-menu-item>
-                <a-menu-item key="polygon">
+                <a-menu-item :key="state.FENCE_SHAPE_POLYGON">
                   多边形围栏
                 </a-menu-item>
               </a-menu>
@@ -30,13 +33,33 @@
               <DownOutlined />
             </a-button>
           </a-dropdown>
-          <a-button
-            danger
-            :disabled="!state.selectedRowKeys.length"
+          <a-popconfirm
+            title="是否确认删除选中围栏？"
+            ok-text="是"
+            cancel-text="否"
+            @confirm="handleDelete"
           >
-            删除
+            <a-button
+              danger
+              :disabled="!state.selectedRowKeys.length"
+            >
+              删除
+            </a-button>
+          </a-popconfirm>
+          <a-button
+            :disabled="state.selectedRowKeys.length !== 1"
+            @click="handleEdit"
+          >
+            编辑
+          </a-button>
+          <a-button
+            :style="{ float: 'right' }"
+            @click="handleSearch"
+          >
+            查询
           </a-button>
           <a-table
+            row-key="gfid"
             :columns="state.columns"
             :data-source="state.dataSource"
             :loading="state.loading"
@@ -54,8 +77,13 @@
       <a-tab-pane
         key="2"
         tab="围栏预览"
+        :disabled="!state.dataSource.length"
       >
-      <!-- <fence-view :fences="state.dataSource" /> -->
+        <!-- TODO: 使用 watch 改进 -->
+        <fence-view
+          v-if="state.activeTabKey === '2'"
+          :fences="state.dataSource"
+        />
       </a-tab-pane>
     </a-tabs>
     <a-modal
@@ -73,18 +101,19 @@
 </template>
 
 <script>
-/* eslint-disable no-unused-vars */
 import GeoFenceService from '@/service/GeoFence';
-import { defineComponent, onMounted, reactive } from 'vue';
+import { defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { DownOutlined } from '@ant-design/icons-vue';
-import { FENCE_SHAPE_POLYGON, FENCE_SHAPE_CIRCLE } from '@/constants/index';
-// import { FenceView } from '@/components/Fence/index';
+import { FENCE_SHAPE_CIRCLE, FENCE_SHAPE_POLYGON } from '@/constants/index';
+import { FenceView } from '@/components/Fence/index';
 import QrcodeVue from 'qrcode.vue';
+import dayjs from 'dayjs';
 
 export default defineComponent({
   components: {
-    // FenceView,
+    FenceView,
+    DownOutlined,
     QrcodeVue,
   },
   setup() {
@@ -92,13 +121,16 @@ export default defineComponent({
     const router = useRouter();
 
     const state = reactive({
+      activeTabKey: '1',
+      FENCE_SHAPE_CIRCLE,
+      FENCE_SHAPE_POLYGON,
       previewVisible: false,
       previewURL: `${window.location.origin}/#/sign-in`,
       columns: [
         {
           title: '名称',
           dataIndex: 'name',
-          width: 200,
+          width: 240,
         },
         {
           title: '描述',
@@ -108,45 +140,110 @@ export default defineComponent({
         {
           title: '类型',
           dataIndex: 'type',
-          customRender: ({ text }) => (text === FENCE_SHAPE_CIRCLE ? '圆形' : '多边形'),
           width: 100,
+          customRender: ({ text }) => (text === FENCE_SHAPE_CIRCLE ? '圆形' : '多边形'),
         },
-      ],
-      dataSource: [
         {
-          createtime: 1653143796862,
-          desc: '',
-          gfid: 663116,
-          modifytime: 1653220231956,
-          name: '圆形围栏测试1',
-          shape: {
-            center: '104.02713,30.543607',
-            radius: 304,
-          },
-          type: 'circle',
+          title: '创建时间',
+          dataIndex: 'createtime',
+          width: 200,
+          customRender: ({ text }) => dayjs(text).format('YYYY-MM-DD HH:mm:ss'),
+        },
+        {
+          title: '更新时间',
+          dataIndex: 'createtime',
+          width: 200,
+          customRender: ({ text }) => dayjs(text).format('YYYY-MM-DD HH:mm:ss'),
         },
       ],
+      dataSource: [],
       selectedRowKeys: [],
+      selectedRows: [],
       loading: false,
     });
 
-    const search = async () => {
+    const handleSearch = async () => {
       try {
         state.loading = true;
         const { results } = await service.list();
-        state.dataSource = results;
+        Object.assign(state, {
+          dataSource: results,
+          selectedRowKeys: [],
+        });
       } finally {
         state.loading = false;
       }
     };
 
+    const handleDelete = async () => {
+      try {
+        state.loading = true;
+        await service.delete(state.selectedRowKeys);
+        await handleSearch();
+      } finally {
+        state.loading = false;
+      }
+    };
+
+    const handleAdd = ({ key }) => {
+      router.push({
+        path: '/fence/add',
+        query: { type: key },
+      });
+    };
+
+    const handleEdit = () => {
+      const [{ gfid, type }] = state.selectedRows;
+      router.push({
+        path: '/fence/edit',
+        query: { gfid, type },
+      });
+    };
+
     const rowSelection = {
-      onChange: (selectedRowKeys) => {
+      onChange: (selectedRowKeys, selectedRows) => {
         state.selectedRowKeys = selectedRowKeys;
+        state.selectedRows = selectedRows;
       },
     };
 
-    return { state, search, rowSelection };
+    handleSearch();
+
+    return {
+      state,
+      rowSelection,
+      handleSearch,
+      handleDelete,
+      handleAdd,
+      handleEdit,
+    };
   },
 });
 </script>
+
+<style lang="less">
+#manage {
+  height: 100%;
+
+  & .ant-btn {
+    margin-right: 8px;
+    margin-bottom: 12px;
+  }
+
+  .ant-tabs {
+    height: 100%;
+
+    .ant-tabs-nav {
+      height: 44px;
+    }
+
+    .ant-tabs-content-holder {
+      height: calc(100% - 44px);
+
+      .ant-tabs-content {
+        height: 100%;
+      }
+    }
+  }
+}
+</style>
