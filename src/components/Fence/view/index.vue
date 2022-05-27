@@ -1,6 +1,6 @@
 <template>
-  <div id="fence-view">
-    <a-map>
+  <div class="w-100 h-100">
+    <a-map-map>
       <slot />
       <a-map-fit-view />
       <a-map-vector
@@ -10,25 +10,15 @@
         :type="type"
         read-only
       />
-    </a-map>
+    </a-map-map>
   </div>
 </template>
 
 <script>
-import {
-  AMap,
-  AMapFitView,
-  AMapVector,
-} from '@/components/AMap/index';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'FenceView',
-  components: {
-    AMap,
-    AMapFitView,
-    AMapVector,
-  },
   props: {
     fences: {
       type: Array,
@@ -42,8 +32,4 @@ export default defineComponent({
 </script>
 
 <style>
-#fence-view {
-  width: 100%;
-  height: 100%;
-}
 </style>

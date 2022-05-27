@@ -20,10 +20,10 @@
           <a-dropdown>
             <template #overlay>
               <a-menu @click="handleAdd">
-                <a-menu-item :key="Constants.DICTS.FENCE_SHAPE_CIRCLE">
+                <a-menu-item :key="Constants.DICTS.FENCE_TYPE_CIRCLE">
                   圆形围栏
                 </a-menu-item>
-                <a-menu-item :key="Constants.DICTS.FENCE_SHAPE_POLYGON">
+                <a-menu-item :key="Constants.DICTS.FENCE_TYPE_POLYGON">
                   多边形围栏
                 </a-menu-item>
               </a-menu>
@@ -101,18 +101,16 @@
 </template>
 
 <script>
-import GeoFenceService from '@/service/GeoFence';
+import { GeoFenceService } from '@/service';
 import { defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { DownOutlined } from '@ant-design/icons-vue';
 import Constants from '@/constants';
-import { FenceView } from '@/components/Fence/index';
 import QrcodeVue from 'qrcode.vue';
 import dayjs from 'dayjs';
 
 export default defineComponent({
   components: {
-    FenceView,
     DownOutlined,
     QrcodeVue,
   },
@@ -139,7 +137,7 @@ export default defineComponent({
           title: '类型',
           dataIndex: 'type',
           width: 100,
-          customRender: ({ text }) => (text === Constants.DICTS.FENCE_SHAPE_CIRCLE ? '圆形' : '多边形'),
+          customRender: ({ text }) => (text === Constants.DICTS.FENCE_TYPE_CIRCLE ? '圆形' : '多边形'),
         },
         {
           title: '创建时间',

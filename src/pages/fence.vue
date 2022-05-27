@@ -1,6 +1,6 @@
 <template>
-  <div id="fence">
-    <a-map>
+  <div class="w-100 h-100">
+    <a-map-map>
       <a-map-fit-view />
       <a-map-search />
       <a-map-vector v-bind="query" />
@@ -9,35 +9,15 @@
       <a-map-scale />
       <a-map-control-bar />
       <!-- <a-map-map-type /> -->
-    </a-map>
+    </a-map-map>
   </div>
 </template>
 
 <script>
 import { useRoute } from 'vue-router';
-import {
-  AMap,
-  AMapFitView,
-  AMapSearch,
-  AMapVector,
-  AMapToolbar,
-  AMapScale,
-  AMapControlBar,
-  // AMapMapType,
-} from '@/components/AMap/index';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-  components: {
-    AMap,
-    AMapFitView,
-    AMapSearch,
-    AMapVector,
-    AMapToolbar,
-    AMapScale,
-    AMapControlBar,
-    // AMapMapType,
-  },
   setup() {
     const { query } = useRoute();
     return { query };
@@ -46,8 +26,4 @@ export default defineComponent({
 </script>
 
 <style>
-#fence {
-  width: 100%;
-  height: 100%;
-}
 </style>

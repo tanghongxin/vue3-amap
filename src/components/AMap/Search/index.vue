@@ -1,10 +1,7 @@
 <template>
-  <div
-    class="a-map__search"
-    :style="props.style"
-  >
+  <div class="a-map__search" :style="props.position">
     <a-input
-      id="a-map__search-input"
+      :id="id"
       allow-clear
       placeholder="输入地名进行搜索"
     />
@@ -16,22 +13,24 @@ import {
   defineComponent, onBeforeUnmount, onMounted,
 } from 'vue';
 import { useInjectMap } from '@/composables/map';
+import { uuid } from '@/utils';
 
 export default defineComponent({
   name: 'AMapSearch',
   props: {
     position: {
       type: Object,
-      default: () => ({ bottom: '50px', left: '40px' }),
+      default: () => ({ top: '40px', left: '90px' }),
     },
   },
   setup(props) {
+    const id = `a-map__search${uuid()}`;
     const { AMap, map } = useInjectMap();
     let autoComplete;
     let placeSearch;
 
     onMounted(() => {
-      autoComplete = new AMap.Autocomplete({ input: 'a-map__search-input' });
+      autoComplete = new AMap.Autocomplete({ input: id });
       placeSearch = new AMap.PlaceSearch({ map });
 
       autoComplete.on('select', (e) => {
@@ -45,7 +44,7 @@ export default defineComponent({
       map.remove(placeSearch);
     });
 
-    return { props };
+    return { props, id };
   },
 });
 </script>
@@ -53,8 +52,6 @@ export default defineComponent({
 <style lang="less">
 .a-map__search {
   position: absolute;
-  top: 40px;
-  left: 90px;
   z-index: 1;
 
   .ant-input-affix-wrapper {
