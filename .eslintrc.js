@@ -33,6 +33,7 @@ module.exports = {
     'class-methods-use-this': 'off',
     'vue/no-unused-components': [1],
     'no-unused-vars': [1],
+    'import/prefer-default-export': 'off',
   },
   settings: {
     'import/resolver': {

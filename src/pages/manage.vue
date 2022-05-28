@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import { GeoFenceService } from '@/service';
+import { geoFenceService } from '@/services';
 import { defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { DownOutlined } from '@ant-design/icons-vue';
@@ -115,7 +115,6 @@ export default defineComponent({
     QrcodeVue,
   },
   setup() {
-    const service = new GeoFenceService();
     const router = useRouter();
 
     const state = reactive({
@@ -161,7 +160,7 @@ export default defineComponent({
     const handleSearch = async () => {
       try {
         state.loading = true;
-        const { results } = await service.list();
+        const { results } = await geoFenceService.list();
         Object.assign(state, {
           dataSource: results,
           selectedRowKeys: [],
@@ -174,7 +173,7 @@ export default defineComponent({
     const handleDelete = async () => {
       try {
         state.loading = true;
-        await service.delete(state.selectedRowKeys);
+        await geoFenceService.delete(state.selectedRowKeys);
         await handleSearch();
       } finally {
         state.loading = false;

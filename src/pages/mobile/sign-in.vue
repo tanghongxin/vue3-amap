@@ -27,7 +27,7 @@
 import {
   defineComponent, reactive, ref,
 } from 'vue';
-import { GeoFenceService } from '@/service';
+import { geoFenceService } from '@/services';
 import { message } from 'ant-design-vue';
 import { CheckOutlined } from '@ant-design/icons-vue';
 
@@ -36,21 +36,20 @@ export default defineComponent({
     CheckOutlined,
   },
   setup() {
-    const service = new GeoFenceService();
     const glRef = ref(null);
     const state = reactive({ fences: [], position: [], loading: false });
 
     // TODO
     const handleInit = async () => {
       state.position = await glRef.value.getCurrentPosition();
-      const { results } = await service.list();
+      const { results } = await geoFenceService.list();
       state.fences = results;
     };
 
     const handleSubmit = async () => {
       try {
         state.loading = true;
-        const isWithinFences = await service.isWithinFences({
+        const isWithinFences = await geoFenceService.isWithinFences({
           location: state.position,
           gfids: state.fences.map(({ gfid }) => gfid), // 默认所有围栏均启用
         });

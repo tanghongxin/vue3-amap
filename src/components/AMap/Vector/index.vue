@@ -103,10 +103,10 @@
 
 <script>
 import { computed, defineComponent, reactive } from 'vue';
-import { GeoFenceService } from '@/service';
 import { useRouter } from 'vue-router';
 import { message } from 'ant-design-vue';
 import Constants from '@/constants';
+import { geoFenceService } from '@/services';
 import use from './composable';
 
 export default defineComponent({
@@ -145,10 +145,8 @@ export default defineComponent({
       desc: '',
     });
 
-    const service = new GeoFenceService();
-
     if (formState.gfid) {
-      service.detail(formState.gfid).then((res) => {
+      geoFenceService.detail(formState.gfid).then((res) => {
         const {
           name, desc, ...rest
         } = res;
@@ -163,10 +161,10 @@ export default defineComponent({
         ...formState,
       };
       if (formState.gfid) {
-        await service.update(payload);
+        await geoFenceService.update(payload);
         message.success('编辑成功');
       } else {
-        await service.add(payload);
+        await geoFenceService.add(payload);
         message.success('新增成功');
       }
       router.push('/manage');
