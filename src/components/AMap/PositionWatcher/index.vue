@@ -4,6 +4,7 @@
     :position="state.position"
   />
   <a-map-geolocation
+    watch-position
     :show-button="false"
     :show-circle="false"
     :show-marker="false"

@@ -26,6 +26,9 @@ export default ({ mode }) => {
         '@': resolve(__dirname, 'src'),
       },
     },
+    server: {
+      https: true,
+    },
     build: {
       sourcemap: true,
     },
