@@ -28,12 +28,17 @@ export default ({ mode }) => {
     },
     server: {
       https: true,
-      proxy: {
-        '/_AMapService': {
-          target: 'https://preview.abyssal.site',
-          changeOrigin: true,
-        },
-      },
+      /**
+       * FIXME:
+       * 使用定位服务时，转发请求可能导致根据IP获取定位不准确（失败）
+       * 且考虑服务器位置分布，转发可能有较大延迟或失败
+       */
+      // proxy: {
+      //   '/_AMapService': {
+      //     target: 'https://preview.abyssal.site',
+      //     changeOrigin: true,
+      //   },
+      // },
     },
     build: {
       sourcemap: true,

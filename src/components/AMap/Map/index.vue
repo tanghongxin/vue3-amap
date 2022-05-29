@@ -34,7 +34,8 @@ export default defineComponent({
     onMounted(async () => {
       // eslint-disable-next-line no-underscore-dangle
       window._AMapSecurityConfig = {
-        serviceHost: `${window.location.origin}/_AMapService`,
+        // serviceHost: `${window.location.origin}/_AMapService`,
+        securityJsCode: import.meta.env.VITE_AMAP_JS_CODE,
       };
 
       const AMap = await AMapLoader.load({
