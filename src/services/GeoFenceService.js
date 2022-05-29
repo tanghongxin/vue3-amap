@@ -1,8 +1,8 @@
 import qs from 'qs';
-import { FENCE_SHAPE_POLYGON, FENCE_SHAPE_CIRCLE } from '@/constants/index';
-import Base from './Base';
+import Constants from '@/constants';
+import BaseService from './BaseService';
 
-export default class GeoFenceService extends Base {
+export default class GeoFenceService extends BaseService {
   /**
    * 创建圆形围栏
    * @see https://lbs.amap.com/api/track/lieying-kaifa/api/track_fence#t2
@@ -64,7 +64,7 @@ export default class GeoFenceService extends Base {
   addPolygon({
     name = '', desc = '', points,
   }) {
-    this.request({
+    return this.request({
       method: 'post',
       url: '/geofence/add/polygon',
       data: qs.stringify({
@@ -88,7 +88,7 @@ export default class GeoFenceService extends Base {
   updatePolygon({
     gfid, name = '', desc = '', points,
   }) {
-    this.request({
+    return this.request({
       method: 'post',
       url: '/geofence/update/polygon',
       data: qs.stringify({
@@ -106,11 +106,11 @@ export default class GeoFenceService extends Base {
   }
 
   add({ type, ...rest }) {
-    return type === FENCE_SHAPE_CIRCLE ? this.addCircle(rest) : this.addPolygon(rest);
+    return type === Constants.DICTS.FENCE_TYPE_CIRCLE ? this.addCircle(rest) : this.addPolygon(rest);
   }
 
   update({ type, ...rest }) {
-    return type === FENCE_SHAPE_CIRCLE ? this.updateCircle(rest) : this.updatePolygon(rest);
+    return type === Constants.DICTS.FENCE_TYPE_CIRCLE ? this.updateCircle(rest) : this.updatePolygon(rest);
   }
 
   /**
@@ -148,7 +148,7 @@ export default class GeoFenceService extends Base {
         key: this.key,
         sid: this.sid,
         outputshape: '1',
-        ...gfids ? { gfids } : {},
+        ...gfids?.length ? { gfids: gfids.join(',') } : {},
         page,
         pagesize,
       },
@@ -156,7 +156,7 @@ export default class GeoFenceService extends Base {
 
     results.forEach((r) => {
       Object.assign(r, {
-        type: Object.prototype.hasOwnProperty.call(r.shape, 'radius') ? FENCE_SHAPE_CIRCLE : FENCE_SHAPE_POLYGON,
+        type: Object.prototype.hasOwnProperty.call(r.shape, 'radius') ? Constants.DICTS.FENCE_TYPE_CIRCLE : Constants.DICTS.FENCE_TYPE_POLYGON,
       });
     });
 
@@ -169,7 +169,7 @@ export default class GeoFenceService extends Base {
    * @returns
    */
   async detail(gfid) {
-    const { results } = await this.list({ gfid });
+    const { results } = await this.list({ gfids: [gfid] });
     if (results.length) {
       const { shape, ...rest } = results[0];
       return { ...shape, ...rest };
@@ -193,7 +193,7 @@ export default class GeoFenceService extends Base {
         key: this.key,
         sid: this.sid,
         location: location.join(','),
-        ...gfids ? { gfids: gfids.join(',') } : {},
+        ...gfids?.length ? { gfids: gfids.join(',') } : {},
         page,
         pagesize,
       },

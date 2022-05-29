@@ -23,10 +23,10 @@
                 v-model:value="formState.type"
                 disabled
               >
-                <a-select-option :value="FENCE_SHAPE_POLYGON">
+                <a-select-option :value="Constants.DICTS.FENCE_TYPE_POLYGON">
                   多边形
                 </a-select-option>
-                <a-select-option :value="FENCE_SHAPE_CIRCLE">
+                <a-select-option :value="Constants.DICTS.FENCE_TYPE_CIRCLE">
                   圆形
                 </a-select-option>
               </a-select>
@@ -103,22 +103,22 @@
 
 <script>
 import { computed, defineComponent, reactive } from 'vue';
-import GeoFenceService from '@/service/GeoFence';
 import { useRouter } from 'vue-router';
 import { message } from 'ant-design-vue';
-import { FENCE_SHAPE_POLYGON, FENCE_SHAPE_CIRCLE } from '@/constants/index';
+import Constants from '@/constants';
+import { geoFenceService } from '@/services';
 import use from './composable';
 
 export default defineComponent({
   name: 'AMapVector',
   props: {
     gfid: {
-      type: String,
-      default: '',
+      type: Number,
+      default: 0,
     },
     type: {
       type: String,
-      default: FENCE_SHAPE_CIRCLE,
+      default: Constants.DICTS.FENCE_TYPE_CIRCLE,
     },
     readOnly: {
       type: Boolean,
@@ -145,10 +145,8 @@ export default defineComponent({
       desc: '',
     });
 
-    const service = new GeoFenceService();
-
     if (formState.gfid) {
-      service.detail(formState.gfid).then((res) => {
+      geoFenceService.detail(formState.gfid).then((res) => {
         const {
           name, desc, ...rest
         } = res;
@@ -163,22 +161,21 @@ export default defineComponent({
         ...formState,
       };
       if (formState.gfid) {
-        await service.update(payload);
+        await geoFenceService.update(payload);
         message.success('编辑成功');
       } else {
-        await service.add(payload);
+        await geoFenceService.add(payload);
         message.success('新增成功');
       }
       router.push('/manage');
     };
 
     return {
+      Constants,
       typeRef,
       drawerRef,
       vectorRef,
       editorRef,
-      FENCE_SHAPE_POLYGON,
-      FENCE_SHAPE_CIRCLE,
       start,
       stop,
       clear,

@@ -9,56 +9,37 @@
       >
         <check-outlined />签到
       </a-button>
-      <a-map-marker
-        v-if="state.position.length"
-        :position="state.position"
-      />
-      <a-map-geolocation
-        ref="glRef"
-        :show-button="false"
-        :show-circle="false"
-        @init="handleInit"
+      <a-map-position-watcher
+        @update:position="state.position = $event"
       />
     </fence-view>
   </div>
 </template>
 
 <script>
-import { FenceView } from '@/components/Fence/index';
 import {
-  defineComponent, reactive, ref,
+  defineComponent, reactive, onBeforeMount,
 } from 'vue';
-import {
-  AMapGeolocation,
-  AMapMarker,
-} from '@/components/AMap/index';
-import GeoFenceService from '@/service/GeoFence';
+import { geoFenceService } from '@/services';
 import { message } from 'ant-design-vue';
 import { CheckOutlined } from '@ant-design/icons-vue';
 
 export default defineComponent({
   components: {
-    FenceView,
-    AMapGeolocation,
-    AMapMarker,
     CheckOutlined,
   },
   setup() {
-    const service = new GeoFenceService();
-    const glRef = ref(null);
     const state = reactive({ fences: [], position: [], loading: false });
 
-    // TODO
-    const handleInit = async () => {
-      state.position = await glRef.value.getCurrentPosition();
-      const { results } = await service.list();
+    onBeforeMount(async () => {
+      const { results } = await geoFenceService.list();
       state.fences = results;
-    };
+    });
 
     const handleSubmit = async () => {
       try {
         state.loading = true;
-        const isWithinFences = await service.isWithinFences({
+        const isWithinFences = await geoFenceService.isWithinFences({
           location: state.position,
           gfids: state.fences.map(({ gfid }) => gfid), // 默认所有围栏均启用
         });
@@ -73,7 +54,7 @@ export default defineComponent({
     };
 
     return {
-      glRef, state, handleInit, handleSubmit,
+      state, handleSubmit,
     };
   },
 });

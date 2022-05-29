@@ -1,7 +1,6 @@
 import { defineStore } from 'pinia';
 import { useLocalStorage } from '@vueuse/core';
 
-// eslint-disable-next-line import/prefer-default-export
 export const useStore = defineStore('account', {
   state: () => ({
     username: useLocalStorage('username', ''),
