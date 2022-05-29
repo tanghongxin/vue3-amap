@@ -22,6 +22,7 @@ declare module '@vue/runtime-core' {
     AMapMap: typeof import('./../src/components/AMap/Map/index.vue')['default']
     AMapMapType: typeof import('./../src/components/AMap/MapType/index.vue')['default']
     AMapMarker: typeof import('./../src/components/AMap/Marker/index.vue')['default']
+    AMapPositionWatcher: typeof import('./../src/components/AMap/PositionWatcher/index.vue')['default']
     AMapScale: typeof import('./../src/components/AMap/Scale/index.vue')['default']
     AMapSearch: typeof import('./../src/components/AMap/Search/index.vue')['default']
     AMapToolbar: typeof import('./../src/components/AMap/Toolbar/index.vue')['default']
