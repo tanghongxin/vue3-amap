@@ -4,9 +4,9 @@
     :position="state.position"
   />
   <a-map-geolocation
-    watch-position
     :show-button="false"
     :show-circle="false"
+    :show-marker="false"
     :pan-to-location="false"
     @update:position="$emit('update:position', state.position = $event)"
   />
@@ -20,7 +20,7 @@ export default defineComponent({
   emits: ['update:position'],
   setup() {
     return {
-      state: reactive({ position: [] }),
+      state: reactive({ position: [104.049469943577, 30.552415907119] }),
     };
   },
 });

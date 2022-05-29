@@ -1,6 +1,6 @@
 <script>
 import {
-  onBeforeUnmount, defineComponent, h, Comment,
+  onBeforeUnmount, defineComponent, h, Comment, watch, computed,
 } from 'vue';
 import { useInjectMap } from '@/composables/map';
 
@@ -25,17 +25,37 @@ export default defineComponent({
     const { AMap, map } = useInjectMap();
     const { lng, lat } = map.getCenter();
 
-    const control = {
-      marker: new AMap.Marker({
-        map,
+    const optionsRef = computed(() => {
+      const { position, ...rest } = props;
+      return {
         position: new AMap.LngLat(...props.position.length ? props.position : [lng, lat]),
-        title: props.title,
-        zIndex: props.zIndex,
-      }),
-    };
+        ...rest,
+      };
+    });
+
+    const control = new AMap.Marker({
+      map,
+      ...optionsRef.value,
+    });
 
     map.add(control);
     map.setFitView();
+
+    watch(
+      () => props.position,
+      () => control.setPosition(optionsRef.value.position),
+      { deep: true },
+    );
+
+    watch(
+      () => props.title,
+      () => control.setText(optionsRef.value.text),
+    );
+
+    watch(
+      () => props.zIndex,
+      () => props.setzIndex(optionsRef.value.zIndex),
+    );
 
     onBeforeUnmount(() => {
       map.remove(control);
