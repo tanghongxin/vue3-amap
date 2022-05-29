@@ -20,7 +20,7 @@ export default defineComponent({
   emits: ['update:position'],
   setup() {
     return {
-      state: reactive({ position: [104.049469943577, 30.552415907119] }),
+      state: reactive({ position: [] }),
     };
   },
 });
