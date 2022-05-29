@@ -9,15 +9,8 @@
       >
         <check-outlined />签到
       </a-button>
-      <a-map-marker
-        v-if="state.position.length"
-        :position="state.position"
-      />
-      <a-map-geolocation
-        ref="glRef"
-        :show-button="false"
-        :show-circle="false"
-        @init="handleInit"
+      <a-map-position-watcher
+        @update:position="state.position = $event"
       />
     </fence-view>
   </div>
@@ -25,7 +18,7 @@
 
 <script>
 import {
-  defineComponent, reactive, ref,
+  defineComponent, reactive, onBeforeMount,
 } from 'vue';
 import { geoFenceService } from '@/services';
 import { message } from 'ant-design-vue';
@@ -36,15 +29,12 @@ export default defineComponent({
     CheckOutlined,
   },
   setup() {
-    const glRef = ref(null);
     const state = reactive({ fences: [], position: [], loading: false });
 
-    // TODO
-    const handleInit = async () => {
-      state.position = await glRef.value.getCurrentPosition();
+    onBeforeMount(async () => {
       const { results } = await geoFenceService.list();
       state.fences = results;
-    };
+    });
 
     const handleSubmit = async () => {
       try {
@@ -64,7 +54,7 @@ export default defineComponent({
     };
 
     return {
-      glRef, state, handleInit, handleSubmit,
+      state, handleSubmit,
     };
   },
 });
