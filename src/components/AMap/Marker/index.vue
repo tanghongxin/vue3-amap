@@ -28,7 +28,7 @@ export default defineComponent({
       const { lng, lat } = map.getCenter();
       const { position, ...rest } = props;
       return {
-        position: new AMap.LngLat(...props.position.length ? props.position : [lng, lat]),
+        position: new AMap.LngLat(...position.length ? position : [lng, lat]),
         ...rest,
       };
     });

@@ -1,5 +1,7 @@
 <script>
-import { defineComponent, onBeforeUnmount } from 'vue';
+import {
+  defineComponent, onBeforeUnmount, h, Comment,
+} from 'vue';
 import { useInjectMap } from '@/composables/map';
 
 export default defineComponent({
@@ -18,6 +20,8 @@ export default defineComponent({
     onBeforeUnmount(() => {
       map.remove(control);
     });
+
+    return () => h(Comment);
   },
 });
 </script>

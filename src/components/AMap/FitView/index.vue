@@ -14,7 +14,7 @@
 
 <script>
 import { useInjectMap } from '@/composables/map';
-import { defineComponent } from '@vue/runtime-core';
+import { defineComponent } from 'vue';
 import { SendOutlined } from '@ant-design/icons-vue';
 
 export default defineComponent({
