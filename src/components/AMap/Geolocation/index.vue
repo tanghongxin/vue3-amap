@@ -1,6 +1,6 @@
 <script>
 import {
-  defineComponent, onBeforeUnmount, h, Comment,
+  defineComponent, onBeforeUnmount, h, Comment, computed,
 } from 'vue';
 import { useInjectMap } from '@/composables/map';
 import { immediateInterval } from '@/utils';
@@ -36,7 +36,12 @@ export default defineComponent({
   emits: ['update:position'],
   setup(props, { emit }) {
     const { AMap, map } = useInjectMap();
-    const geolocation = new AMap.Geolocation({ ...props });
+    const optionsRef = computed(() => {
+      const { watchPosition, ...rest } = props;
+      return { ...rest };
+    });
+
+    const geolocation = new AMap.Geolocation(optionsRef.value);
 
     const getCurrentPosition = () => new Promise((resolve, reject) => {
       geolocation.getCurrentPosition((status, result) => {
