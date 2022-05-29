@@ -66,10 +66,8 @@
             :row-selection="rowSelection"
             :pagination="false"
           >
-            <template #bodyCell="{ column }">
-              <template v-if="column.key === 'operation'">
-                <a>action</a>
-              </template>
+            <template #emptyText>
+              暂无数据
             </template>
           </a-table>
         </div>

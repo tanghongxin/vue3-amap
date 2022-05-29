@@ -61,7 +61,41 @@ export default class Factory {
 
     switch (constructor) {
       case AMap.Polygon: {
-        return new AMap.PolyEditor(map, vector);
+        const editor = new AMap.PolyEditor(map, vector);
+        const {
+          open: originalOpen,
+          close: originalClose,
+        } = editor;
+
+        // 支持在微调过程中拖拽位置
+        const handleDragend = () => {
+          if (editor.editable) {
+            // 强制刷新顶点状态
+            editor.close();
+            editor.open();
+          }
+        };
+
+        editor.open = function open(...argus) {
+          setTimeout(() => {
+            // 等同于 vector，使用运行时变量避免函数重写时可能因闭包造成的内存泄漏，下同
+            // eslint-disable-next-line no-underscore-dangle
+            editor.getTarget()._opts.draggable = true;
+            editor.getTarget().on('dragend', handleDragend);
+          });
+          return originalOpen.apply(editor, argus);
+        };
+
+        editor.close = function close(...argus) {
+          setTimeout(() => {
+            // eslint-disable-next-line no-underscore-dangle
+            editor.getTarget()._opts.draggable = false;
+            editor.getTarget().off('dragend', handleDragend);
+          });
+          return originalClose.apply(editor, argus);
+        };
+
+        return editor;
       }
       case AMap.Circle: {
         return new AMap.CircleEditor(map, vector);

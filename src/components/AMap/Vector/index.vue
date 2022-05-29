@@ -55,7 +55,7 @@
               <a-button
                 type="primary"
                 html-type="submit"
-                :disabled="!(formState.name && formState.desc && formState.type && vectorRef)"
+                :disabled="!(formState.name && formState.type && vectorRef)"
               >
                 保存
               </a-button>

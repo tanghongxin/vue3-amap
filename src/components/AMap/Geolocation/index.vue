@@ -42,6 +42,9 @@ export default defineComponent({
     });
 
     const geolocation = new AMap.Geolocation(optionsRef.value);
+    map.addControl(geolocation);
+
+    let timer;
 
     const getCurrentPosition = () => new Promise((resolve, reject) => {
       geolocation.getCurrentPosition((status, result) => {
@@ -55,10 +58,6 @@ export default defineComponent({
         }
       });
     });
-
-    map.addControl(geolocation);
-
-    let timer;
 
     const unWatch = () => {
       if (timer) {
