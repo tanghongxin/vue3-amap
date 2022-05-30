@@ -1,6 +1,6 @@
-import { ref, computed } from 'vue';
+import { customRef } from 'vue';
 
-const useStorage = (storage) => (key, defaultValue) => ref(computed({
+const useStorage = (storage) => (key, defaultValue) => customRef((track, trigger) => ({
   get() {
     let value = defaultValue;
     try {
@@ -10,9 +10,11 @@ const useStorage = (storage) => (key, defaultValue) => ref(computed({
       console.warn(e);
     }
 
+    track();
     return value;
   },
   set(value) {
+    trigger();
     storage.setItem(key, JSON.stringify(value));
   },
 }));
