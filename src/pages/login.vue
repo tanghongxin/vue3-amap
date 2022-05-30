@@ -46,12 +46,12 @@
 <script>
 import { defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import { useStore } from '@/store';
+import { useAccountStore } from '@/store';
 
 export default defineComponent({
   setup() {
     const router = useRouter();
-    const store = useStore();
+    const store = useAccountStore();
 
     const formState = reactive({
       username: 'admin',

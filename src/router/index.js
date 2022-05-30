@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
-import { useStore } from '@/store';
+import { useAccountStore } from '@/store';
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -40,7 +40,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  const store = useStore();
+  const store = useAccountStore();
   if (
     ['/login', '/sign-in'].includes(to.path)
     || store.hasLoggedIn
