@@ -1,6 +1,6 @@
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 
-const useStorage = (storage) => (key, defaultValue) => computed({
+const useStorage = (storage) => (key, defaultValue) => ref(computed({
   get() {
     let value = defaultValue;
     try {
@@ -15,7 +15,7 @@ const useStorage = (storage) => (key, defaultValue) => computed({
   set(value) {
     storage.setItem(key, JSON.stringify(value));
   },
-});
+}));
 
 export const useLocalStorage = useStorage(localStorage);
 
