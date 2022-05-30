@@ -72,7 +72,7 @@ import {
   BorderOuterOutlined, MenuUnfoldOutlined, MenuFoldOutlined, LogoutOutlined,
 } from '@ant-design/icons-vue';
 import { defineComponent, ref } from 'vue';
-import { useStore } from '@/store';
+import { useAccountStore } from '@/store';
 import { useRouter } from 'vue-router';
 
 export default defineComponent({
@@ -85,7 +85,7 @@ export default defineComponent({
   },
 
   setup() {
-    const store = useStore();
+    const store = useAccountStore();
     const router = useRouter();
     return {
       selectedKeys: ref(['1']),
