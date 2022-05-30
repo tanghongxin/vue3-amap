@@ -49,7 +49,7 @@ export default defineComponent({
 
     watch(
       () => props.title,
-      () => control.setText(optionsRef.value.text),
+      () => control.setTitle(optionsRef.value.title),
     );
 
     watch(
