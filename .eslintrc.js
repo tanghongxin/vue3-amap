@@ -34,6 +34,8 @@ module.exports = {
     'vue/no-unused-components': [1],
     'no-unused-vars': [1],
     'import/prefer-default-export': 'off',
+    'no-underscore-dangle': 'off',
+    'no-param-reassign': 'off',
   },
   settings: {
     'import/resolver': {
