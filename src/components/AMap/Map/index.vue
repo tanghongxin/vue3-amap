@@ -1,14 +1,10 @@
 <template>
   <div class="a-map-map__wrapper">
-    <a-spin
-      v-if="!state.initialized"
-      class="a-map-map__wrapper-spin"
-      spinning
-      size="large"
-    />
-    <div ref="containerRef" class="w-100 h-100">
-      <slot v-if="state.initialized" />
-    </div>
+    <utils-loading :loading="!state.initialized">
+      <div ref="containerRef" class="w-100 h-100">
+        <slot v-if="state.initialized" />
+      </div>
+    </utils-loading>
   </div>
 </template>
 
@@ -82,13 +78,5 @@ export default defineComponent({
   width: max(100%, 100px);
   height: max(100%, 100px);
   overflow: hidden;
-
-  &-spin {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-  }
 }
 </style>

@@ -1,10 +1,9 @@
 <template>
   <div class="a-map__search" :style="props.position">
-    <a-input
+    <input
       :id="id"
-      allow-clear
       placeholder="输入地名进行搜索"
-    />
+    >
   </div>
 </template>
 
@@ -53,10 +52,5 @@ export default defineComponent({
 .a-map__search {
   position: absolute;
   z-index: 1;
-
-  .ant-input-affix-wrapper {
-    min-width: 320px;
-    border-radius: 4px;
-  }
 }
 </style>
