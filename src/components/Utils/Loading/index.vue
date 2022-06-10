@@ -43,7 +43,7 @@ export default defineComponent({
     position: absolute;
     height: 12px;
     width: 12px;
-    background: @primary-color;
+    background: #40a9ff;
     border-radius: 6px;
 
     &--top {

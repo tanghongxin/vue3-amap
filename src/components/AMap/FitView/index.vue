@@ -9,7 +9,7 @@
 <script>
 import { useInjectMap } from '@/composables/map';
 import { defineComponent } from 'vue';
-import NavigationIcon from '@/assets/svg/navigation.svg';
+import NavigationIcon from './navigation.svg';
 
 export default defineComponent({
   name: 'AMapFitView',
@@ -62,8 +62,8 @@ export default defineComponent({
 
     &:hover,
     &:focus {
-      color: @primary-color;
-      border-color: @primary-color;
+      color:  #40a9ff;
+      border-color:#40a9ff;
       background: #fff;
     }
   }

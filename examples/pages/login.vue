@@ -46,7 +46,7 @@
 <script>
 import { defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
-import { useAccountStore } from '@/store';
+import { useAccountStore } from '../store';
 
 export default defineComponent({
   setup() {

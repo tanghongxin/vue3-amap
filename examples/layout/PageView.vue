@@ -72,8 +72,8 @@ import {
   BorderOuterOutlined, MenuUnfoldOutlined, MenuFoldOutlined, LogoutOutlined,
 } from '@ant-design/icons-vue';
 import { defineComponent, ref } from 'vue';
-import { useAccountStore } from '@/store';
 import { useRouter } from 'vue-router';
+import { useAccountStore } from '../store';
 
 export default defineComponent({
   name: 'PageView',
