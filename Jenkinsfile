@@ -4,7 +4,7 @@ pipeline {
         timestamps()
     }
     environment {
-        ONLINE_SITE = 'https://preview.abyssal.site'
+        ONLINE_SITE = 'https://www.abyssal.site/vue3-amap'
     }
     stages {
         stage('Build') { 
@@ -16,10 +16,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 dir('/usr/share/nginx') {
-                    sh 'rm -rf preview.back'
-                    sh 'mv preview preview.back' 
+                    sh 'rm -rf vue3-amap.back'
+                    sh 'mv vue3-amap vue3-amap.back' 
                     sh 'mv ${WORKSPACE}/dist .'
-                    sh 'mv dist preview'
+                    sh 'mv dist vue3-amap'
                 }
             }
         }

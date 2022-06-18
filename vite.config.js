@@ -17,6 +17,7 @@ export default ({ mode }) => {
     //     },
     //   },
     // },
+    base: '/vue3-amap/',
     plugins: [
       eslint({ cache: false }),
       svgLoader(),
