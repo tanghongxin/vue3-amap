@@ -34,16 +34,16 @@ export default ({ mode }) => {
     server: {
       https: true,
     },
-    build: {
-      sourcemap: true,
-      lib: {
-        entry: './src/index.js',
-        formats: ['es'],
-        filename: (format) => `index.${format}.js`,
-      },
-      rollupOptions: {
-        external: ['vue'],
-      },
-    },
+    // build: {
+    //   sourcemap: true,
+    //   lib: {
+    //     entry: './src/index.js',
+    //     formats: ['es'],
+    //     filename: (format) => `index.${format}.js`,
+    //   },
+    //   rollupOptions: {
+    //     external: ['vue'],
+    //   },
+    // },
   });
 };
