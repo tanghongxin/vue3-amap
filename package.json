@@ -10,20 +10,14 @@
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore src",
     "serve": "vite preview"
   },
-  "types": "types/components.d.ts",
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
-    "@ant-design/icons-vue": "^6.1.0",
     "ant-design-vue": "^3.2.3",
     "axios": "^0.27.2",
-    "pinia": "^2.0.14",
-    "qrcode.vue": "^3.3.3",
-    "qs": "^6.10.3",
-    "unplugin-vue-components": "^0.19.5",
-    "vue": "^3.2.33",
-    "vue-router": "^4.0.15"
+    "qs": "^6.10.3"
   },
   "devDependencies": {
+    "@ant-design/icons-vue": "^6.1.0",
     "@vitejs/plugin-vue": "^2.3.2",
     "autoprefixer": "^10.4.7",
     "eslint": "^8.15.0",
@@ -32,11 +26,15 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-vue": "^8.7.1",
     "less": "^4.1.2",
+    "pinia": "^2.0.14",
     "postcss": "^8.4.13",
     "postcss-html": "^1.4.1",
-    "typescript": "^4.7.2",
+    "qrcode.vue": "^3.3.3",
+    "unplugin-vue-components": "^0.19.5",
     "vite": "^2.9.8",
     "vite-plugin-eslint": "^1.6.0",
-    "vite-svg-loader": "^3.3.0"
+    "vite-svg-loader": "^3.3.0",
+    "vue": "^3.2.33",
+    "vue-router": "^4.0.15"
   }
 }

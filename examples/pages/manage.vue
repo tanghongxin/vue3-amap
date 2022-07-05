@@ -118,7 +118,7 @@ export default defineComponent({
     const state = reactive({
       activeTabKey: '1',
       previewVisible: false,
-      previewURL: `${window.location.origin}/#/sign-in`,
+      previewURL: `${window.location.origin}/${window.location.pathname}/#/sign-in`,
       columns: [
         {
           title: '名称',

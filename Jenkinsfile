@@ -4,7 +4,9 @@ pipeline {
         timestamps()
     }
     environment {
-        ONLINE_SITE = 'https://preview.abyssal.site'
+        ONLINE_SITE = 'https://www.abyssal.site/vue3-amap'
+        AUTHOR_EMAIL = 'hongxin.tang@hotmail.com'
+        DEPLOY_DIR   = '/www/wwwroot/www'
     }
     stages {
         stage('Build') { 
@@ -15,11 +17,16 @@ pipeline {
         }
         stage('Deploy') {
             steps {
-                dir('/usr/share/nginx') {
-                    sh 'rm -rf preview.back'
-                    sh 'mv preview preview.back' 
-                    sh 'mv ${WORKSPACE}/dist .'
-                    sh 'mv dist preview'
+                dir("${DEPLOY_DIR}") {
+                    script {
+                        if (fileExists('vue3-amap.back')) {
+                            sh 'rm -rf vue3-amap.back'
+                        }
+                        if (fileExists('vue3-amap')) {
+                            sh 'mv vue3-amap vue3-amap.back'
+                        }    
+                    }
+                    sh 'mv ${WORKSPACE}/dist ./vue3-amap'
                 }
             }
         }
@@ -29,7 +36,7 @@ pipeline {
             emailext body: "View on ${ONLINE_SITE}, See detail at ${BUILD_URL}",
                     recipientProviders: [developers(), requestor()],
                     subject: "Jenkins: ${JOB_NAME} ${GIT_BRANCH} build ${currentBuild.result}",
-                    to: 'hongxin.tang@hotmail.com'
+                    to: "${AUTHOR_EMAIL}"
         }
     }
 }

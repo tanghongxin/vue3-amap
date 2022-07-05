@@ -10,15 +10,20 @@ export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
   return defineConfig({
+    // css: {
+    //   preprocessorOptions: {
+    //     less: {
+    //       additionalData: '@import "/src/assets/styles/main.less";',
+    //     },
+    //   },
+    // },
+    base: '/vue3-amap/',
     plugins: [
       eslint({ cache: false }),
       svgLoader(),
       vue(),
       Components({
         resolvers: [AntDesignVueResolver()],
-        directoryAsNamespace: true,
-        dirs: ['src/components'],
-        dts: 'types/components.d.ts',
       }),
     ],
     resolve: {
@@ -29,8 +34,16 @@ export default ({ mode }) => {
     server: {
       https: true,
     },
-    build: {
-      sourcemap: true,
-    },
+    // build: {
+    //   sourcemap: true,
+    //   lib: {
+    //     entry: './src/index.js',
+    //     formats: ['es'],
+    //     filename: (format) => `index.${format}.js`,
+    //   },
+    //   rollupOptions: {
+    //     external: ['vue'],
+    //   },
+    // },
   });
 };
