@@ -36,9 +36,6 @@ steps:
     runOptions: 'inline'
     inline: |
       tar -zxvf /tmp/dist.tar.gz -C /tmp
-      node /opt/bt_script/backup_site.js $(DOMAIN)
-      cp $(DEPLOY_DIR)/.user.ini /tmp/dist
-      chattr -i $(DEPLOY_DIR)/dist/.user.ini
-      rm -rf $(DEPLOY_DIR)/dist /tmp/dist.tar.gz
-      mv /tmp/dist $(DEPLOY_DIR)/dist
+      rm -rf $(DEPLOY_DIR)/vue3-amap /tmp/dist.tar.gz
+      mv /tmp/dist $(DEPLOY_DIR)/vue3-amap
   displayName: 'Deploy'
