@@ -33,6 +33,12 @@ export default ({ mode }) => {
     },
     server: {
       https: true,
+      proxy: {
+        '/_AMapService': {
+          target: 'https://www.abyssal.site',
+          changeOrigin: true,
+        },
+      },
     },
     // build: {
     //   sourcemap: true,
