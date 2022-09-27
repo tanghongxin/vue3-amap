@@ -44,11 +44,6 @@ yarn dev
 ```
 
 ## FAQ
-
-- 为什么不按照[高德地图官方建议](https://lbs.amap.com/api/jsapi-v2/guide/abc/prepare)使用```serviceHost```保护安全密钥？
-
-  经实际验证，在使用代理时，某些高德 web 服务无法得到正常响应，如定位
-
 - 为什么 PC 端调试定位时会失败？
 
   定位实现基于 GPS 与 IP 定位，前者大部分 PC 不具备硬件能力，后者受代理、外网连通性等网络环境因素影响
