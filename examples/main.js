@@ -8,6 +8,10 @@ import './assets/styles/main.less';
 // https://github.com/antfu/unplugin-vue-components/issues/162
 import 'ant-design-vue/es/message/style/index.css';
 
+if (import.meta.env.MODE === 'development') {
+  import('../mock');
+}
+
 const app = createApp(App);
 app.use(createPinia());
 app.use(router);
