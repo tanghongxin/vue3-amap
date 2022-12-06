@@ -7,12 +7,12 @@ const request = axios.create({
 
 request.interceptors.response.use(
   ({ data }) => {
-    const { errmsg } = data;
+    const { errmsg, errdetail } = data;
     if (errmsg === 'OK') {
       return Promise.resolve(data.data);
     }
-    message.error(errmsg);
-    return Promise.reject(new Error(errmsg));
+    message.error(errdetail);
+    return Promise.reject(new Error(errdetail));
   },
   (error) => {
     message.error(error.message);

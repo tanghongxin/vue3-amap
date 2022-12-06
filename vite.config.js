@@ -5,6 +5,7 @@ import svgLoader from 'vite-svg-loader';
 import { resolve } from 'path';
 import Components from 'unplugin-vue-components/vite';
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+import basicSsl from '@vitejs/plugin-basic-ssl'
 
 export default ({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
@@ -19,6 +20,7 @@ export default ({ mode }) => {
     // },
     base: '/vue3-amap/',
     plugins: [
+      basicSsl(),
       eslint({ cache: false }),
       svgLoader(),
       vue(),
