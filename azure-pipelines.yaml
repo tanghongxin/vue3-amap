@@ -16,10 +16,11 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
-    npm install
-    npm run build
+    npm install -g yarn
+    yarn
+    yarn build
     tar zcvf dist.tar.gz dist
-  displayName: 'NPM install and build'
+  displayName: 'Yarn install and build'
 
 - task: CopyFilesOverSSH@0
   inputs:
