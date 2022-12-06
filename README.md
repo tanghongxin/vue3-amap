@@ -39,8 +39,8 @@ cd vue3-amap
 启动
 
 ```sh
-yarn
-yarn dev
+pnpm i
+pnpm dev
 ```
 
 mock（开发阶段可选开启，避免频繁调用高德接口触发额度限制）
