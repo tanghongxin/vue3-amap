@@ -1,8 +1,9 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
+import Vue3AMap from 'vue3-amap';
 import App from './app.vue';
 import router from './router';
-import Vue3AMap from '../src';
+import 'vue3-amap/style.css';
 import './assets/styles/main.less';
 
 // https://github.com/antfu/unplugin-vue-components/issues/162

@@ -45,7 +45,10 @@ module.exports = {
       },
       alias: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', 'svg'],
-        map: [['@', './src']],
+        map: [
+          ['@', './src'],
+          ['vue3-amap', './lib'],
+        ],
       },
     },
   },

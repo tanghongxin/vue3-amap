@@ -9,6 +9,7 @@ specifiers:
   autoprefixer: ^10.4.13
   axios: ^1.2.1
   axios-mock-adapter: ^1.21.2
+  cross-env: ^7.0.3
   dayjs: ^1.11.7
   eslint: ^8.29.0
   eslint-config-airbnb-base: ^15.0.0
@@ -41,6 +42,7 @@ devDependencies:
   '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
   autoprefixer: 10.4.13_postcss@8.4.19
   axios-mock-adapter: 1.21.2_axios@1.2.1
+  cross-env: 7.0.3
   eslint: 8.29.0
   eslint-config-airbnb-base: 15.0.0_lt3hqehuojhfcbzgzqfngbtmrq
   eslint-import-resolver-alias: 1.1.2_fkfqfehjtk7sk2efaqbgxsuasa
@@ -611,6 +613,14 @@ packages:
     resolution: {integrity: sha512-21491RRQVzUn0GGM9Z1Jrpr6PNPxPi+Za8OM9q4tksTSnlbXXGKK1nXNg/QvwFYettXvSX6zWKCtHHfjN4puyA==}
     requiresBuild: true
     dev: false
+
+  /cross-env/7.0.3:
+    resolution: {integrity: sha512-+/HKd6EgcQCJGh2PSjZuUitQBQynKor4wrFbRg4DtAgS1aWO+gU52xpH7M9ScGgXSYmAVS9bIJ8EzuaGw0oNAw==}
+    engines: {node: '>=10.14', npm: '>=6', yarn: '>=1'}
+    hasBin: true
+    dependencies:
+      cross-spawn: 7.0.3
+    dev: true
 
   /cross-spawn/7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
