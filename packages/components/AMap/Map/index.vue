@@ -1,0 +1,86 @@
+<template>
+  <div class="a-map-map__wrapper">
+    <utils-loading :loading="!state.initialized">
+      <div ref="containerRef" class="w-100 h-100">
+        <slot v-if="state.initialized" />
+      </div>
+    </utils-loading>
+  </div>
+</template>
+
+<script>
+import {
+  defineComponent, onBeforeUnmount, onMounted, shallowReactive, ref,
+} from 'vue';
+import AMapLoader from '@amap/amap-jsapi-loader';
+import { useProvideMap } from 'packages/composables/map';
+import UtilsLoading from 'packages/components/Utils/Loading/index.vue';
+
+export default defineComponent({
+  name: 'AMapMap',
+  components: {
+    UtilsLoading,
+  },
+  setup() {
+    const state = shallowReactive({
+      map: null,
+      AMap: null,
+      initialized: false,
+    });
+    const containerRef = ref(null);
+
+    useProvideMap(state);
+
+    onMounted(async () => {
+      // eslint-disable-next-line no-underscore-dangle
+      window._AMapSecurityConfig = {
+        serviceHost: `${window.location.protocol}//${window.location.host}/_AMapService`,
+      };
+
+      const AMap = await AMapLoader.load({
+        key: import.meta.env.VITE_AMAP_JS_KEY,
+        version: '2.0',
+        plugins: [
+          'AMap.ToolBar',
+          'AMap.Scale',
+          'AMap.MouseTool',
+          'AMap.MapType',
+          'AMap.ControlBar',
+          'AMap.Geolocation',
+          'AMap.PolyEditor',
+          'AMap.BezierCurveEditor',
+          'AMap.RectangleEditor',
+          'AMap.CircleEditor',
+          'AMap.AutoComplete',
+          'AMap.PlaceSearch',
+        ],
+      });
+
+      const map = new AMap.Map(containerRef.value, {
+        resizeEnable: true,
+        zoom: 12,
+      });
+
+      map.on('complete', () => {
+        state.initialized = true;
+      });
+
+      Object.assign(state, { AMap, map });
+    });
+
+    onBeforeUnmount(() => {
+      state.map.destroy();
+    });
+
+    return { state, containerRef };
+  },
+});
+</script>
+
+<style lang="less">
+.a-map-map__wrapper {
+  width: max(100%, 100px);
+  height: max(100%, 100px);
+  overflow: hidden;
+}
+</style>

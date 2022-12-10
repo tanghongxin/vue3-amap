@@ -1,20 +1,27 @@
 {
   "name": "vue3-amap",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
+  "author": "hongxin.tang@hotmail.com",
+  "description": "基于 vue3 封装的高德地图组件集合，配合猎鹰轨迹服务搭建了简易的电子围栏管理系统与企业签到 demo",
   "scripts": {
-    "build": "vite build",
-    "dev": "vite --host",
-    "lint": "yarn lint:js",
-    "lint:fix": "yarn lint:js -- --fix",
-    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore src",
-    "serve": "vite preview"
+    "build:package": "cross-env BUILD_TYPE=package vite build",
+    "build:example": "vite build",
+    "dev:package": "cross-env BUILD_WATCH=true BUILD_TYPE=package vite build",
+    "dev:example": "vite --host",
+    "lint": "pnpm lint:js",
+    "lint:fix": "pnpm lint:js -- --fix",
+    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore packages"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tanghongxin/vue3-amap.git"
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "ant-design-vue": "^3.2.15",
     "axios": "^1.2.1",
-    "dayjs": "^1.11.6",
+    "dayjs": "^1.11.7",
     "qs": "^6.11.0"
   },
   "devDependencies": {
@@ -23,17 +30,18 @@
     "@vitejs/plugin-vue": "^3.2.0",
     "autoprefixer": "^10.4.13",
     "axios-mock-adapter": "^1.21.2",
+    "cross-env": "^7.0.3",
     "eslint": "^8.29.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-vue": "^8.7.1",
+    "eslint-plugin-vue": "^9.8.0",
     "less": "^4.1.3",
     "pinia": "^2.0.27",
     "postcss": "^8.4.19",
     "postcss-html": "^1.5.0",
     "qrcode.vue": "^3.3.3",
-    "unplugin-vue-components": "^0.19.9",
+    "unplugin-vue-components": "^0.22.11",
     "vite": "^3.2.5",
     "vite-plugin-eslint": "^1.8.1",
     "vite-svg-loader": "^3.6.0",
