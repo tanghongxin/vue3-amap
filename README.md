@@ -21,7 +21,6 @@
 
 ## TODO
 
-- [ ] 拆分实现与演示目录
 - [ ] 发布至 NPM
 - [ ] 支持 TypeScript
 - [ ] 移除（减小）依赖（如 ant-design-vue）
@@ -34,13 +33,28 @@
 ```sh
 git clone https://github.com/tanghongxin/vue3-amap.git
 cd vue3-amap
+pnpm i
 ```
 
-启动
-
+启动NPM包
 ```sh
-pnpm i
-pnpm dev
+pnpm dev:package
+```
+
+启动演示项目
+```sh
+pnpm dev:example # 需先启动NPM包
+```
+
+构建NPM包
+```sh
+pnpm build:package
+```
+
+构建演示项目
+```sh
+pnpm build:package
+pnpm build:example
 ```
 
 mock（开发阶段可选开启，避免频繁调用高德接口触发额度限制）
