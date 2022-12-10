@@ -103,7 +103,6 @@
 
 <script>
 import { computed, defineComponent, reactive } from 'vue';
-import { useRouter } from 'vue-router';
 import { message } from 'ant-design-vue';
 import Constants from 'packages/constants';
 import { geoFenceService } from 'packages/services';
@@ -126,7 +125,8 @@ export default defineComponent({
     },
     // TODO: 支持传入整个 config
   },
-  setup(props) {
+  emits: ['success'],
+  setup(props, { emit }) {
     const {
       typeRef, drawerRef, vectorRef, editorRef,
       factory,
@@ -136,7 +136,6 @@ export default defineComponent({
       mountVector,
     } = use(props.type);
     const reaOnlyRef = computed(() => !(drawerRef.value || editorRef.value));
-    const router = useRouter();
 
     const formState = reactive({
       gfid: props.gfid,
@@ -167,7 +166,7 @@ export default defineComponent({
         await geoFenceService.add(payload);
         message.success('新增成功');
       }
-      router.push('/manage');
+      emit('success');
     };
 
     return {

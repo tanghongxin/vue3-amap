@@ -3,7 +3,7 @@
     <a-map-map>
       <a-map-fit-view />
       <a-map-search />
-      <a-map-vector v-bind="query" />
+      <a-map-vector v-bind="query" @success="() => router.push('/manage')" />
 
       <a-map-toolbar />
       <a-map-scale />
@@ -14,13 +14,14 @@
 </template>
 
 <script>
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
   setup() {
+    const router = useRouter();
     const { query } = useRoute();
-    return { query };
+    return { router, query };
   },
 });
 </script>
