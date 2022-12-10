@@ -9,7 +9,7 @@ export default ({ watch }) => ({
   build: {
     emptyOutDir: true,
     copyPublicDir: false,
-    outDir: 'lib',
+    outDir: resolve(__dirname, '../../lib'),
     sourcemap: true,
     lib: {
       entry: resolve(__dirname, '../../packages/index.js'),

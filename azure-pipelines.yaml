@@ -18,7 +18,8 @@ steps:
 - script: |
     npm install -g pnpm
     pnpm install
-    pnpm build:package && pnpm build:example
+    pnpm build:package
+    pnpm build:example
     tar zcvf dist.tar.gz dist
   displayName: 'PNPM install and build'
 
