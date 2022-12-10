@@ -19,9 +19,4 @@ export default () => ({
   build: {
     outDir: 'dist',
   },
-  resolve: {
-    alias: {
-      'vue3-amap': resolve(__dirname, '../../lib/'),
-    },
-  },
 });

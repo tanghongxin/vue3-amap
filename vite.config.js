@@ -30,7 +30,9 @@ export default ({ mode }) => {
     ],
     resolve: {
       alias: {
-        '@': resolve(__dirname, 'src'),
+        'vue3-amap': resolve(__dirname, 'lib'),
+        'packages': resolve(__dirname, 'packages'),
+        'example': resolve(__dirname, 'example'),
       },
     },
   };

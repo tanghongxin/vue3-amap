@@ -1,5 +1,5 @@
 import Adaptor from 'axios-mock-adapter';
-import request from '@/utils/request';
+import request from 'packages/utils/request';
 
 const adaptor = new Adaptor(request, { delayResponse: 300 });
 

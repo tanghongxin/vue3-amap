@@ -14,7 +14,7 @@ module.exports = {
   plugins: ['vue'],
   rules: {
     'import/extensions': 'off',
-    'import/no-extraneous-dependencies': [0, { 'packageDir ': './src/' }],
+    'import/no-extraneous-dependencies': [0, { 'packageDir ': './packages/' }],
     'max-len': ['error', {
       code: 160,
       ignorePattern: 'class="([\\s\\S]*?)"|d="([\\s\\S]*?)"', // ignore classes or svg draw attributes
@@ -41,12 +41,13 @@ module.exports = {
     'import/resolver': {
       node: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', 'svg'],
-        moduleDirectory: ['node_modules', 'src/'],
+        moduleDirectory: ['node_modules', 'packages/'],
       },
       alias: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', 'svg'],
         map: [
-          ['@', './src'],
+          ['packages', './packages'],
+          ['example', './example'],
           ['vue3-amap', './lib'],
         ],
       },

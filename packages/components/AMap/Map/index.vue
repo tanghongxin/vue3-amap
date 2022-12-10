@@ -13,8 +13,8 @@ import {
   defineComponent, onBeforeUnmount, onMounted, shallowReactive, ref,
 } from 'vue';
 import AMapLoader from '@amap/amap-jsapi-loader';
-import { useProvideMap } from '@/composables/map';
-import UtilsLoading from '@/components/Utils/Loading/index.vue';
+import { useProvideMap } from 'packages/composables/map';
+import UtilsLoading from 'packages/components/Utils/Loading/index.vue';
 
 export default defineComponent({
   name: 'AMapMap',

@@ -12,7 +12,7 @@ export default ({ watch }) => ({
     outDir: 'lib',
     sourcemap: true,
     lib: {
-      entry: resolve(__dirname, '../../src/index.js'),
+      entry: resolve(__dirname, '../../packages/index.js'),
       name: 'vue3-amap',
       formats: ['es'],
       fileName: (format) => `index.${format}.js`,

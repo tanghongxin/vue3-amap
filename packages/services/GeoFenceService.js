@@ -1,5 +1,5 @@
 import qs from 'qs';
-import Constants from '@/constants';
+import Constants from 'packages/constants';
 import BaseService from './BaseService';
 
 export default class GeoFenceService extends BaseService {

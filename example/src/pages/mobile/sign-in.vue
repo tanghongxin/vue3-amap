@@ -20,7 +20,7 @@
 import {
   defineComponent, reactive, onBeforeMount,
 } from 'vue';
-import { geoFenceService } from '@/services';
+import { geoFenceService } from 'packages/services';
 import { message } from 'ant-design-vue';
 import { CheckOutlined } from '@ant-design/icons-vue';
 

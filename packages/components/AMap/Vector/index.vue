@@ -105,8 +105,8 @@
 import { computed, defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { message } from 'ant-design-vue';
-import Constants from '@/constants';
-import { geoFenceService } from '@/services';
+import Constants from 'packages/constants';
+import { geoFenceService } from 'packages/services';
 import use from './composable';
 
 export default defineComponent({

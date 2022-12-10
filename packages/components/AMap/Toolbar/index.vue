@@ -2,19 +2,19 @@
 import {
   defineComponent, onBeforeUnmount, h, Comment,
 } from 'vue';
-import { useInjectMap } from '@/composables/map';
+import { useInjectMap } from 'packages/composables/map';
 
 export default defineComponent({
-  name: 'AMapControlBar',
+  name: 'AMapToolbar',
   props: {
     position: {
       type: Object,
-      default: () => ({ bottom: '80px', left: '35px' }),
+      default: () => ({ top: '40px', left: '40px' }),
     },
   },
   setup(props) {
     const { AMap, map } = useInjectMap();
-    const control = new AMap.ControlBar({ ...props });
+    const control = new AMap.ToolBar({ ...props });
     map.addControl(control);
 
     onBeforeUnmount(() => {

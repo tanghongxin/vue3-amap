@@ -11,7 +11,7 @@
     "dev:example": "vite --host",
     "lint": "pnpm lint:js",
     "lint:fix": "pnpm lint:js -- --fix",
-    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore src"
+    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore packages"
   },
   "repository": {
     "type": "git",

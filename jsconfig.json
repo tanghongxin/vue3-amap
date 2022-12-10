@@ -2,8 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"],
-      "vue3-amap/*": ["lib/*"]
+      "vue3-amap/*": ["lib/*"],
+      "packages/*": ["packages/*"],
+      "example/*": ["example/*"]
     },
     "jsx": "preserve"
   },
