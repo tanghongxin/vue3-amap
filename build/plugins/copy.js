@@ -9,7 +9,7 @@ export default () => ({
   closeBundle() {
     /* eslint-disable global-require */
     const {
-      name, description, version, keywords, author, license, dependencies,
+      name, description, version, keywords, author, license, repository, dependencies,
     } = require('../../package.json');
 
     const content = {
@@ -19,6 +19,7 @@ export default () => ({
       keywords,
       author,
       license,
+      repository,
       dependencies,
       type: 'module',
       main: './index.es.js',

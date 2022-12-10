@@ -13,6 +13,10 @@
     "lint:fix": "pnpm lint:js -- --fix",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore src"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tanghongxin/vue3-amap.git"
+  },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "ant-design-vue": "^3.2.15",
