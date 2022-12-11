@@ -16,6 +16,11 @@ export default () => ({
       resolvers: [AntDesignVueResolver()],
     }),
   ],
+  resolve: {
+    alias: {
+      'axios/lib/adapters/xhr': resolve(__dirname, '../../node_modules/axios/lib/adapters/xhr.js'),
+    },
+  },
   server: {
     https: true,
     proxy: {

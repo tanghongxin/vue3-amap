@@ -57,4 +57,5 @@ adaptor.onGet(/\/geofence\/status\/location/).reply(() => [200, {
   errmsg: 'OK',
 }]);
 
+// HACK: axios@1.2.1 需指定 adapter 才能生效
 adaptor.onAny().passThrough();
