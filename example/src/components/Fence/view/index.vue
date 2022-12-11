@@ -7,7 +7,6 @@
         v-for="(config, index) in props.fences"
         :key="index"
         :config="config"
-        read-only
       />
     </a-map-map>
   </div>
