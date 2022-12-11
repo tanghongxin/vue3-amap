@@ -10,7 +10,7 @@
 
 <script>
 import {
-  defineComponent, onBeforeUnmount, onMounted, shallowReactive, ref,
+  defineComponent, onBeforeUnmount, onMounted, shallowReactive, ref, getCurrentInstance,
 } from 'vue';
 import AMapLoader from '@amap/amap-jsapi-loader';
 import { useProvideMap } from 'packages/composables/map';
@@ -32,29 +32,8 @@ export default defineComponent({
     useProvideMap(state);
 
     onMounted(async () => {
-      // eslint-disable-next-line no-underscore-dangle
-      window._AMapSecurityConfig = {
-        serviceHost: `${window.location.protocol}//${window.location.host}/_AMapService`,
-      };
-
-      const AMap = await AMapLoader.load({
-        key: import.meta.env.VITE_AMAP_JS_KEY,
-        version: '2.0',
-        plugins: [
-          'AMap.ToolBar',
-          'AMap.Scale',
-          'AMap.MouseTool',
-          'AMap.MapType',
-          'AMap.ControlBar',
-          'AMap.Geolocation',
-          'AMap.PolyEditor',
-          'AMap.BezierCurveEditor',
-          'AMap.RectangleEditor',
-          'AMap.CircleEditor',
-          'AMap.AutoComplete',
-          'AMap.PlaceSearch',
-        ],
-      });
+      const { appContext } = getCurrentInstance();
+      const AMap = await AMapLoader.load(appContext.config.globalProperties.$aMapOptions);
 
       const map = new AMap.Map(containerRef.value, {
         resizeEnable: true,

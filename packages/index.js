@@ -10,7 +10,7 @@ import AMapToolbar from './components/AMap/Toolbar/index.vue';
 import AMapVector from './components/AMap/Vector/index.vue';
 
 export default {
-  install(app) {
+  install(app, aMapOptions) {
     [
       AMapControlBar,
       AMapFitView,
@@ -25,5 +25,6 @@ export default {
     ].forEach((Component) => {
       app.component(Component.name, Component);
     });
+    app.config.globalProperties.$aMapOptions = aMapOptions;
   },
 };
