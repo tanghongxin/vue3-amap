@@ -9,7 +9,7 @@
       >
         <check-outlined />签到
       </a-button>
-      <a-map-position-watcher
+      <position-watcher
         @update:position="state.position = $event"
       />
     </fence-view>

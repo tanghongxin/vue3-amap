@@ -25,6 +25,7 @@ specifiers:
   recursive-copy: ^2.0.14
   unplugin-vue-components: ^0.22.11
   vite: ^3.2.5
+  vite-plugin-compression: ^0.5.1
   vite-plugin-eslint: ^1.8.1
   vite-svg-loader: ^3.6.0
   vue: ^3.2.45
@@ -58,6 +59,7 @@ devDependencies:
   recursive-copy: 2.0.14
   unplugin-vue-components: 0.22.11_vue@3.2.45
   vite: 3.2.5_less@4.1.3
+  vite-plugin-compression: 0.5.1_vite@3.2.5
   vite-plugin-eslint: 1.8.1_eslint@7.32.0+vite@3.2.5
   vite-svg-loader: 3.6.0
   vue-router: 4.1.6_vue@3.2.45
@@ -1546,6 +1548,15 @@ packages:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: true
 
+  /fs-extra/10.1.0:
+    resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
+    engines: {node: '>=12'}
+    dependencies:
+      graceful-fs: 4.2.10
+      jsonfile: 6.1.0
+      universalify: 2.0.0
+    dev: true
+
   /fs.realpath/1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
     dev: true
@@ -1886,6 +1897,14 @@ packages:
     hasBin: true
     dependencies:
       minimist: 1.2.7
+    dev: true
+
+  /jsonfile/6.1.0:
+    resolution: {integrity: sha512-5dgndWOriYSm5cnYaJNhalLNDKOqFwyDB/rr1E9ZsGciGvKPs8R2xYGCacuf3z6K1YKDz182fd+fY3cn3pMqXQ==}
+    dependencies:
+      universalify: 2.0.0
+    optionalDependencies:
+      graceful-fs: 4.2.10
     dev: true
 
   /junk/1.0.3:
@@ -2644,6 +2663,11 @@ packages:
       which-boxed-primitive: 1.0.2
     dev: true
 
+  /universalify/2.0.0:
+    resolution: {integrity: sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==}
+    engines: {node: '>= 10.0.0'}
+    dev: true
+
   /unplugin-vue-components/0.22.11_vue@3.2.45:
     resolution: {integrity: sha512-GTzqPl0Ek8fq8qMufjR6hvtnjnSwMpJ1Rg2Ez9AcKZVp1piWoU/Q4FDnI9wHVKX8eenYL0nqAF3ejYAk1TUfqQ==}
     engines: {node: '>=14'}
@@ -2702,6 +2726,19 @@ packages:
 
   /v8-compile-cache/2.3.0:
     resolution: {integrity: sha512-l8lCEmLcLYZh4nbunNZvQCJc5pv7+RCwa8q/LdUx8u7lsWvPDKmpodJAJNwkAhJC//dFY48KuIEmjtd4RViDrA==}
+    dev: true
+
+  /vite-plugin-compression/0.5.1_vite@3.2.5:
+    resolution: {integrity: sha512-5QJKBDc+gNYVqL/skgFAP81Yuzo9R+EAf19d+EtsMF/i8kFUpNi3J/H01QD3Oo8zBQn+NzoCIFkpPLynoOzaJg==}
+    peerDependencies:
+      vite: '>=2.0.0'
+    dependencies:
+      chalk: 4.1.2
+      debug: 4.3.4
+      fs-extra: 10.1.0
+      vite: 3.2.5_less@4.1.3
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /vite-plugin-eslint/1.8.1_eslint@7.32.0+vite@3.2.5:

@@ -17,7 +17,7 @@
 import { defineComponent, reactive } from 'vue';
 
 export default defineComponent({
-  name: 'AMapPositionWatcher',
+  name: 'PositionWatcher',
   emits: ['update:position'],
   setup() {
     return {

@@ -32,7 +32,7 @@ export default ({ mode }) => {
 
   return mergeConfig(
     commonConfig,
-    process.env.BUILD_TYPE === 'package' ? packageConfig({ watch: process.env.BUILD_WATCH === 'true' }) : exampleConfig(),
+    process.env.BUILD_TYPE === 'package' ? packageConfig({ watch: process.env.BUILD_WATCH === 'true' }) : exampleConfig({ mode }),
     true,
   );
 };
