@@ -20,7 +20,7 @@
           <a-dropdown>
             <template #overlay>
               <a-menu @click="handleAdd">
-                <a-menu-item :key="Constants.DICTS.FENCE_TYPE_CIRCLE">
+                <a-menu-item :key="Constants.DICTS.VECTOR_TYPE_CIRCLE">
                   圆形围栏
                 </a-menu-item>
                 <a-menu-item :key="Constants.DICTS.FENCE_TYPE_POLYGON">
@@ -134,7 +134,7 @@ export default defineComponent({
           title: '类型',
           dataIndex: 'type',
           width: 100,
-          customRender: ({ text }) => (text === Constants.DICTS.FENCE_TYPE_CIRCLE ? '圆形' : '多边形'),
+          customRender: ({ text }) => (text === Constants.DICTS.VECTOR_TYPE_CIRCLE ? '圆形' : '多边形'),
         },
         {
           title: '创建时间',

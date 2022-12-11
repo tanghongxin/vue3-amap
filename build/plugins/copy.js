@@ -1,5 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
+import copy from 'recursive-copy';
 
 /**
  * @type {() => import('vite').Plugin}
@@ -34,7 +35,8 @@ export default () => ({
 
     return Promise.all([
       fs.writeFile(path.resolve(__dirname, '../../lib/package.json'), JSON.stringify(content, null, '\t')),
-      fs.copyFile(path.resolve(__dirname, '../../LICENSE'), path.resolve(__dirname, '../../lib/LICENSE')),
+      copy(path.resolve(__dirname, '../../LICENSE'), path.resolve(__dirname, '../../lib/LICENSE'), { overwrite: true }),
+      copy(path.resolve(__dirname, '../../packages/constants'), path.resolve(__dirname, '../../lib/constants'), { overwrite: true }),
     ]);
   },
 });

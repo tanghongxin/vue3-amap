@@ -26,7 +26,7 @@
                 <a-select-option :value="Constants.DICTS.FENCE_TYPE_POLYGON">
                   多边形
                 </a-select-option>
-                <a-select-option :value="Constants.DICTS.FENCE_TYPE_CIRCLE">
+                <a-select-option :value="Constants.DICTS.VECTOR_TYPE_CIRCLE">
                   圆形
                 </a-select-option>
               </a-select>
@@ -117,7 +117,7 @@ export default defineComponent({
     },
     type: {
       type: String,
-      default: Constants.DICTS.FENCE_TYPE_CIRCLE,
+      default: Constants.DICTS.VECTOR_TYPE_CIRCLE,
     },
     readOnly: {
       type: Boolean,

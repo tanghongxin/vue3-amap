@@ -20,15 +20,15 @@
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
     "ant-design-vue": "^3.2.15",
-    "axios": "^1.2.1",
     "dayjs": "^1.11.7",
-    "qs": "^6.11.0"
+    "vue": "^3.2.45"
   },
   "devDependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "@vitejs/plugin-basic-ssl": "^0.1.2",
     "@vitejs/plugin-vue": "^3.2.0",
     "autoprefixer": "^10.4.13",
+    "axios": "^1.2.1",
     "axios-mock-adapter": "^1.21.2",
     "cross-env": "^7.0.3",
     "eslint": "7.32.0",
@@ -40,12 +40,13 @@
     "pinia": "^2.0.27",
     "postcss": "^8.4.19",
     "postcss-html": "^1.5.0",
+    "qs": "^6.11.0",
     "qrcode.vue": "^3.3.3",
+    "recursive-copy": "^2.0.14",
     "unplugin-vue-components": "^0.22.11",
     "vite": "^3.2.5",
     "vite-plugin-eslint": "^1.8.1",
     "vite-svg-loader": "^3.6.0",
-    "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   }
 }

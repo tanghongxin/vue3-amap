@@ -1,3 +1,5 @@
 <template>
-  <router-view />
+  <Suspense>
+    <router-view />
+  </Suspense>
 </template>
