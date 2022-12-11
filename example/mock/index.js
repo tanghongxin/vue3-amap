@@ -35,6 +35,14 @@ adaptor.onGet(/\/geofence\/list/).reply((config) => [200, {
   errmsg: 'OK',
 }]);
 
+adaptor.onPost(/\/geofence\/add/).reply(() => [200, {
+  data: null, errcode: 10000, errdetail: null, errmsg: 'OK',
+}]);
+
+adaptor.onPost(/\/geofence\/update/).reply(() => [200, {
+  data: null, errcode: 10000, errdetail: null, errmsg: 'OK',
+}]);
+
 adaptor.onPost(/\/geofence\/delete/).reply(() => [200, {
   data: { gfids: [871500] }, errcode: 10000, errdetail: null, errmsg: 'OK',
 }]);
