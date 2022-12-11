@@ -4,7 +4,6 @@ import AMapGeolocation from './components/AMap/Geolocation/index.vue';
 import AMapMap from './components/AMap/Map/index.vue';
 import AMapMapType from './components/AMap/MapType/index.vue';
 import AMapMarker from './components/AMap/Marker/index.vue';
-import AMapPositionWatcher from './components/AMap/PositionWatcher/index.vue';
 import AMapScale from './components/AMap/Scale/index.vue';
 import AMapSearch from './components/AMap/Search/index.vue';
 import AMapToolbar from './components/AMap/Toolbar/index.vue';
@@ -19,7 +18,6 @@ export default {
       AMapMap,
       AMapMapType,
       AMapMarker,
-      AMapPositionWatcher,
       AMapScale,
       AMapSearch,
       AMapToolbar,
