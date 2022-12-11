@@ -17,7 +17,6 @@
   - AMapFitView
   - AMapPositionWatcher
   - AMapVector
-  - FenceView
 
 ## TODO
 
