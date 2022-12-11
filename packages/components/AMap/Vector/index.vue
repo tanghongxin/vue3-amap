@@ -28,7 +28,10 @@ export default defineComponent({
       mountVector,
     } = use(props.config.type);
     const reaOnlyRef = computed(() => !(drawerRef.value || editorRef.value));
-    mountVector(props.config.shape);
+
+    if (props.config.shape) {
+      mountVector(props.config.shape);
+    }
 
     const generateConfig = () => ({
       ...factory.serializeVector(vectorRef.value),
