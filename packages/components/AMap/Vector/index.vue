@@ -2,14 +2,14 @@
   <div class="a-map__vector">
     <a-card v-if="!props.readOnly">
       <a-form
-        :model="formState"
+        :model="config"
         @submit="handleSubmit"
       >
         <a-row>
           <a-col :span="16">
             <a-form-item>
               <a-input
-                v-model:value="formState.name"
+                v-model:value="props.config.name"
                 show-count
                 :maxlength="20"
                 placeholder="名称"
@@ -20,7 +20,7 @@
           <a-col :span="8">
             <a-form-item>
               <a-select
-                v-model:value="formState.type"
+                v-model:value="props.config.type"
                 disabled
               >
                 <a-select-option :value="Constants.DICTS.FENCE_TYPE_POLYGON">
@@ -37,7 +37,7 @@
           <a-col :span="24">
             <a-form-item>
               <a-textarea
-                v-model:value="formState.desc"
+                v-model:value="props.config.desc"
                 placeholder="描述"
                 allow-clear
                 :maxlength="100"
@@ -55,7 +55,7 @@
               <a-button
                 type="primary"
                 html-type="submit"
-                :disabled="!(formState.name && formState.type && vectorRef)"
+                :disabled="!(config.name && config.type && vectorRef)"
               >
                 保存
               </a-button>
@@ -103,30 +103,24 @@
 
 <script>
 import {
-  computed, defineComponent, inject, reactive,
+  computed, defineComponent,
 } from 'vue';
-import { message } from 'ant-design-vue';
 import Constants from 'packages/constants';
 import use from './composable';
 
 export default defineComponent({
   name: 'AMapVector',
   props: {
-    gfid: {
-      type: Number,
-      default: 0,
-    },
-    type: {
-      type: String,
-      default: Constants.DICTS.VECTOR_TYPE_CIRCLE,
+    config: {
+      type: Object,
+      default: () => ({}),
     },
     readOnly: {
       type: Boolean,
       default: false,
     },
-    // TODO: 支持传入整个 config
   },
-  emits: ['success'],
+  emits: ['submit'],
   setup(props, { emit }) {
     const {
       typeRef, drawerRef, vectorRef, editorRef,
@@ -135,40 +129,16 @@ export default defineComponent({
       stop,
       clear,
       mountVector,
-    } = use(props.type);
+    } = use(props.config.type);
     const reaOnlyRef = computed(() => !(drawerRef.value || editorRef.value));
-
-    const formState = reactive({
-      gfid: props.gfid,
-      type: props.type,
-      name: '',
-      desc: '',
-    });
-
-    const geoFenceService = inject('geoFenceService');
-    if (formState.gfid) {
-      geoFenceService.detail(formState.gfid).then((res) => {
-        const {
-          name, desc, ...rest
-        } = res;
-        Object.assign(formState, { name, desc });
-        mountVector(rest);
-      });
-    }
+    mountVector(props.config.shape);
 
     const handleSubmit = async () => {
       const payload = {
         ...factory.serializeVector(vectorRef.value),
-        ...formState,
+        ...props.config,
       };
-      if (formState.gfid) {
-        await geoFenceService.update(payload);
-        message.success('编辑成功');
-      } else {
-        await geoFenceService.add(payload);
-        message.success('新增成功');
-      }
-      emit('success');
+      emit('submit', payload);
     };
 
     return {
@@ -183,7 +153,6 @@ export default defineComponent({
       reaOnlyRef,
       handleSubmit,
       props,
-      formState,
     };
   },
 });

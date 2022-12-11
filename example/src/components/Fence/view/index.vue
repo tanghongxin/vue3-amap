@@ -4,10 +4,9 @@
       <slot />
       <a-map-fit-view />
       <a-map-vector
-        v-for="{ gfid, type } in props.fences"
-        :key="gfid"
-        :gfid="gfid"
-        :type="type"
+        v-for="(config, index) in props.fences"
+        :key="index"
+        :config="config"
         read-only
       />
     </a-map-map>
