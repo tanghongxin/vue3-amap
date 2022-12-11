@@ -9,7 +9,6 @@ import AMapScale from './components/AMap/Scale/index.vue';
 import AMapSearch from './components/AMap/Search/index.vue';
 import AMapToolbar from './components/AMap/Toolbar/index.vue';
 import AMapVector from './components/AMap/Vector/index.vue';
-import FenceView from './components/Fence/view/index.vue';
 
 export default {
   install(app) {
@@ -25,7 +24,6 @@ export default {
       AMapSearch,
       AMapToolbar,
       AMapVector,
-      FenceView,
     ].forEach((Component) => {
       app.component(Component.name, Component);
     });

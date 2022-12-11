@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { message } from 'ant-design-vue';
+import xhrAdapter from 'axios/lib/adapters/xhr';
 
 const request = axios.create({
   baseURL: 'https://tsapi.amap.com/v1/track',
+  adapter: xhrAdapter,
 });
 
 request.interceptors.response.use(

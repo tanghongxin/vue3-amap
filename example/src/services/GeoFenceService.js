@@ -1,5 +1,5 @@
 import qs from 'qs';
-import Constants from 'packages/constants';
+import Constants from 'vue3-amap/constants';
 import BaseService from './BaseService';
 
 export default class GeoFenceService extends BaseService {
@@ -106,11 +106,11 @@ export default class GeoFenceService extends BaseService {
   }
 
   add({ type, ...rest }) {
-    return type === Constants.DICTS.FENCE_TYPE_CIRCLE ? this.addCircle(rest) : this.addPolygon(rest);
+    return type === Constants.DICTS.VECTOR_TYPE_CIRCLE ? this.addCircle(rest) : this.addPolygon(rest);
   }
 
   update({ type, ...rest }) {
-    return type === Constants.DICTS.FENCE_TYPE_CIRCLE ? this.updateCircle(rest) : this.updatePolygon(rest);
+    return type === Constants.DICTS.VECTOR_TYPE_CIRCLE ? this.updateCircle(rest) : this.updatePolygon(rest);
   }
 
   /**
@@ -154,13 +154,15 @@ export default class GeoFenceService extends BaseService {
       },
     });
 
-    results.forEach((r) => {
-      Object.assign(r, {
-        type: Object.prototype.hasOwnProperty.call(r.shape, 'radius') ? Constants.DICTS.FENCE_TYPE_CIRCLE : Constants.DICTS.FENCE_TYPE_POLYGON,
-      });
-    });
-
-    return { results, ...rest };
+    return {
+      results: results.map((r) => {
+        const type = Object.prototype.hasOwnProperty.call(r.shape, 'radius') ? Constants.DICTS.VECTOR_TYPE_CIRCLE : Constants.DICTS.FENCE_TYPE_POLYGON;
+        Object.assign(r, { type });
+        Object.assign(r.shape, { type });
+        return r;
+      }),
+      ...rest,
+    };
   }
 
   /**
@@ -171,8 +173,7 @@ export default class GeoFenceService extends BaseService {
   async detail(gfid) {
     const { results } = await this.list({ gfids: [gfid] });
     if (results.length) {
-      const { shape, ...rest } = results[0];
-      return { ...shape, ...rest };
+      return results[0];
     }
     return null;
   }

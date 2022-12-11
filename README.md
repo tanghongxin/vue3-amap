@@ -17,13 +17,11 @@
   - AMapFitView
   - AMapPositionWatcher
   - AMapVector
-  - FenceView
 
 ## TODO
 
 - [ ] 发布至 NPM
 - [ ] 支持 TypeScript
-- [ ] 移除（减小）依赖（如 ant-design-vue）
 
 
 ## Getting Started

@@ -1,210 +1,49 @@
 <template>
   <div class="a-map__vector">
-    <a-card v-if="!props.readOnly">
-      <a-form
-        :model="formState"
-        @submit="handleSubmit"
-      >
-        <a-row>
-          <a-col :span="16">
-            <a-form-item>
-              <a-input
-                v-model:value="formState.name"
-                show-count
-                :maxlength="20"
-                placeholder="名称"
-                allow-clear
-              />
-            </a-form-item>
-          </a-col>
-          <a-col :span="8">
-            <a-form-item>
-              <a-select
-                v-model:value="formState.type"
-                disabled
-              >
-                <a-select-option :value="Constants.DICTS.FENCE_TYPE_POLYGON">
-                  多边形
-                </a-select-option>
-                <a-select-option :value="Constants.DICTS.FENCE_TYPE_CIRCLE">
-                  圆形
-                </a-select-option>
-              </a-select>
-            </a-form-item>
-          </a-col>
-        </a-row>
-        <a-row>
-          <a-col :span="24">
-            <a-form-item>
-              <a-textarea
-                v-model:value="formState.desc"
-                placeholder="描述"
-                allow-clear
-                :maxlength="100"
-                show-count
-              />
-            </a-form-item>
-          </a-col>
-        </a-row>
-        <a-row>
-          <a-col
-            :span="6"
-            :offset="2"
-          >
-            <a-form-item>
-              <a-button
-                type="primary"
-                html-type="submit"
-                :disabled="!(formState.name && formState.type && vectorRef)"
-              >
-                保存
-              </a-button>
-            </a-form-item>
-          </a-col>
-          <template v-if="reaOnlyRef">
-            <a-col
-              :span="8"
-              :offset="4"
-            >
-              <a-form-item>
-                <a-button @click="start">
-                  {{ vectorRef ? '继续' : '开始' }}绘制
-                </a-button>
-              </a-form-item>
-            </a-col>
-          </template>
-          <template v-else>
-            <a-col :span="8">
-              <a-form-item>
-                <a-button
-                  :disabled="!(vectorRef)"
-                  @click="stop"
-                >
-                  结束绘制
-                </a-button>
-              </a-form-item>
-            </a-col>
-            <a-col :span="8">
-              <a-form-item>
-                <a-button
-                  :disabled="!(vectorRef)"
-                  @click="clear"
-                >
-                  清空绘制
-                </a-button>
-              </a-form-item>
-            </a-col>
-          </template>
-        </a-row>
-      </a-form>
-    </a-card>
+    <slot />
   </div>
 </template>
 
 <script>
-import { computed, defineComponent, reactive } from 'vue';
-import { message } from 'ant-design-vue';
-import Constants from 'packages/constants';
-import { geoFenceService } from 'packages/services';
+import {
+  computed, defineComponent,
+} from 'vue';
 import use from './composable';
 
 export default defineComponent({
   name: 'AMapVector',
   props: {
-    gfid: {
-      type: Number,
-      default: 0,
+    config: {
+      type: Object,
+      default: () => ({}),
     },
-    type: {
-      type: String,
-      default: Constants.DICTS.FENCE_TYPE_CIRCLE,
-    },
-    readOnly: {
-      type: Boolean,
-      default: false,
-    },
-    // TODO: 支持传入整个 config
   },
-  emits: ['success'],
-  setup(props, { emit }) {
+  setup(props, { expose }) {
     const {
-      typeRef, drawerRef, vectorRef, editorRef,
+      drawerRef, vectorRef, editorRef,
       factory,
       start,
       stop,
       clear,
       mountVector,
-    } = use(props.type);
+    } = use(props.config.type);
     const reaOnlyRef = computed(() => !(drawerRef.value || editorRef.value));
 
-    const formState = reactive({
-      gfid: props.gfid,
-      type: props.type,
-      name: '',
-      desc: '',
-    });
-
-    if (formState.gfid) {
-      geoFenceService.detail(formState.gfid).then((res) => {
-        const {
-          name, desc, ...rest
-        } = res;
-        Object.assign(formState, { name, desc });
-        mountVector(rest);
-      });
+    if (props.config.shape) {
+      mountVector(props.config.shape);
     }
 
-    const handleSubmit = async () => {
-      const payload = {
-        ...factory.serializeVector(vectorRef.value),
-        ...formState,
-      };
-      if (formState.gfid) {
-        await geoFenceService.update(payload);
-        message.success('编辑成功');
-      } else {
-        await geoFenceService.add(payload);
-        message.success('新增成功');
-      }
-      emit('success');
-    };
+    const generateConfig = () => ({
+      ...factory.serializeVector(vectorRef.value),
+      ...props.config,
+    });
 
-    return {
-      Constants,
-      typeRef,
-      drawerRef,
-      vectorRef,
-      editorRef,
-      start,
-      stop,
-      clear,
-      reaOnlyRef,
-      handleSubmit,
-      props,
-      formState,
-    };
+    expose({
+      start, stop, clear, vectorRef, reaOnlyRef, generateConfig,
+    });
   },
 });
 </script>
 
 <style lang="less">
-.a-map__vector {
-  position: absolute;
-  top: 40px;
-  right: 40px;
-  z-index: 1;
-
-  .ant-card-body {
-    padding: 10px;
-}
-
-  .ant-card-bordered {
-    border-radius: 4px;
-  }
-
-  .ant-form-item {
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-}
 </style>

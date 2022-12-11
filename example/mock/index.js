@@ -1,5 +1,5 @@
 import Adaptor from 'axios-mock-adapter';
-import request from 'packages/utils/request';
+import request from 'example/src/utils/request';
 
 const adaptor = new Adaptor(request, { delayResponse: 300 });
 
@@ -35,6 +35,14 @@ adaptor.onGet(/\/geofence\/list/).reply((config) => [200, {
   errmsg: 'OK',
 }]);
 
+adaptor.onPost(/\/geofence\/add/).reply(() => [200, {
+  data: null, errcode: 10000, errdetail: null, errmsg: 'OK',
+}]);
+
+adaptor.onPost(/\/geofence\/update/).reply(() => [200, {
+  data: null, errcode: 10000, errdetail: null, errmsg: 'OK',
+}]);
+
 adaptor.onPost(/\/geofence\/delete/).reply(() => [200, {
   data: { gfids: [871500] }, errcode: 10000, errdetail: null, errmsg: 'OK',
 }]);
@@ -49,4 +57,5 @@ adaptor.onGet(/\/geofence\/status\/location/).reply(() => [200, {
   errmsg: 'OK',
 }]);
 
+// HACK: axios@1.2.1 需指定 adapter 才能生效
 adaptor.onAny().passThrough();
