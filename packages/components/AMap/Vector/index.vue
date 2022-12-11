@@ -102,10 +102,11 @@
 </template>
 
 <script>
-import { computed, defineComponent, reactive } from 'vue';
+import {
+  computed, defineComponent, inject, reactive,
+} from 'vue';
 import { message } from 'ant-design-vue';
 import Constants from 'packages/constants';
-import { geoFenceService } from 'packages/services';
 import use from './composable';
 
 export default defineComponent({
@@ -144,6 +145,7 @@ export default defineComponent({
       desc: '',
     });
 
+    const geoFenceService = inject('geoFenceService');
     if (formState.gfid) {
       geoFenceService.detail(formState.gfid).then((res) => {
         const {

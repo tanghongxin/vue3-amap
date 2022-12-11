@@ -1,5 +1,5 @@
 import qs from 'qs';
-import Constants from 'packages/constants';
+import Constants from 'vue3-amap/constants';
 import BaseService from './BaseService';
 
 export default class GeoFenceService extends BaseService {

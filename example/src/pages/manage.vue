@@ -99,11 +99,11 @@
 </template>
 
 <script>
-import { geoFenceService } from 'packages/services';
+import { geoFenceService } from 'example/src/services';
 import { defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { DownOutlined } from '@ant-design/icons-vue';
-import Constants from 'packages/constants';
+import Constants from 'vue3-amap/constants';
 import QrcodeVue from 'qrcode.vue';
 import dayjs from 'dayjs';
 
