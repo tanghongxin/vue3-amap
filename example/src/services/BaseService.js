@@ -1,4 +1,4 @@
-import request from 'example/src/utils/request';
+import request from '@/utils/request';
 
 export default class BaseService {
   constructor() {

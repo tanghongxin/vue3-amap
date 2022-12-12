@@ -18,15 +18,14 @@ steps:
 - script: |
     npm install -g pnpm
     pnpm install
-    pnpm build:package
-    pnpm build:example
-    tar zcvf dist.tar.gz dist
+    pnpm build
+    tar zcvf ./example/dist.tar.gz ./example/dist
   displayName: 'PNPM install and build'
 
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: TencentCloud
-    contents: 'dist.tar.gz'
+    contents: './example/dist.tar.gz'
     targetFolder: '/tmp'
     readyTimeout: '20000'
     overwrite: true

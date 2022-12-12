@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { useLocalStorage } from 'example/src/utils/storage';
+import { useLocalStorage } from '@/utils/storage';
 
 export default defineStore('account', {
   state: () => ({

@@ -34,25 +34,14 @@ cd vue3-amap
 pnpm i
 ```
 
-启动NPM包
+启动
 ```sh
-pnpm dev:package
-```
-
-启动演示项目
-```sh
-pnpm dev:example # 需先启动NPM包
+pnpm dev
 ```
 
 构建NPM包
 ```sh
-pnpm build:package
-```
-
-构建演示项目
-```sh
-pnpm build:package
-pnpm build:example
+pnpm build
 ```
 
 mock（开发阶段可选开启，避免频繁调用高德接口触发额度限制）

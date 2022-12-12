@@ -99,7 +99,7 @@
 </template>
 
 <script>
-import { geoFenceService } from 'example/src/services';
+import { geoFenceService } from '@/services';
 import { defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { DownOutlined } from '@ant-design/icons-vue';
