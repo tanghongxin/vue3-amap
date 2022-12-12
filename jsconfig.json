@@ -6,6 +6,7 @@
       "vue3-amap": ["components/index.js"],
       "@/*": ["example/src/*"]
     },
+    "target": "esnext",
     "jsx": "preserve"
   },
   "exclude": ["node_modules", "lib"]
