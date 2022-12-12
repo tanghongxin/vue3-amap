@@ -2,7 +2,7 @@
 import {
   onBeforeUnmount, defineComponent, h, Comment, watch, computed,
 } from 'vue';
-import { useInjectMap } from 'packages/composables/map';
+import { useInjectMap } from '../../../composables/map';
 
 export default defineComponent({
   name: 'AMapMarker',

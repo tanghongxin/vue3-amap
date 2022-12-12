@@ -118,7 +118,7 @@
 <script>
 import { useRoute, useRouter } from 'vue-router';
 import { defineComponent, reactive, ref } from 'vue';
-import { geoFenceService } from 'example/src/services';
+import { geoFenceService } from '@/services';
 import Constants from 'vue3-amap/constants';
 import { message } from 'ant-design-vue';
 

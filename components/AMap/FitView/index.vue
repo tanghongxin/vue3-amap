@@ -7,8 +7,8 @@
 </template>
 
 <script>
-import { useInjectMap } from 'packages/composables/map';
 import { defineComponent } from 'vue';
+import { useInjectMap } from '../../../composables/map';
 import NavigationIcon from './navigation.svg';
 
 export default defineComponent({

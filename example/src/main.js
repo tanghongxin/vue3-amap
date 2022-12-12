@@ -4,7 +4,6 @@ import Vue3AMap from 'vue3-amap';
 import App from './app.vue';
 import globalComponents from './components/global_components';
 import router from './router';
-import 'vue3-amap/style.css';
 import './assets/styles/main.less';
 
 // https://github.com/antfu/unplugin-vue-components/issues/162

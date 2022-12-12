@@ -1,4 +1,4 @@
-import Constants from 'packages/constants';
+import Constants from '../../../constants';
 
 export default class Factory {
   constructor({ AMap, map }) {
