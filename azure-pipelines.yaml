@@ -25,12 +25,10 @@ steps:
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: TencentCloud
-    sourceFolder: './example'
-    contents: 'dist.tar.gz'
+    contents: './example/dist.tar.gz'
     targetFolder: '/tmp'
     readyTimeout: '20000'
     overwrite: true
-    flattenFolders: true
   displayName: 'Copy files to the remote machine'
 
 - task: SSH@0
@@ -38,7 +36,7 @@ steps:
     sshEndpoint: TencentCloud
     runOptions: 'inline'
     inline: |
-      tar -zxvf /tmp/dist.tar.gz -C /tmp
-      rm -rf $(DEPLOY_DIR)/vue3-amap /tmp/dist.tar.gz
+      tar -zxvf /tmp/example/dist.tar.gz -C /tmp
+      rm -rf $(DEPLOY_DIR)/vue3-amap /tmp/example
       mv /tmp/dist $(DEPLOY_DIR)/vue3-amap
   displayName: 'Deploy'
