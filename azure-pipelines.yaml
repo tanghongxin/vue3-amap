@@ -25,7 +25,8 @@ steps:
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: TencentCloud
-    contents: './example/dist.tar.gz'
+    sourceFolder: './example'
+    contents: 'dist.tar.gz'
     targetFolder: '/tmp'
     readyTimeout: '20000'
     overwrite: true
