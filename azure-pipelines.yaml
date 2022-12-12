@@ -30,6 +30,7 @@ steps:
     targetFolder: '/tmp'
     readyTimeout: '20000'
     overwrite: true
+    flattenFolders: true
   displayName: 'Copy files to the remote machine'
 
 - task: SSH@0
