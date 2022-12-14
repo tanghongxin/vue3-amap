@@ -18,7 +18,7 @@ import {
   defineComponent, onBeforeUnmount, onMounted, shallowReactive, ref, getCurrentInstance,
 } from 'vue';
 import AMapLoader from '@amap/amap-jsapi-loader';
-import { useProvideMap } from '../../composables/map';
+import { useProvideMap } from 'vue3-amap/src/composables/map';
 
 export default defineComponent({
   name: 'AMapMap',

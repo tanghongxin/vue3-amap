@@ -8,6 +8,10 @@ import { resolve } from 'path';
  * @type {import('vite').UserConfigExport}
  */
 export const commonConfig = {
+  define: {
+    // eslint-disable-next-line global-require
+    __VERSION__: JSON.stringify(require('./package.json').version),
+  },
   plugins: [
     eslint({
       cache: false,
@@ -18,8 +22,8 @@ export const commonConfig = {
   ],
   resolve: {
     alias: {
-      'vue3-amap/constants': resolve(__dirname, 'constants/index.js'),
-      'vue3-amap': resolve(__dirname, 'components/index.js'),
+      'vue3-amap/index.js': resolve(__dirname, './src/index.js'),
+      'vue3-amap': resolve(__dirname),
     },
   },
 };
@@ -36,7 +40,7 @@ export default defineConfig(({ mode }) => {
         outDir: resolve(__dirname, './lib'),
         sourcemap: true,
         lib: {
-          entry: resolve(__dirname, './components/index.js'),
+          entry: resolve(__dirname, './src/index.js'),
           name: 'vue3-amap',
           formats: ['es'],
           fileName: (format) => `index.${format}.js`,

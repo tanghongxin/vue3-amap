@@ -11,8 +11,8 @@
 import {
   defineComponent, onBeforeUnmount, onMounted,
 } from 'vue';
-import { useInjectMap } from '../../composables/map';
-import { uuid } from '../../utils';
+import { uuid } from 'vue3-amap/src/utils';
+import { useInjectMap } from 'vue3-amap/src/composables/map';
 
 export default defineComponent({
   name: 'AMapSearch',

@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import Vue3AMap from 'vue3-amap';
+import Vue3AMap from 'vue3-amap/index.js';
 import App from './app.vue';
 import globalComponents from './components/global_components';
 import router from './router';
