@@ -1,13 +1,13 @@
-import AMapControlBar from './AMap/ControlBar/index';
-import AMapFitView from './AMap/FitView/index';
-import AMapGeolocation from './AMap/Geolocation/index';
-import AMapMap from './AMap/Map/index';
-import AMapMapType from './AMap/MapType/index';
-import AMapMarker from './AMap/Marker/index';
-import AMapScale from './AMap/Scale/index';
-import AMapSearch from './AMap/Search/index';
-import AMapToolbar from './AMap/Toolbar/index';
-import AMapVector from './AMap/Vector/index';
+import AMapControlBar from './ControlBar/index';
+import AMapFitView from './FitView/index';
+import AMapGeolocation from './Geolocation/index';
+import AMapMap from './Map/index';
+import AMapMapType from './MapType/index';
+import AMapMarker from './Marker/index';
+import AMapScale from './Scale/index';
+import AMapSearch from './Search/index';
+import AMapToolbar from './Toolbar/index';
+import AMapVector from './Vector/index';
 
 export {
   AMapControlBar,

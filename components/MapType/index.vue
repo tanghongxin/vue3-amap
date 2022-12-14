@@ -2,7 +2,7 @@
 import {
   defineComponent, onBeforeUnmount, h, Comment,
 } from 'vue';
-import { useInjectMap } from '../../../composables/map';
+import { useInjectMap } from '../../composables/map';
 
 export default defineComponent({
   name: 'AMapMapType',
