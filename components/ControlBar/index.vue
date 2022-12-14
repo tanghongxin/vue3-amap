@@ -2,7 +2,7 @@
 import {
   defineComponent, onBeforeUnmount, h, Comment,
 } from 'vue';
-import { useInjectMap } from 'vue3-amap/src/composables/map';
+import { useInjectMap } from '../Map/composable';
 
 export default defineComponent({
   name: 'AMapControlBar',

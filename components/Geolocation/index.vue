@@ -3,7 +3,7 @@ import {
   defineComponent, onBeforeUnmount, h, Comment, computed,
 } from 'vue';
 import { immediateInterval } from 'vue3-amap/src/utils';
-import { useInjectMap } from 'vue3-amap/src/composables/map';
+import { useInjectMap } from '../Map/composable';
 
 export default defineComponent({
   name: 'AMapGeolocation',

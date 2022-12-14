@@ -18,19 +18,21 @@ import {
   defineComponent, onBeforeUnmount, onMounted, shallowReactive, ref, getCurrentInstance,
 } from 'vue';
 import AMapLoader from '@amap/amap-jsapi-loader';
-import { useProvideMap } from 'vue3-amap/src/composables/map';
+import { useProvideMap } from './composable';
 
 export default defineComponent({
   name: 'AMapMap',
   setup() {
     const state = shallowReactive({
+      initialized: false,
+    });
+    const mapState = shallowReactive({
       map: null,
       AMap: null,
-      initialized: false,
     });
     const containerRef = ref(null);
 
-    useProvideMap(state);
+    useProvideMap(mapState);
 
     onMounted(async () => {
       const { appContext } = getCurrentInstance();
@@ -45,11 +47,11 @@ export default defineComponent({
         state.initialized = true;
       });
 
-      Object.assign(state, { AMap, map });
+      Object.assign(mapState, { AMap, map });
     });
 
     onBeforeUnmount(() => {
-      state.map.destroy();
+      mapState.map.destroy();
     });
 
     return { state, containerRef };
