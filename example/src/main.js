@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import Vue3AMap from 'vue3-amap';
+import Vue3AMap from 'vue3-amap/index.js';
 import App from './app.vue';
 import globalComponents from './components/global_components';
 import router from './router';
@@ -24,20 +24,6 @@ app.use(router);
 app.use(Vue3AMap, {
   key: import.meta.env.VITE_AMAP_JS_KEY,
   version: '2.0',
-  plugins: [
-    'AMap.ToolBar',
-    'AMap.Scale',
-    'AMap.MouseTool',
-    'AMap.MapType',
-    'AMap.ControlBar',
-    'AMap.Geolocation',
-    'AMap.PolyEditor',
-    'AMap.BezierCurveEditor',
-    'AMap.RectangleEditor',
-    'AMap.CircleEditor',
-    'AMap.AutoComplete',
-    'AMap.PlaceSearch',
-  ],
 });
 app.use(globalComponents);
 app.mount('#app');

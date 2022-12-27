@@ -1,14 +1,23 @@
-import * as components from './components';
+import AMapControlBar from './ControlBar/index';
+import AMapFitView from './FitView/index';
+import AMapGeolocation from './Geolocation/index';
+import AMapMap from './Map/index';
+import AMapMapType from './MapType/index';
+import AMapMarker from './Marker/index';
+import AMapScale from './Scale/index';
+import AMapSearch from './Search/index';
+import AMapToolbar from './Toolbar/index';
+import AMapVector from './Vector/index';
 
-export * from './components';
-
-export default {
-  install(app, options) {
-    Object.keys(components).forEach((key) => {
-      const component = components[key];
-      if (component.install) {
-        app.use(component, options);
-      }
-    });
-  },
+export {
+  AMapControlBar,
+  AMapFitView,
+  AMapGeolocation,
+  AMapMap,
+  AMapMapType,
+  AMapMarker,
+  AMapScale,
+  AMapSearch,
+  AMapToolbar,
+  AMapVector,
 };
