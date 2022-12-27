@@ -6,7 +6,7 @@
 
 <script>
 import {
-  computed, defineComponent, getCurrentInstance,
+  computed, defineComponent,
 } from 'vue';
 import use from './composable';
 
@@ -28,8 +28,6 @@ export default defineComponent({
       mountVector,
     } = use(props.config.type);
     const reaOnlyRef = computed(() => !(drawerRef.value || editorRef.value));
-
-    console.log(getCurrentInstance());
 
     if (props.config.shape) {
       mountVector(props.config.shape);
