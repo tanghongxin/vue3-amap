@@ -15,7 +15,7 @@
 
 <script>
 import {
-  defineComponent, onBeforeUnmount, onMounted, shallowReactive, ref, getCurrentInstance,
+  defineComponent, onBeforeUnmount, onMounted, shallowReactive, ref, inject,
 } from 'vue';
 import AMapLoader from '@amap/amap-jsapi-loader';
 import { useProvideMap } from './composable';
@@ -31,12 +31,12 @@ export default defineComponent({
       AMap: null,
     });
     const containerRef = ref(null);
+    const amapLoaderOptions = inject('amapLoaderOptions');
 
     useProvideMap(mapState);
 
     onMounted(async () => {
-      const { appContext } = getCurrentInstance();
-      const AMap = await AMapLoader.load(appContext.config.globalProperties.$aMapOptions);
+      const AMap = await AMapLoader.load(amapLoaderOptions);
 
       const map = new AMap.Map(containerRef.value, {
         resizeEnable: true,
