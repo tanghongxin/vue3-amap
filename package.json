@@ -34,8 +34,8 @@
   },
   "devDependencies": {
     "@ant-design/icons-vue": "^6.1.0",
-    "@vitejs/plugin-basic-ssl": "^0.1.2",
-    "@vitejs/plugin-vue": "^3.2.0",
+    "@vitejs/plugin-basic-ssl": "^1.0.1",
+    "@vitejs/plugin-vue": "^4.0.0",
     "ant-design-vue": "^3.2.15",
     "autoprefixer": "^10.4.13",
     "axios": "^1.2.1",
@@ -54,11 +54,11 @@
     "qrcode.vue": "^3.3.3",
     "qs": "^6.11.0",
     "recursive-copy": "^2.0.14",
-    "unplugin-vue-components": "^0.22.11",
-    "vite": "^3.2.5",
+    "unplugin-vue-components": "^0.22.12",
+    "vite": "^4.0.3",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-eslint": "^1.8.1",
-    "vite-svg-loader": "^3.6.0",
+    "vite-svg-loader": "^4.0.0",
     "vue-router": "^4.1.6"
   }
 }
