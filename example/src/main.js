@@ -1,13 +1,12 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import Vue3AMap from 'vue3-amap/index.js';
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/reset.css';
 import App from './app.vue';
 import globalComponents from './components/global_components';
 import router from './router';
 import './assets/styles/main.less';
-
-// https://github.com/antfu/unplugin-vue-components/issues/162
-import 'ant-design-vue/es/message/style/index.css';
 
 if (import.meta.env.MODE === 'development') {
   import('../mock');
@@ -19,6 +18,7 @@ window._AMapSecurityConfig = {
 };
 
 const app = createApp(App);
+app.use(Antd);
 app.use(createPinia());
 app.use(router);
 app.use(Vue3AMap, {
