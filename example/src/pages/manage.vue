@@ -85,7 +85,7 @@
       </a-tab-pane>
     </a-tabs>
     <a-modal
-      v-model:visible="state.previewVisible"
+      v-model:open="state.previewVisible"
       title="使用手机扫描二维码进入"
       :width="520"
       :footer="null"
@@ -236,6 +236,10 @@ export default defineComponent({
 
       .ant-tabs-content {
         height: 100%;
+
+        .ant-tabs-tabpane {
+          height: 100%;
+        }
       }
     }
   }
