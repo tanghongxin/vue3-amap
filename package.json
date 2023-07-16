@@ -21,6 +21,9 @@
     "types",
     "LICENSE"
   ],
+  "engines": {
+    "node": ">=16.14.0"
+  },
   "main": "./lib/index.es.js",
   "exports": {
     ".": {
