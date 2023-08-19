@@ -15,9 +15,10 @@
 
 <script>
 import {
-  defineComponent, onBeforeUnmount, onMounted, shallowReactive, ref, inject,
+  defineComponent, onBeforeUnmount, onMounted, shallowReactive, ref,
 } from 'vue';
 import AMapLoader from '@amap/amap-jsapi-loader';
+import config from 'vue3-amap/src/core/config';
 import { useProvideMap } from './composable';
 
 export default defineComponent({
@@ -31,12 +32,11 @@ export default defineComponent({
       AMap: null,
     });
     const containerRef = ref(null);
-    const amapLoaderOptions = inject('amapLoaderOptions');
 
     useProvideMap(mapState);
 
     onMounted(async () => {
-      const AMap = await AMapLoader.load(amapLoaderOptions);
+      const AMap = await AMapLoader.load(config);
 
       const map = new AMap.Map(containerRef.value, {
         resizeEnable: true,

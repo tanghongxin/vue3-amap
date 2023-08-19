@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import Vue3AMap from 'vue3-amap/index.js';
-import Antd from 'ant-design-vue';
+import Antd, { message } from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css';
 import App from './app.vue';
 import globalComponents from './components/global_components';
@@ -24,6 +24,9 @@ app.use(router);
 app.use(Vue3AMap, {
   key: import.meta.env.VITE_AMAP_JS_KEY,
   version: '2.0',
+  errorHandler(error) {
+    message.error(`高德地图: ${error.message}`, 5);
+  },
 });
 app.use(globalComponents);
 app.mount('#app');

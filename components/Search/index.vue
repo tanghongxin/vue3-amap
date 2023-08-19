@@ -12,6 +12,7 @@ import {
   defineComponent, onBeforeUnmount, onMounted,
 } from 'vue';
 import { uuid } from 'vue3-amap/src/utils';
+import { handleError } from 'vue3-amap/src/core/error';
 import { useInjectMap } from '../Map/composable';
 
 export default defineComponent({
@@ -36,6 +37,8 @@ export default defineComponent({
         placeSearch.setCity(e.poi.adcode);
         placeSearch.search(e.poi.name);
       });
+
+      autoComplete.on('error', ({ info }) => handleError({ info, target: '输入提示' }));
     });
 
     onBeforeUnmount(() => {

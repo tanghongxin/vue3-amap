@@ -1,6 +1,7 @@
+import config from 'vue3-amap/src/core/config';
 import * as components from '../components';
 
-const install = function install(app, options) {
+const install = function install(app, options = {}) {
   const plugins = new Set();
 
   Object.values(components).forEach((component) => {
@@ -17,7 +18,7 @@ const install = function install(app, options) {
     }
   });
 
-  app.provide('amapLoaderOptions', {
+  Object.assign(config, {
     ...options,
     plugins: Array.from(plugins),
   });
