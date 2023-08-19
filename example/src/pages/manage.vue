@@ -90,10 +90,7 @@
       :width="520"
       :footer="null"
     >
-      <qrcode-vue
-        :value="state.previewURL"
-        size="480"
-      />
+      <a-qrcode :value="state.previewURL" size="480" />
     </a-modal>
   </div>
 </template>
@@ -104,13 +101,11 @@ import { defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { DownOutlined } from '@ant-design/icons-vue';
 import { Constants } from 'vue3-amap/index.js';
-import QrcodeVue from 'qrcode.vue';
 import dayjs from 'dayjs';
 
 export default defineComponent({
   components: {
     DownOutlined,
-    QrcodeVue,
   },
   setup() {
     const router = useRouter();
