@@ -1,3 +1,2 @@
-import GeoFenceService from './GeoFenceService';
-
-export const geoFenceService = new GeoFenceService();
+export * from './GeoFenceService';
+export * from './AssistantService';

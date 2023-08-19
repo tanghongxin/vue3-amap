@@ -2,7 +2,7 @@ import qs from 'qs';
 import Constants from 'vue3-amap/src/constants/index';
 import BaseService from './BaseService';
 
-export default class GeoFenceService extends BaseService {
+class GeoFenceService extends BaseService {
   /**
    * 创建圆形围栏
    * @see https://lbs.amap.com/api/track/lieying-kaifa/api/track_fence#t2
@@ -211,3 +211,5 @@ export default class GeoFenceService extends BaseService {
     return results.find((r) => `${r.in}` === '1');
   }
 }
+
+export const geoFenceService = new GeoFenceService();
