@@ -1,4 +1,4 @@
-import Constants from 'vue3-amap/src/constants';
+import { Constants } from 'vue3-amap/src/constants';
 
 export default class Factory {
   constructor({ AMap, map }) {

@@ -1,4 +1,5 @@
 import { message } from 'ant-design-vue';
+import { ERR_DESC_MAP } from 'vue3-amap/index.js';
 import BaseService from './BaseService';
 
 class AssistantService extends BaseService {
@@ -17,7 +18,7 @@ class AssistantService extends BaseService {
       { method: 'GET' },
     )
       .then((res) => res.json())
-      .then((res) => (res.info === 'OK' ? Promise.resolve(res) : Promise.reject(new Error(res.info))))
+      .then((res) => (res.info === 'OK' ? Promise.resolve(res) : Promise.reject(new Error(ERR_DESC_MAP[res.info]))))
       .then((res) => res.tips)
       .catch((err) => message.error(err.message));
   }

@@ -123,7 +123,7 @@
 import { useRoute, useRouter } from 'vue-router';
 import { defineComponent, reactive, ref } from 'vue';
 import { geoFenceService } from '@/services';
-import Constants from 'vue3-amap/src/constants';
+import { Constants } from 'vue3-amap/src/constants';
 import { message } from 'ant-design-vue';
 
 export default defineComponent({

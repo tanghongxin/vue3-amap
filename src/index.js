@@ -1,6 +1,10 @@
 import config from 'vue3-amap/src/core/config';
 import * as components from '../components';
 
+export { useInjectMap } from '../components/Map/composable';
+export { ERR_DESC_MAP } from './core/error';
+export * from './constants/index';
+
 const install = function install(app, options = {}) {
   const plugins = new Set();
 

@@ -2,7 +2,7 @@
 import config from './config';
 
 // https://lbs.amap.com/api/webservice/guide/tools/info
-const errorDescMap = {
+export const ERR_DESC_MAP = Object.freeze({
   INVALID_USER_KEY: 'key不正确或过期',
   SERVICE_NOT_AVAILABLE: '没有权限使用相应的服务或者请求接口的路径拼写错误',
   DAILY_QUERY_OVER_LIMIT: '访问已超出日访问量',
@@ -42,7 +42,7 @@ const errorDescMap = {
   GEOFENCE_MAX_COUNT_REACHED: '围栏个数达到上限',
   SERVICE_EXPIRED: '购买服务到期',
   ABROAD_QUOTA_PLAN_RUN_OUT: '海外服务余额耗尽',
-};
+});
 
 function logError(error) {
   console.error(error);
@@ -51,7 +51,7 @@ function logError(error) {
 
 export function handleError({ info, target = '' }) {
   const error = new Error(
-    `${target ? `[${target}]` : ''}[${info}]${errorDescMap[info]}`,
+    `${target ? `[${target}]` : ''}[${info}]${ERR_DESC_MAP[info]}`,
   );
 
   if (config.errorHandler) {

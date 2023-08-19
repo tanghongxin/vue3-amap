@@ -1,10 +1,6 @@
-import { readonly } from 'vue';
-
-const Constants = {
+export const Constants = Object.freeze({
   DICTS: {
     FENCE_TYPE_POLYGON: 'polygon',
     VECTOR_TYPE_CIRCLE: 'circle',
   },
-};
-
-export default readonly(Constants);
+});
