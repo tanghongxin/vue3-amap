@@ -39,6 +39,7 @@ export default defineComponent({
       });
 
       autoComplete.on('error', ({ info }) => handleError({ info, target: '输入提示' }));
+      placeSearch.on('error', ({ info }) => handleError({ info, target: '搜索服务' }));
     });
 
     onBeforeUnmount(() => {
