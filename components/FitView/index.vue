@@ -1,5 +1,5 @@
 <template>
-  <div class="a-map-fit-view" :style="props.position">
+  <div class="a-map-fit-view" :style="position">
     <button class="a-map-fit-view__btn" @click="map.setFitView()">
       <navigation-icon />
     </button>
@@ -22,10 +22,10 @@ export default defineComponent({
       default: () => ({ bottom: '90px', right: '80px' }),
     },
   },
-  setup(props) {
+  setup() {
     const { map } = useInjectMap();
 
-    return { props, map };
+    return { map };
   },
 });
 </script>

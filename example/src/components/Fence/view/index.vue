@@ -4,7 +4,7 @@
       <slot />
       <a-map-fit-view />
       <a-map-vector
-        v-for="(config, index) in props.fences"
+        v-for="(config, index) in fences"
         :key="index"
         :config="config"
       />
@@ -22,9 +22,6 @@ export default defineComponent({
       type: Array,
       default: () => [],
     },
-  },
-  setup(props) {
-    return { props };
   },
 });
 </script>
