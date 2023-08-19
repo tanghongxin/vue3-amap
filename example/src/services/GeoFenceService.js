@@ -1,4 +1,3 @@
-import qs from 'qs';
 import Constants from 'vue3-amap/src/constants/index';
 import BaseService from './BaseService';
 
@@ -15,14 +14,14 @@ class GeoFenceService extends BaseService {
     return this.request({
       method: 'post',
       url: '/geofence/add/circle',
-      data: qs.stringify({
+      data: new URLSearchParams({
         key: this.key,
         sid: this.sid,
         name,
         desc,
         center,
         radius,
-      }),
+      }).toString(),
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
       },
@@ -41,7 +40,7 @@ class GeoFenceService extends BaseService {
     return this.request({
       method: 'post',
       url: '/geofence/update/circle',
-      data: qs.stringify({
+      data: new URLSearchParams({
         key: this.key,
         sid: this.sid,
         gfid,
@@ -49,7 +48,7 @@ class GeoFenceService extends BaseService {
         desc,
         center,
         radius,
-      }),
+      }).toString(),
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
       },
@@ -67,13 +66,13 @@ class GeoFenceService extends BaseService {
     return this.request({
       method: 'post',
       url: '/geofence/add/polygon',
-      data: qs.stringify({
+      data: new URLSearchParams({
         key: this.key,
         sid: this.sid,
         name,
         desc,
         points,
-      }),
+      }).toString(),
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
       },
@@ -91,14 +90,14 @@ class GeoFenceService extends BaseService {
     return this.request({
       method: 'post',
       url: '/geofence/update/polygon',
-      data: qs.stringify({
+      data: new URLSearchParams({
         key: this.key,
         sid: this.sid,
         gfid,
         name,
         desc,
         points,
-      }),
+      }).toString(),
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
       },
@@ -123,11 +122,11 @@ class GeoFenceService extends BaseService {
     return this.request({
       method: 'post',
       url: '/geofence/delete',
-      data: qs.stringify({
+      data: new URLSearchParams({
         key: this.key,
         sid: this.sid,
         gfids: gfids.join(','),
-      }),
+      }).toString(),
       headers: {
         'Content-type': 'application/x-www-form-urlencoded',
       },

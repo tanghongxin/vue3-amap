@@ -70,9 +70,6 @@ devDependencies:
   qrcode.vue:
     specifier: ^3.3.3
     version: 3.3.3(vue@3.3.4)
-  qs:
-    specifier: ^6.11.0
-    version: 6.11.0
   recursive-copy:
     specifier: ^2.0.14
     version: 2.0.14
@@ -1898,7 +1895,7 @@ packages:
     dependencies:
       universalify: 2.0.0
     optionalDependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
     dev: true
 
   /junk@1.0.3:
@@ -2295,13 +2292,6 @@ packages:
       vue: ^3.0.0
     dependencies:
       vue: 3.3.4
-    dev: true
-
-  /qs@6.11.0:
-    resolution: {integrity: sha512-MvjoMCJwEarSbUYk5O+nmoSzSutSsTwF85zcHPQ9OrlFoZOYIjaqBAJIqIXjptyD5vThxGq52Xu/MaJzRkIk4Q==}
-    engines: {node: '>=0.6'}
-    dependencies:
-      side-channel: 1.0.4
     dev: true
 
   /recursive-copy@2.0.14:
