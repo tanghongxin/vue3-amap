@@ -19,6 +19,10 @@ export default defineComponent({
       type: Number,
       default: 100,
     },
+    autoFitView: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   setup(props) {
@@ -26,7 +30,7 @@ export default defineComponent({
 
     const optionsRef = computed(() => {
       const { lng, lat } = map.getCenter();
-      const { position, ...rest } = props;
+      const { autoFitView, position, ...rest } = props;
       return {
         position: new AMap.LngLat(...position.length ? position : [lng, lat]),
         ...rest,
@@ -43,7 +47,10 @@ export default defineComponent({
 
     watch(
       () => props.position,
-      () => control.setPosition(optionsRef.value.position),
+      () => {
+        control.setPosition(optionsRef.value.position);
+        if (props.autoFitView) map.setFitView();
+      },
       { deep: true },
     );
 

@@ -2,7 +2,11 @@
   <div class="w-100 h-100">
     <a-map-map>
       <a-map-fit-view />
-      <a-map-search />
+      <!-- JS SKD 调用，日限额较低 -->
+      <!-- <a-map-search /> -->
+
+      <!-- Web API 调用，日限额较高 -->
+      <auto-complete />
       <a-map-vector
         :ref="el => childRef = el"
         :config="config"
