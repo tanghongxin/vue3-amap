@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
-    "vue": "^3.2.45"
+    "vue": "^3.3.4"
   },
   "devDependencies": {
     "@ant-design/icons-vue": "^6.1.0",
