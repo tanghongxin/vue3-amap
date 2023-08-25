@@ -1,4 +1,4 @@
-import { Constants } from 'vue3-amap/index.js';
+import { Constants } from 'vue3-amap';
 import BaseService from './BaseService';
 
 class GeoFenceService extends BaseService {

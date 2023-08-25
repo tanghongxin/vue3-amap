@@ -1,5 +1,5 @@
 import { message } from 'ant-design-vue';
-import { ERR_DESC_MAP } from 'vue3-amap/index.js';
+import { ERR_DESC_MAP } from 'vue3-amap';
 import BaseService from './BaseService';
 
 class AssistantService extends BaseService {

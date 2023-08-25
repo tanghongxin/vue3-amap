@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
-import Vue3AMap from 'vue3-amap/index.js';
+import Vue3AMap from 'vue3-amap';
 import Antd, { message } from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css';
 import App from './app.vue';

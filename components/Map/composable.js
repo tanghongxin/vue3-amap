@@ -1,5 +1,5 @@
 import { provide, inject } from 'vue';
-import { uuid } from 'vue3-amap/src/utils';
+import { uuid } from '../../src/utils';
 
 const key = Symbol(uuid());
 

@@ -100,7 +100,7 @@ import { geoFenceService } from '@/services';
 import { defineComponent, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { DownOutlined } from '@ant-design/icons-vue';
-import { Constants } from 'vue3-amap/index.js';
+import { Constants } from 'vue3-amap';
 import dayjs from 'dayjs';
 
 export default defineComponent({

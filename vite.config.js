@@ -20,12 +20,6 @@ export const commonConfig = {
     svgLoader(),
     vue(),
   ],
-  resolve: {
-    alias: {
-      'vue3-amap/index.js': resolve(__dirname, './src/index.js'),
-      'vue3-amap': resolve(__dirname),
-    },
-  },
 };
 
 export default defineConfig(({ mode }) => {

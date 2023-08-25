@@ -11,8 +11,8 @@
 import {
   defineComponent, onBeforeUnmount, onMounted,
 } from 'vue';
-import { uuid } from 'vue3-amap/src/utils';
-import { handleError } from 'vue3-amap/src/core/error';
+import { uuid } from '../../src/utils';
+import { handleError } from '../../src/core/error';
 import { useInjectMap } from '../Map/composable';
 
 export default defineComponent({

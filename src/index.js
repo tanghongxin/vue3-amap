@@ -1,6 +1,7 @@
-import config from 'vue3-amap/src/core/config';
+import config from './core/config';
 import * as components from '../components';
 
+export * from '../components';
 export { useInjectMap } from '../components/Map/composable';
 export { ERR_DESC_MAP } from './core/error';
 export * from './constants/index';
