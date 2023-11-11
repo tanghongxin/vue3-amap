@@ -26,7 +26,7 @@ export default defineConfig(({ mode }) => {
         https: true,
         proxy: {
           '/_AMapService': {
-            target: 'https://www.abyssal.site',
+            target: 'https://www.ado.icu',
             changeOrigin: true,
           },
         },
