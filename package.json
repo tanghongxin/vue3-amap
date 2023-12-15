@@ -33,13 +33,13 @@
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
-    "vue": "^3.3.4"
+    "vue": "^3.3.11"
   },
   "devDependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "@vitejs/plugin-basic-ssl": "^1.0.1",
-    "@vitejs/plugin-vue": "^4.0.0",
-    "ant-design-vue": "^4.0.0",
+    "@vitejs/plugin-vue": "^4.5.2",
+    "ant-design-vue": "^4.0.7",
     "autoprefixer": "^10.4.13",
     "axios": "^1.2.1",
     "axios-mock-adapter": "^1.21.2",
