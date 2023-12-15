@@ -14,9 +14,9 @@
 
     <a-layout>
       <a-layout-header>
-        <a-flex justify="space-between" :vertical="false">
+        <a-flex justify="space-between" :vertical="false" class="h-100">
           <component
-            :is="collapsed ? 'menu-unfold-outlined' : 'menu-fold-outlined'" class="trigger"
+            :is="collapsed ? MenuUnfoldOutlined : MenuFoldOutlined" class="trigger"
             @click="() => (collapsed = !collapsed)"
           />
           <GithubOutlined
@@ -33,34 +33,18 @@
   </a-layout>
 </template>
 
-<script>
+<script setup>
 import {
   BorderOuterOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
   GithubOutlined,
 } from '@ant-design/icons-vue';
-import { defineComponent, ref } from 'vue';
+import { ref } from 'vue';
 
-export default defineComponent({
-  name: 'PageView',
-  components: {
-    BorderOuterOutlined,
-    MenuUnfoldOutlined,
-    MenuFoldOutlined,
-    GithubOutlined,
-  },
-
-  setup() {
-    return {
-      selectedKeys: ref(['/manage']),
-      collapsed: ref(false),
-      openRepo() {
-        window.open(import.meta.env.VITE_GITHUB_REPO, '_blank');
-      },
-    };
-  },
-});
+const selectedKeys = ref(['/manage']);
+const collapsed = ref(false);
+const openRepo = () => window.open(import.meta.env.VITE_GITHUB_REPO, '_blank');
 </script>
 
 <style lang="less">
