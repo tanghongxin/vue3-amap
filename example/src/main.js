@@ -1,5 +1,4 @@
 import { createApp } from 'vue';
-import { createPinia } from 'pinia';
 import Vue3AMap from 'vue3-amap';
 import Antd, { message } from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css';
@@ -19,7 +18,6 @@ window._AMapSecurityConfig = {
 
 const app = createApp(App);
 app.use(Antd);
-app.use(createPinia());
 app.use(router);
 app.use(Vue3AMap, {
   key: import.meta.env.VITE_AMAP_JS_KEY,
