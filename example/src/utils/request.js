@@ -3,7 +3,7 @@ import { message } from 'ant-design-vue';
 import xhrAdapter from 'axios/lib/adapters/xhr';
 
 const request = axios.create({
-  baseURL: 'https://tsapi.amap.com/v1/track',
+  baseURL: '/geofence',
   adapter: xhrAdapter,
 });
 

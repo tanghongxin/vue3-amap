@@ -13,9 +13,8 @@ class GeoFenceService extends BaseService {
   }) {
     return this.request({
       method: 'post',
-      url: '/geofence/add/circle',
+      url: '/add/circle',
       data: new URLSearchParams({
-        key: this.key,
         sid: this.sid,
         name,
         desc,
@@ -39,9 +38,8 @@ class GeoFenceService extends BaseService {
   }) {
     return this.request({
       method: 'post',
-      url: '/geofence/update/circle',
+      url: '/update/circle',
       data: new URLSearchParams({
-        key: this.key,
         sid: this.sid,
         gfid,
         name,
@@ -65,9 +63,8 @@ class GeoFenceService extends BaseService {
   }) {
     return this.request({
       method: 'post',
-      url: '/geofence/add/polygon',
+      url: '/add/polygon',
       data: new URLSearchParams({
-        key: this.key,
         sid: this.sid,
         name,
         desc,
@@ -89,9 +86,8 @@ class GeoFenceService extends BaseService {
   }) {
     return this.request({
       method: 'post',
-      url: '/geofence/update/polygon',
+      url: '/update/polygon',
       data: new URLSearchParams({
-        key: this.key,
         sid: this.sid,
         gfid,
         name,
@@ -121,9 +117,8 @@ class GeoFenceService extends BaseService {
   delete(gfids = []) {
     return this.request({
       method: 'post',
-      url: '/geofence/delete',
+      url: '/delete',
       data: new URLSearchParams({
-        key: this.key,
         sid: this.sid,
         gfids: gfids.join(','),
       }).toString(),
@@ -142,9 +137,8 @@ class GeoFenceService extends BaseService {
   async list({ gfids, page = 1, pagesize = 50 } = {}) {
     const { results, ...rest } = await this.request({
       method: 'get',
-      url: '/geofence/list',
+      url: '/list',
       params: {
-        key: this.key,
         sid: this.sid,
         outputshape: '1',
         ...gfids?.length ? { gfids: gfids.join(',') } : {},
@@ -188,9 +182,8 @@ class GeoFenceService extends BaseService {
   }) {
     return this.request({
       method: 'get',
-      url: '/geofence/status/location',
+      url: '/status/location',
       params: {
-        key: this.key,
         sid: this.sid,
         location: location.join(','),
         ...gfids?.length ? { gfids: gfids.join(',') } : {},

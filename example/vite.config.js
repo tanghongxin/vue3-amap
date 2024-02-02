@@ -29,6 +29,10 @@ export default defineConfig(({ mode }) => {
             target: 'https://www.ado.icu',
             changeOrigin: true,
           },
+          '/geofence': {
+            target: 'https://www.ado.icu',
+            changeOrigin: true,
+          },
         },
       },
     },

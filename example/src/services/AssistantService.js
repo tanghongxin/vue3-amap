@@ -13,7 +13,6 @@ class AssistantService extends BaseService {
     return fetch(
       `/_AMapService/v3/assistant/inputtips?${new URLSearchParams({
         ...data,
-        key: this.key,
       }).toString()}`,
       { method: 'GET' },
     )
