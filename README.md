@@ -49,11 +49,37 @@ mock（开发阶段可选开启，避免频繁调用高德接口触发额度限�
 import('../mock');
 ```
 
+## Tips
+地图加载与接口调用涉及高德开发者密钥，出于安全考虑，项目采用 Nginx 转发的处理方式进行处理，实际开发时请前往[高德控制台](https://console.amap.com/dev/index)申请自己的开发者应用
+
+### Nginx 代理示例
+```nginx
+location /_AMapService/v4/map/styles {
+  set $args "$args&jscode={安全密钥}";
+  proxy_pass https://webapi.amap.com/v4/map/styles;
+}
+
+location /_AMapService/v3/vectormap {
+  set $args "$args&jscode={安全密钥}";
+  proxy_pass https://fmap01.amap.com/v3/vectormap;
+}
+
+location /_AMapService/ {
+  set $args "$args&jscode={安全密钥}";
+  proxy_pass https://restapi.amap.com/;
+}
+
+location /geofence/ {
+  set $args "$args&key={key}";
+  proxy_pass https://tsapi.amap.com/v1/track/geofence/;
+}
+```
+
 ## FAQ
-- 为什么 PC 端调试定位时会失败？
+- 为什么 PC 调试定位时会失败？
 
   定位实现基于 GPS 与 IP 定位，前者大部分 PC 不具备硬件能力，后者受代理、外网连通性等网络环境因素影响
 
-- 为什么 PC端 Chrome 浏览器调试定位时会失败？
+- 为什么 Chrome 调试定位时会失败？
 
-  不同浏览器厂商基于 IP 定位的实现方案不同，Chrome 会向 google 发送请求解析定位，由于已知原因可能无法得到正常响应，建议在其他浏览器上进行尝试
+  不同浏览器厂商基于 IP 定位的实现方案不同，Chrome 会向 Google 发送请求解析定位，由于已知原因可能无法得到正常响应，建议在其他浏览器上进行尝试
