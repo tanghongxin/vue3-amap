@@ -45,28 +45,37 @@ import('../mock');
 ```
 
 ## Tips
-地图加载与接口调用涉及高德开发者密钥，出于安全考虑，项目采用 Nginx 转发的处理方式进行处理，实际开发时请前往[高德控制台](https://console.amap.com/dev/index)申请自己的开发者应用
+地图加载与接口调用涉及高德开发者密钥，出于安全考虑，项目采用 Nginx 转发的处理方式进行处理，仅代理必要服务。实际开发时请前往[高德控制台](https://console.amap.com/dev/index)申请自己的开发者应用
 
 ### Nginx 代理示例
+
+[JS API 安全密钥使用](https://lbs.amap.com/api/javascript-api-v2/guide/abc/jscode)
+
 ```nginx
+# 自定义地图服务代理
 location /_AMapService/v4/map/styles {
-  set $args "$args&jscode={安全密钥}";
+  set $args "$args&jscode=你的安全密钥";
   proxy_pass https://webapi.amap.com/v4/map/styles;
 }
-
+# 海外地图服务代理
 location /_AMapService/v3/vectormap {
-  set $args "$args&jscode={安全密钥}";
+  set $args "$args&jscode=你的安全密钥";
   proxy_pass https://fmap01.amap.com/v3/vectormap;
 }
-
+# Web 服务 API 代理
 location /_AMapService/ {
-  set $args "$args&jscode={安全密钥}";
+  set $args "$args&jscode=你的安全密钥";
   proxy_pass https://restapi.amap.com/;
 }
-
+# 猎鹰轨迹服务 API 代理
 location /geofence/ {
-  set $args "$args&key={key}";
+  set $args "$args&key=你的Web服务API类型KEY";
   proxy_pass https://tsapi.amap.com/v1/track/geofence/;
+}
+# 输入提示 API 代理
+location /inputtips {
+  set $args "$args&key=你的Web服务API类型KEY";
+  proxy_pass https://restapi.amap.com/v3/assistant/inputtips;
 }
 ```
 

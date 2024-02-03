@@ -11,7 +11,7 @@ class AssistantService extends BaseService {
    */
   inputtips(data = {}) {
     return fetch(
-      `/_AMapService/v3/assistant/inputtips?${new URLSearchParams({
+      `/inputtips?${new URLSearchParams({
         ...data,
       }).toString()}`,
       { method: 'GET' },

@@ -33,6 +33,10 @@ export default defineConfig(({ mode }) => {
             target: 'https://www.ado.icu',
             changeOrigin: true,
           },
+          '/inputtips': {
+            target: 'https://www.ado.icu',
+            changeOrigin: true,
+          },
         },
       },
     },
