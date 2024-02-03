@@ -79,7 +79,7 @@
       >
         <fence-view
           v-if="state.activeTabKey === '2'"
-          :fences="state.selectedRows"
+          :fences="state.selectedRows.length ? state.selectedRows : state.dataSource"
         />
       </a-tab-pane>
     </a-tabs>
