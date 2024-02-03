@@ -23,6 +23,7 @@ import {
 import { geoFenceService } from '@/services';
 import { message } from 'ant-design-vue';
 import { CheckOutlined } from '@ant-design/icons-vue';
+import { useRoute } from 'vue-router';
 
 export default defineComponent({
   components: {
@@ -30,9 +31,13 @@ export default defineComponent({
   },
   setup() {
     const state = reactive({ fences: [], position: [], loading: false });
+    const route = useRoute();
 
     onBeforeMount(async () => {
-      const { results } = await geoFenceService.list();
+      const { gfids } = route.query;
+      const { results } = await geoFenceService.list({
+        gfids: gfids ? gfids.split(',') : [],
+      });
       state.fences = results;
     });
 

@@ -9,7 +9,7 @@
           :disabled="!state.dataSource.length"
           @click="state.previewVisible = true"
         >
-          在手机上预览
+          在手机上预览{{ previewFilterText }}
         </a-button>
       </template>
       <a-tab-pane
@@ -74,13 +74,12 @@
       </a-tab-pane>
       <a-tab-pane
         key="2"
-        tab="围栏预览"
+        :tab="`围栏预览${previewFilterText}`"
         :disabled="!state.dataSource.length"
       >
-        <!-- TODO: 使用 watch 改进 -->
         <fence-view
           v-if="state.activeTabKey === '2'"
-          :fences="state.dataSource"
+          :fences="state.selectedRows"
         />
       </a-tab-pane>
     </a-tabs>
@@ -90,14 +89,14 @@
       :width="520"
       :footer="null"
     >
-      <a-qrcode :value="state.previewURL" size="480" />
+      <a-qrcode :value="previewURL" size="480" />
     </a-modal>
   </div>
 </template>
 
 <script>
 import { geoFenceService } from '@/services';
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, reactive, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { DownOutlined } from '@ant-design/icons-vue';
 import { Constants } from 'vue3-amap';
@@ -113,7 +112,6 @@ export default defineComponent({
     const state = reactive({
       activeTabKey: '1',
       previewVisible: false,
-      previewURL: `${window.location.origin}${import.meta.env.BASE_URL}#/sign-in`,
       columns: [
         {
           title: '名称',
@@ -148,6 +146,21 @@ export default defineComponent({
       selectedRowKeys: [],
       selectedRows: [],
       loading: false,
+    });
+
+    const previewURL = computed(() => {
+      let path = `${window.location.origin}${import.meta.env.BASE_URL}#/sign-in`;
+      if (state.selectedRowKeys.length) {
+        path += `?gfids=${state.selectedRowKeys.join(',')}`;
+      }
+      return path;
+    });
+
+    const previewFilterText = computed(() => {
+      if (!state.dataSource.length) {
+        return '';
+      }
+      return `（${[0, state.dataSource.length].includes(state.selectedRowKeys.length) ? '全部' : '选中项'}）`;
     });
 
     const handleSearch = async () => {
@@ -200,6 +213,8 @@ export default defineComponent({
     return {
       Constants,
       state,
+      previewURL,
+      previewFilterText,
       rowSelection,
       handleSearch,
       handleDelete,
