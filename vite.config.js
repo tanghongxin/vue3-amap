@@ -3,6 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import eslint from 'vite-plugin-eslint';
 import svgLoader from 'vite-svg-loader';
 import { resolve } from 'path';
+import { codeInspectorPlugin } from 'code-inspector-plugin';
 
 /**
  * @type {import('vite').UserConfigExport}
@@ -19,6 +20,9 @@ export const commonConfig = {
     }),
     svgLoader(),
     vue(),
+    codeInspectorPlugin({
+      bundler: 'vite',
+    }),
   ],
 };
 
