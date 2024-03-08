@@ -13,23 +13,35 @@
       >
         <a-card>
           <a-form
+            :ref="formRef"
             :model="config"
-            @submit="handleSubmit"
+            @finish="handleSubmit"
           >
             <a-row>
               <a-col :span="16">
-                <a-form-item>
+                <a-form-item
+                  name="name"
+                  :rules="[
+                    { required: true, message: '请输入名称' },
+                    { validator, trigger: 'change' }
+                  ]"
+                >
                   <a-input
                     v-model:value="config.name"
                     show-count
                     :maxlength="20"
-                    placeholder="名称"
+                    placeholder="名称，支持中英文、数字、英文短横线与英文下划线"
                     allow-clear
                   />
                 </a-form-item>
               </a-col>
               <a-col :span="8">
-                <a-form-item>
+                <a-form-item
+                  name="type"
+                  :rules="[
+                    { required: true, message: '请选择类型' },
+                  ]"
+                >
                   <a-select
                     v-model:value="config.type"
                     disabled
@@ -46,10 +58,15 @@
             </a-row>
             <a-row>
               <a-col :span="24">
-                <a-form-item>
+                <a-form-item
+                  name="desc"
+                  :rules="[
+                    { validator, trigger: 'change' }
+                  ]"
+                >
                   <a-textarea
                     v-model:value="config.desc"
-                    placeholder="描述"
+                    placeholder="描述，支持中英文、数字、英文短横线与英文下划线"
                     allow-clear
                     :maxlength="100"
                     show-count
@@ -66,7 +83,6 @@
                   <a-button
                     type="primary"
                     html-type="submit"
-                    :disabled="!(config.name && config.type && childRef.vectorRef)"
                   >
                     保存
                   </a-button>
@@ -128,6 +144,7 @@ import { message } from 'ant-design-vue';
 
 export default defineComponent({
   async setup() {
+    const formRef = ref();
     const router = useRouter();
     const { query } = useRoute();
 
@@ -145,7 +162,11 @@ export default defineComponent({
 
     const childRef = ref({});
 
+    // eslint-disable-next-line consistent-return
     const handleSubmit = async () => {
+      if (!childRef.value.vectorRef) {
+        return message.error('请绘制图形');
+      }
       const payload = childRef.value.generateConfig();
       if (config.gfid) {
         await geoFenceService.update(payload);
@@ -156,8 +177,22 @@ export default defineComponent({
       }
       router.push('/manage');
     };
+
+    const validator = (rule, value) => {
+      if (!value || /^[\u4E00-\u9FA5a-zA-Z0-9-_]+$/.test(value)) {
+        return Promise.resolve();
+      }
+      // eslint-disable-next-line prefer-promise-reject-errors
+      return Promise.reject('仅支持中英文、数字、短横线与下划线');
+    };
+
     return {
-      Constants, config, childRef, handleSubmit,
+      formRef,
+      Constants,
+      config,
+      childRef,
+      handleSubmit,
+      validator,
     };
   },
 });
