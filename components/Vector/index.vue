@@ -1,47 +1,54 @@
 <template>
-  <div class="a-map__vector">
-    <slot />
-  </div>
+  <Comment />
 </template>
 
-<script>
+<script setup lang="ts">
 import {
-  computed, defineComponent,
+  computed, Comment, watch,
 } from 'vue';
+import type { PropType } from 'vue';
 import use from './composable';
 
-export default defineComponent({
+defineOptions({
   name: 'AMapVector',
-  props: {
-    config: {
-      type: Object,
-      default: () => ({}),
-    },
+});
+
+const props = defineProps({
+  config: {
+    type: Object as PropType<{
+      type: string // 矢量图形类型
+      shape: any // 矢量图形构造函数选项
+      [key: string]: any
+    }>,
+    default: () => ({}),
   },
-  setup(props, { expose }) {
-    const {
-      drawerRef, vectorRef, editorRef,
-      factory,
-      start,
-      stop,
-      clear,
-      mountVector,
-    } = use(props.config.type);
-    const reaOnlyRef = computed(() => !(drawerRef.value || editorRef.value));
+});
 
-    if (props.config.shape) {
-      mountVector(props.config.shape);
-    }
+const {
+  drawerRef, vectorRef, editorRef,
+  factory,
+  start,
+  stop,
+  clear,
+  mountVector,
+} = use(props.config.type);
+const reaOnlyRef = computed(() => !(drawerRef.value || editorRef.value));
 
-    const generateConfig = () => ({
-      ...factory.serializeVector(vectorRef.value),
-      ...props.config,
-    });
-
-    expose({
-      start, stop, clear, vectorRef, reaOnlyRef, generateConfig,
-    });
+watch(
+  () => props.config.shape,
+  (shape) => {
+    if (shape) mountVector(props.config.shape);
   },
+  { immediate: true },
+);
+
+const generateConfig = () => ({
+  ...factory.serializeVector(vectorRef.value),
+  ...props.config,
+});
+
+defineExpose({
+  start, stop, clear, vectorRef, reaOnlyRef, generateConfig,
 });
 </script>
 

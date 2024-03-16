@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
 import {
   defineComponent, onBeforeUnmount, h, Comment, computed,
 } from 'vue';
+import type { PropType } from 'vue';
 import { immediateInterval } from '../../src/utils';
 import { useInjectMap } from '../Map/composable';
 
@@ -25,7 +26,7 @@ export default defineComponent({
       default: true,
     },
     position: {
-      type: Object,
+      type: Object as PropType<AMap.ControlConfig['position']>,
       default: () => ({ bottom: '90px', right: '40px' }),
     },
     panToLocation: {
@@ -36,7 +37,7 @@ export default defineComponent({
   emits: ['update:position'],
   setup(props, { emit }) {
     const { AMap, map } = useInjectMap();
-    const optionsRef = computed(() => {
+    const optionsRef = computed((): AMap.GeolocationOptions => {
       const { watchPosition, ...rest } = props;
       return { ...rest };
     });

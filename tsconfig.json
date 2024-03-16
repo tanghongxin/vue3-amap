@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "isolatedModules": true,
+    "module": "esnext",
+    "moduleResolution": "NodeNext",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "vue3-amap": ["src/index.ts"],
+      "@/*": ["example/src/*"]
+    },
+    "target": "esnext",
+    "jsx": "preserve",
+    "types": [
+      "@types/node",
+      "vite/client"
+    ]
+  },
+  "exclude": [
+    "node_modules",
+    "lib",
+    "example/dist"
+  ]
+}

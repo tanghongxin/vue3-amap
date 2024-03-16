@@ -4,24 +4,26 @@
       <slot />
       <a-map-fit-view />
       <a-map-vector
-        v-for="(config, index) in fences"
-        :key="index"
+        v-for="config in fences"
+        :key="config.gfid"
         :config="config"
       />
     </a-map-map>
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script setup lang="ts">
+import type { PropType } from 'vue';
+import { Fence } from '@/model/fence';
 
-export default defineComponent({
+defineOptions({
   name: 'FenceView',
-  props: {
-    fences: {
-      type: Array,
-      default: () => [],
-    },
+});
+
+defineProps({
+  fences: {
+    type: Array as PropType<Fence[]>,
+    default: () => [],
   },
 });
 </script>

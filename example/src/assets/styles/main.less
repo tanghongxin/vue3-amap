@@ -1,5 +1,12 @@
-html {
+html,
+body {
+  margin: 0;
   overflow: hidden;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
 }
 
 .w-100 {
@@ -10,6 +17,14 @@ html {
   height: 100%;
 }
 
+.vh-100 {
+  height: 100vh;
+}
+
+.vw-100 {
+  width: 100vw;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -18,4 +33,21 @@ html {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.ml-8 {
+  margin-left: 8px;
+}
+
+.transition-fade {
+  &-enter-active,
+  &-leave-active {
+    transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity;
+  }
+
+  &-enter,
+  &-leave-active {
+    opacity: 0;
+  }
 }

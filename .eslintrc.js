@@ -8,10 +8,19 @@ module.exports = {
     'airbnb-base',
     'plugin:vue/vue3-recommended',
   ],
+  globals: {
+    AMap: 'writable',
+  },
+  parser: 'vue-eslint-parser',
   parserOptions: {
     ecmaVersion: 2021,
+    parser: '@typescript-eslint/parser',
+    sourceType: 'module',
   },
-  plugins: ['vue'],
+  plugins: [
+    'vue',
+    '@typescript-eslint',
+  ],
   rules: {
     'import/extensions': 'off',
     'import/no-extraneous-dependencies': 'off',
@@ -33,10 +42,26 @@ module.exports = {
     'no-constructor-return': 'off',
     'class-methods-use-this': 'off',
     'vue/no-unused-components': [1],
-    'no-unused-vars': [1],
     'import/prefer-default-export': 'off',
     'no-underscore-dangle': 'off',
     'no-param-reassign': 'off',
+    'no-bitwise': 'off',
+    'func-names': 'off',
+    'prefer-promise-reject-errors': 'off',
+    // https://github.com/typescript-eslint/typescript-eslint/issues/2483
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['warn', { ignoreRestSiblings: true }],
+    'no-useless-constructor': 'off',
+    '@typescript-eslint/no-useless-constructor': ['error'],
+    'no-empty-function': 'off',
+    '@typescript-eslint/no-empty-function': ['error', {
+      allow: [
+        'private-constructors',
+        'protected-constructors',
+      ],
+    }],
   },
   settings: {
     'import/resolver': {
@@ -47,7 +72,7 @@ module.exports = {
       alias: {
         extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', 'svg'],
         map: [
-          ['vue3-amap', './src/index.js'],
+          ['vue3-amap', './src/index.ts'],
           ['@', './example/src'],
         ],
       },

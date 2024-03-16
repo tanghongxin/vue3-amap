@@ -6,28 +6,20 @@
   </div>
 </template>
 
-<script>
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { useInjectMap } from '../Map/composable';
 import NavigationIcon from './navigation.svg';
 
-export default defineComponent({
+defineOptions({
   name: 'AMapFitView',
-  components: {
-    NavigationIcon,
-  },
-  props: {
-    position: {
-      type: Object,
-      default: () => ({ bottom: '90px', right: '80px' }),
-    },
-  },
-  setup() {
-    const { map } = useInjectMap();
-
-    return { map };
+});
+defineProps({
+  position: {
+    type: Object,
+    default: () => ({ bottom: '90px', right: '80px' }),
   },
 });
+const { map } = useInjectMap();
 </script>
 
 <style lang="less">

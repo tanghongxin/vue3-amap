@@ -1,6 +1,5 @@
 <template>
   <a-auto-complete
-    v-model:value="value"
     autofocus
     allow-clear
     class="auto-complete"
@@ -33,60 +32,47 @@
   </a-auto-complete>
 
   <a-map-marker
-    v-if="selectedPos.length"
+    v-if="selectedPos?.length"
     auto-fit-view
     :position="selectedPos"
   />
 </template>
 
-<script>
+<script setup lang="ts">
 import { assistantService } from '@/services';
-import { defineComponent, ref } from 'vue';
+import { ref } from 'vue';
 import { debounce } from '@/utils';
+import { Tip } from '@/model/inputtips';
 
-export default defineComponent({
-  name: 'AutoComplete',
-  props: {
-    position: {
-      type: Object,
-      default: () => ({ top: '40px', left: '90px' }),
-    },
-  },
-  setup() {
-    const selectedPos = ref([]);
-
-    const value = ref('');
-    const options = ref([]);
-    const status = ref('');
-
-    const onSearch = debounce(async (keywords) => {
-      if (!keywords) return;
-
-      try {
-        status.value = 'warning';
-        const tips = await assistantService.inputtips({ keywords });
-        options.value = tips.map((el) => Object.assign(el, { value: el.name }));
-        status.value = '';
-      } catch (e) {
-        status.value = 'error';
-        throw e;
-      }
-    }, 1000);
-
-    const onSelect = (e, { location }) => {
-      selectedPos.value = location.split(',');
-    };
-
-    return {
-      value,
-      options,
-      status,
-      selectedPos,
-      onSearch,
-      onSelect,
-    };
+defineOptions({ name: 'AutoComplete' });
+defineProps({
+  position: {
+    type: Object,
+    default: () => ({ top: '40px', left: '90px' }),
   },
 });
+
+const selectedPos = ref<AMap.Vector2>(null);
+const options = ref<(Tip & { value: string })[]>([]);
+const status = ref<'warning' | 'error' | ''>('');
+
+const onSearch = debounce(async (keywords: string) => {
+  if (!keywords) return;
+
+  try {
+    status.value = 'warning';
+    const tips = await assistantService.inputtips({ keywords });
+    options.value = tips.map((el) => Object.assign(el, { value: el.name }));
+    status.value = '';
+  } catch (e) {
+    status.value = 'error';
+    throw e;
+  }
+}, 1000);
+
+const onSelect = (e, { location }) => {
+  selectedPos.value = location.split(',');
+};
 </script>
 
 <style lang="less">

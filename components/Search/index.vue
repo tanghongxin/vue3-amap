@@ -7,10 +7,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import {
   defineComponent, onBeforeUnmount, onMounted,
 } from 'vue';
+import type { PropType } from 'vue';
 import { uuid } from '../../src/utils';
 import { handleError } from '../../src/core/error';
 import { useInjectMap } from '../Map/composable';
@@ -19,7 +20,7 @@ export default defineComponent({
   name: 'AMapSearch',
   props: {
     position: {
-      type: Object,
+      type: Object as PropType<AMap.ControlConfig['position']>,
       default: () => ({ top: '40px', left: '90px' }),
     },
   },

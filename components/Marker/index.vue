@@ -1,15 +1,16 @@
-<script>
+<script lang="ts">
 import {
-  onBeforeUnmount, defineComponent, h, Comment, watch, computed,
+  onBeforeUnmount, defineComponent, h, Comment, watch, computed, ComputedRef,
 } from 'vue';
+import type { PropType } from 'vue';
 import { useInjectMap } from '../Map/composable';
 
 export default defineComponent({
   name: 'AMapMarker',
   props: {
     position: {
-      type: Array,
-      default: () => [],
+      type: Array as unknown as PropType<AMap.Vector2>,
+      default: null,
     },
     title: {
       type: String,
@@ -28,11 +29,17 @@ export default defineComponent({
   setup(props) {
     const { AMap, map } = useInjectMap();
 
-    const optionsRef = computed(() => {
+    const position: ComputedRef<AMap.LngLat> = computed(() => {
       const { lng, lat } = map.getCenter();
-      const { autoFitView, position, ...rest } = props;
+      return new AMap.LngLat(...(
+        props.position?.length ? props.position : [lng, lat]
+      ) as AMap.Vector2);
+    });
+
+    const optionsRef = computed(() => {
+      const { autoFitView, ...rest } = props;
       return {
-        position: new AMap.LngLat(...position.length ? position : [lng, lat]),
+        position: position.value,
         ...rest,
       };
     });
@@ -61,7 +68,7 @@ export default defineComponent({
 
     watch(
       () => props.zIndex,
-      () => props.setzIndex(optionsRef.value.zIndex),
+      () => control.setzIndex(optionsRef.value.zIndex),
     );
 
     onBeforeUnmount(() => {

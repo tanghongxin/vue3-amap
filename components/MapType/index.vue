@@ -1,14 +1,15 @@
-<script>
+<script lang="ts">
 import {
   defineComponent, onBeforeUnmount, h, Comment,
 } from 'vue';
+import type { PropType } from 'vue';
 import { useInjectMap } from '../Map/composable';
 
 export default defineComponent({
   name: 'AMapMapType',
   props: {
     position: {
-      type: Object,
+      type: Object as PropType<AMap.ControlConfig['position']>,
       default: () => ({ bottom: '200px', right: '40px' }),
     },
   },

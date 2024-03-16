@@ -1,7 +1,9 @@
 # vue3-amap
+
 基于 vue3 封装的高德地图组件集合，配合猎鹰轨迹服务搭建了简易的电子围栏管理系统与企业签到 demo
 
-## Features:
+## Features
+
 - 原生组件封装
   - AMapControlBar
   - AMapGeolocation
@@ -17,12 +19,14 @@
   - AMapVector
 
 ## TODO
-- [ ] 发布至 NPM
-- [ ] 支持 TypeScript
 
+- [ ] 发布至 NPM
+- [x] 支持 TypeScript
 
 ## Getting Started
+
 搭建
+
 ```sh
 git clone https://github.com/tanghongxin/vue3-amap.git
 cd vue3-amap
@@ -30,21 +34,25 @@ pnpm i
 ```
 
 启动
+
 ```sh
 pnpm dev
 ```
 
 打包
+
 ```sh
 pnpm build
 ```
 
 mock（开发阶段可选开启，避免频繁调用高德接口触发额度限制）
+
 ```javascript
 import('../mock');
 ```
 
 ## Tips
+
 地图加载与接口调用涉及高德开发者密钥，出于安全考虑，项目采用 Nginx 转发的处理方式进行处理，仅代理必要服务。实际开发时请前往[高德控制台](https://console.amap.com/dev/index)申请自己的开发者应用
 
 ### Nginx 代理示例
@@ -80,6 +88,7 @@ location /inputtips {
 ```
 
 ## FAQ
+
 - 为什么 PC 调试定位时会失败？
 
   定位实现基于 GPS 与 IP，前者大部分 PC 不具备硬件能力，后者受网络环境因素影响

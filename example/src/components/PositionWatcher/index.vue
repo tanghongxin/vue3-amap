@@ -1,7 +1,7 @@
 <template>
   <a-map-marker
-    v-if="state.position.length"
-    :position="state.position"
+    v-if="position?.length"
+    :position="position"
   />
   <a-map-geolocation
     watch-position
@@ -9,24 +9,16 @@
     :show-circle="false"
     :show-marker="false"
     :pan-to-location="false"
-    @update:position="$emit('update:position', state.position = $event)"
+    @update:position="$emit('update:position', position = $event)"
   />
 </template>
 
-<script>
-import { defineComponent, reactive } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
 
-export default defineComponent({
-  name: 'PositionWatcher',
-  emits: ['update:position'],
-  setup() {
-    return {
-      state: reactive({ position: [] }),
-    };
-  },
-});
+defineOptions({ name: 'PositionWatcher' });
+
+defineEmits(['update:position']);
+
+const position = ref<AMap.Vector2>(null);
 </script>
-
-<style lang="less">
-
-</style>
