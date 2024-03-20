@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import { toArray } from '@/utils/index';
 import { RouteEnum } from '@/router/enum';
+import { globalLoading } from '@/utils/share';
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -50,6 +51,14 @@ const router = createRouter({
       component: () => import('../pages/not-found.vue'),
     },
   ],
+});
+
+router.beforeEach(() => {
+  globalLoading.value = true;
+});
+
+router.afterEach(() => {
+  globalLoading.value = false;
 });
 
 export default router;
