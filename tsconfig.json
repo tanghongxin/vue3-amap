@@ -2,7 +2,7 @@
   "compilerOptions": {
     "isolatedModules": true,
     "module": "esnext",
-    "moduleResolution": "NodeNext",
+    "moduleResolution": "bundler",
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {

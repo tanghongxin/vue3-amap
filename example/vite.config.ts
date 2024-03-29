@@ -1,5 +1,4 @@
 import { resolve } from 'path';
-// FIXME
 import { mergeConfig, loadEnv, defineConfig } from 'vite';
 import basicSsl from '@vitejs/plugin-basic-ssl';
 import viteCompression from 'vite-plugin-compression';
