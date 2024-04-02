@@ -1,14 +1,13 @@
-import { mergeConfig, loadEnv, defineConfig } from 'vite';
+import {
+  mergeConfig, loadEnv, defineConfig, UserConfigExport,
+} from 'vite';
 import vue from '@vitejs/plugin-vue';
 import eslint from 'vite-plugin-eslint';
 import svgLoader from 'vite-svg-loader';
 import { resolve } from 'path';
 import { codeInspectorPlugin } from 'code-inspector-plugin';
 
-/**
- * @type {import('vite').UserConfigExport}
- */
-export const commonConfig = {
+export const commonConfig: UserConfigExport = {
   define: {
     // eslint-disable-next-line global-require
     __VERSION__: JSON.stringify(require('./package.json').version),
