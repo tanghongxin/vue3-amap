@@ -11,6 +11,7 @@ import {
 import AMapLoader from '@amap/amap-jsapi-loader';
 import config from '../../src/core/config';
 import { useProvideMap, AMapProvider } from './composable';
+import { handleError } from '../../src/core/error';
 
 defineOptions({ name: 'AMapMap' });
 
@@ -22,25 +23,28 @@ const containerRef = ref<HTMLElement>(null);
 useProvideMap(mapState);
 
 onMounted(async () => {
-  const AMap = await AMapLoader.load(config);
+  try {
+    const AMap = await AMapLoader.load(config);
+    const map = new AMap.Map(containerRef.value, {
+      resizeEnable: true,
+      zoom: 12,
+    });
 
-  const map = new AMap.Map(containerRef.value, {
-    resizeEnable: true,
-    zoom: 12,
-  });
+    map.on('complete', () => {
+      initialized.value = true;
+      emit('complete');
+    });
 
-  map.on('complete', () => {
-    initialized.value = true;
-    emit('complete');
-  });
-
-  Object.assign(mapState, { AMap, map });
+    Object.assign(mapState, { AMap, map });
+  } catch (info) {
+    handleError({ info, target: '地图加载' });
+  }
 });
 
 onBeforeUnmount(() => {
   // 确保子组件及地图内元素销毁完毕
   nextTick(() => {
-    mapState.map.destroy();
+    mapState.map?.destroy();
     emit('destroy');
   });
 });

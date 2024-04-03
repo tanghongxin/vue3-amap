@@ -51,7 +51,7 @@ function logError(error) {
 
 export function handleError({ info, target = '' }) {
   const error = new Error(
-    `${target ? `[${target}]` : ''}[${info}]${ERR_DESC_MAP[info]}`,
+    `${target ? `[${target}]` : ''}[${info}]${ERR_DESC_MAP[info] || ''}`,
   );
 
   if (config.errorHandler) {
