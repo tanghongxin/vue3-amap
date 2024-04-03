@@ -10,15 +10,15 @@ import { codeInspectorPlugin } from 'code-inspector-plugin';
 export const commonConfig: UserConfigExport = {
   define: {
     // eslint-disable-next-line global-require
-    __VERSION__: JSON.stringify(require('./package.json').version),
+    __APP_VERSION__: JSON.stringify(require('./package.json').version),
   },
   plugins: [
     eslint({
       cache: false,
       exclude: [
         '**/node_modules/**',
-        '**/lib/**',
         '**/dist/**',
+        '**/es/**',
         './types/amap-jsapi-plugins-types/**',
       ],
     }),
@@ -39,15 +39,34 @@ export default defineConfig(({ mode }) => {
       build: {
         emptyOutDir: true,
         copyPublicDir: false,
-        outDir: resolve(__dirname, './lib'),
-        sourcemap: true,
+        sourcemap: false,
+        outDir: resolve(__dirname, './dist'),
         lib: {
-          entry: resolve(__dirname, './src/index.ts'),
+          entry: [
+            resolve(__dirname, './src/index.ts'),
+          ],
           name: 'vue3-amap',
           formats: ['es'],
           fileName: (format) => `index.${format}.js`,
         },
         rollupOptions: {
+          output: [
+            {
+              format: 'es',
+              entryFileNames: '[name].js',
+              preserveModules: true,
+              exports: undefined,
+              dir: resolve(__dirname, 'es'),
+              preserveModulesRoot: 'src',
+            },
+            {
+              format: 'es',
+              entryFileNames: '[name].js',
+              preserveModules: false,
+              exports: undefined,
+              dir: resolve(__dirname, 'dist'),
+            },
+          ],
           external: ['vue'],
         },
       },

@@ -1,9 +1,9 @@
 import { Plugin } from 'vue';
 import config from './core/config';
-import * as components from '../components';
+import * as components from './components';
 
-export * from '../components';
-export { useInjectMap } from '../components/Map/composable';
+export * from './components';
+export { useInjectMap } from './components/Map/composable';
 export { ERR_DESC_MAP } from './core/error';
 
 const install: Plugin = function install(app, options = {}) {
@@ -30,8 +30,7 @@ const install: Plugin = function install(app, options = {}) {
 };
 
 export default {
-  // @ts-ignore
   // eslint-disable-next-line no-undef
-  version: __VERSION__,
+  version: __APP_VERSION__,
   install,
 };

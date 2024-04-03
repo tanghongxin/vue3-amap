@@ -15,21 +15,24 @@
     "url": "https://github.com/tanghongxin/vue3-amap.git"
   },
   "files": [
-    "lib",
-    "src",
-    "components",
+    "dist",
+    "es",
     "types",
-    "LICENSE"
+    "LICENSE",
+    "README.md"
   ],
   "engines": {
     "node": ">=16.14.0"
   },
-  "main": "./lib/index.es.js",
+  "main": "./dist/index.js",
   "exports": {
     ".": {
-      "import": "./lib/index.es.js"
+      "import": "./dist/index.js",
+      "types": {
+        "default": "./types/components.d.ts"
+      }
     },
-    "./style.css": "./lib/style.css"
+    "./style.css": "./dist/index.css"
   },
   "peerDependencies": {
     "vue": "^3.0.0"

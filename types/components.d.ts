@@ -10,7 +10,7 @@ import {
   AMapSearch,
   AMapToolbar,
   AMapVector,
-} from '../components/index';
+} from '../src/components/index';
 
 declare module 'vue' {
   export interface GlobalComponents {

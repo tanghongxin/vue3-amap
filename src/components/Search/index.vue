@@ -12,8 +12,8 @@ import {
   defineComponent, onBeforeUnmount, onMounted,
 } from 'vue';
 import type { PropType } from 'vue';
-import { uuid } from '../../src/utils';
-import { handleError } from '../../src/core/error';
+import { uuid } from '../../utils';
+import { handleError } from '../../core/error';
 import { useInjectMap } from '../Map/composable';
 
 export default defineComponent({
@@ -59,3 +59,4 @@ export default defineComponent({
   z-index: 1;
 }
 </style>
+../../utils../../core/error

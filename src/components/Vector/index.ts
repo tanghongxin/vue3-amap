@@ -1,5 +1,5 @@
 import AMapVector from './index.vue';
-import { withInstall } from '../../src/utils';
+import { withInstall } from '../../utils';
 
 AMapVector.install = function install(app) {
   app.component(AMapVector.name, AMapVector);

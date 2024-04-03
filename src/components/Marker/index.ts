@@ -1,4 +1,4 @@
 import AMapMarker from './index.vue';
-import { withInstall } from '../../src/utils';
+import { withInstall } from '../../utils';
 
 export default withInstall(AMapMarker);

@@ -20,7 +20,7 @@ jspm_packages/
 # Build
 dist
 dist-ssr
-lib
+es
 
 # IDE / Editor
 .idea

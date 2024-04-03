@@ -9,16 +9,16 @@ import {
   onBeforeUnmount, onMounted, shallowReactive, ref, nextTick,
 } from 'vue';
 import AMapLoader from '@amap/amap-jsapi-loader';
-import config from '../../src/core/config';
+import config from '../../core/config';
 import { useProvideMap, AMapProvider } from './composable';
-import { handleError } from '../../src/core/error';
+import { handleError } from '../../core/error';
 
 defineOptions({ name: 'AMapMap' });
 
 const emit = defineEmits(['complete', 'destroy']);
 const mapState = shallowReactive<AMapProvider>({ AMap: null, map: null });
 const initialized = ref<Boolean>(false);
-const containerRef = ref<HTMLElement>(null);
+const containerRef = ref<HTMLElement>();
 
 useProvideMap(mapState);
 
