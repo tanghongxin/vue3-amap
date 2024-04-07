@@ -10,6 +10,7 @@ module.exports = {
   ],
   globals: {
     AMap: 'writable',
+    __APP_VERSION__: true,
   },
   parser: 'vue-eslint-parser',
   parserOptions: {

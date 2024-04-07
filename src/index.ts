@@ -30,7 +30,6 @@ const install: Plugin = function install(app, options = {}) {
 };
 
 export default {
-  // eslint-disable-next-line no-undef
   version: __APP_VERSION__,
   install,
 };
