@@ -2,5 +2,5 @@ node_modules/
 dist/
 es/
 example/dist/
-types/amap-jsapi-plugins-types/
+types/amap/
 **/*.test.js

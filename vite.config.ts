@@ -20,7 +20,7 @@ export const commonConfig: UserConfig = {
         '**/node_modules/**',
         '**/dist/**',
         '**/es/**',
-        './types/amap-jsapi-plugins-types/**',
+        './types/amap/**',
       ],
     }),
     svgLoader(),
@@ -41,11 +41,12 @@ export default defineConfig(({ mode }) => {
         dts({
           include: [
             'src/**',
+            'types/**',
           ],
           outDir: resolve(__dirname, 'es'),
-          copyDtsFiles: true,
-          insertTypesEntry: true,
           staticImport: true,
+          // 需开启，否则使用中无法正确识别组件
+          cleanVueFileName: true,
         }),
       ],
       build: {

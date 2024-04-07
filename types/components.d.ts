@@ -1,4 +1,3 @@
-// https://github.com/johnsoncodehk/volar
 import {
   AMapControlBar,
   AMapFitView,
@@ -10,7 +9,7 @@ import {
   AMapSearch,
   AMapToolbar,
   AMapVector,
-} from '../src/components/index';
+} from 'vue3-amap';
 
 declare module 'vue' {
   export interface GlobalComponents {
@@ -27,4 +26,15 @@ declare module 'vue' {
   }
 }
 
-export {};
+export {
+  AMapControlBar,
+  AMapFitView,
+  AMapGeolocation,
+  AMapMap,
+  AMapMapType,
+  AMapMarker,
+  AMapScale,
+  AMapSearch,
+  AMapToolbar,
+  AMapVector,
+};
