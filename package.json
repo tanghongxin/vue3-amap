@@ -5,7 +5,8 @@
   "author": "hongxin.tang@hotmail.com",
   "description": "基于 vue3 封装的高德地图组件集合，配合猎鹰轨迹服务搭建了简易的电子围栏管理系统与企业签到 demo",
   "scripts": {
-    "build": "vite build && vite build example",
+    "package": "vite build",
+    "build": "pnpm package && vite build example",
     "dev": "vite serve example --host",
     "lint": "eslint . --ext .js,.ts,.vue --ignore-path .gitignore  --ignore-path .eslintignore",
     "lint:fix": "pnpm lint --fix"
@@ -25,15 +26,9 @@
     "node": ">=16.14.0"
   },
   "main": "./dist/index.js",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": {
-        "default": "./types/components.d.ts"
-      }
-    },
-    "./style.css": "./dist/index.css"
-  },
+  "module": "./es/index.js",
+  "style": "./dist/index.css",
+  "typings": "./es/index.d.ts",
   "peerDependencies": {
     "vue": "^3.0.0"
   },
@@ -66,6 +61,7 @@
     "unplugin-vue-components": "^0.26.0",
     "vite": "^5.1.6",
     "vite-plugin-compression": "^0.5.1",
+    "vite-plugin-dts": "^3.8.1",
     "vite-plugin-eslint": "^1.8.1",
     "vite-svg-loader": "^5.1.0",
     "vue": "^3.4.21",

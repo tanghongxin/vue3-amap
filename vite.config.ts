@@ -1,13 +1,14 @@
 import {
-  mergeConfig, loadEnv, defineConfig, UserConfigExport,
+  mergeConfig, loadEnv, defineConfig, UserConfig,
 } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import eslint from 'vite-plugin-eslint';
 import svgLoader from 'vite-svg-loader';
 import { resolve } from 'path';
 import { codeInspectorPlugin } from 'code-inspector-plugin';
+import dts from 'vite-plugin-dts';
 
-export const commonConfig: UserConfigExport = {
+export const commonConfig: UserConfig = {
   define: {
     // eslint-disable-next-line global-require
     __APP_VERSION__: JSON.stringify(require('./package.json').version),
@@ -36,6 +37,17 @@ export default defineConfig(({ mode }) => {
   return mergeConfig(
     commonConfig,
     {
+      plugins: [
+        dts({
+          include: [
+            'src/**',
+          ],
+          outDir: resolve(__dirname, 'es'),
+          copyDtsFiles: true,
+          insertTypesEntry: true,
+          staticImport: true,
+        }),
+      ],
       build: {
         emptyOutDir: true,
         copyPublicDir: false,
@@ -46,7 +58,6 @@ export default defineConfig(({ mode }) => {
             resolve(__dirname, './src/index.ts'),
           ],
           name: 'vue3-amap',
-          formats: ['es'],
           fileName: (format) => `index.${format}.js`,
         },
         rollupOptions: {
