@@ -47,6 +47,7 @@ export default defineConfig(({ mode }) => {
           staticImport: true,
           // 需开启，否则使用中无法正确识别组件
           cleanVueFileName: true,
+          tsconfigPath: resolve(__dirname, 'tsconfig.build.json'),
         }),
       ],
       build: {
