@@ -4,6 +4,7 @@
     "paths": {
       // https://github.com/qmhc/vite-plugin-dts/blob/main/README.md#type-errors-that-are-unable-to-infer-types-from-packages-in-node_modules
       "@vue/shared": ["node_modules/.pnpm/@vue+shared@3.4.21/node_modules/@vue/shared/dist/shared.esm-bundler.js"],
+      "~/*": ["src/*"]
     }
   }
 }

@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import { useInjectMap } from '../Map/composable';
+import { useInjectMap } from '~/components/Map/composable';
 import NavigationIcon from './navigation.svg';
 
 defineOptions({

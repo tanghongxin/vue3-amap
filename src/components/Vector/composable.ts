@@ -1,5 +1,5 @@
 import { onBeforeUnmount, ref, shallowRef } from 'vue';
-import { useInjectMap } from '../Map/composable';
+import { useInjectMap } from '~/components/Map/composable';
 import Factory from './factory';
 
 const DEFAULT_DRAW_STYLE = {

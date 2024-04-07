@@ -10,9 +10,9 @@ import {
 } from 'vue';
 import type { PropType } from 'vue';
 import AMapLoader from '@amap/amap-jsapi-loader';
-import config from '../../core/config';
+import config from '~/core/config';
 import { useProvideMap, AMapProvider } from './composable';
-import { handleError } from '../../core/error';
+import { handleError } from '~/core/error';
 
 defineOptions({ name: 'AMapMap' });
 const props = defineProps({

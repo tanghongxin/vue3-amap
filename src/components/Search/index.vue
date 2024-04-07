@@ -12,9 +12,9 @@ import {
   defineComponent, onBeforeUnmount, onMounted,
 } from 'vue';
 import type { PropType } from 'vue';
-import { uuid } from '../../utils';
-import { handleError } from '../../core/error';
-import { useInjectMap } from '../Map/composable';
+import { uuid } from '~/utils';
+import { handleError } from '~/core/error';
+import { useInjectMap } from '~/components/Map/composable';
 
 export default defineComponent({
   name: 'AMapSearch',
@@ -59,4 +59,4 @@ export default defineComponent({
   z-index: 1;
 }
 </style>
-../../utils../../core/error
+~/utils~/core/error

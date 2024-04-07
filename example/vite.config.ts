@@ -27,7 +27,6 @@ export default defineConfig(({ mode }) => {
       ],
       resolve: {
         alias: {
-          '@': resolve(__dirname, './src'),
           'axios/lib/adapters/xhr': resolve(__dirname, '../node_modules/axios/lib/adapters/xhr.js'),
           'vue3-amap': resolve(__dirname, '../src/index.ts'),
         },
