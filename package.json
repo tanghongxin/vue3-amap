@@ -6,9 +6,9 @@
   "description": "基于 vue3 封装的高德地图组件集合，配合猎鹰轨迹服务搭建了简易的电子围栏管理系统与企业签到 demo",
   "scripts": {
     "package": "vite build",
-    "build": "pnpm package && vite build example",
+    "build": "vite build example",
     "dev": "vite serve example --host",
-    "lint": "eslint . --ext .js,.ts,.vue --ignore-path .gitignore  --ignore-path .eslintignore",
+    "lint": "eslint . --ext .js,.ts,.vue --ignore-path .gitignore --ignore-path .eslintignore",
     "lint:fix": "pnpm lint --fix"
   },
   "repository": {

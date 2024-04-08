@@ -1,9 +1,10 @@
-# vue3-amap
+# @tanghongxin/vue3-amap
 
 基于 vue3 封装的高德地图组件集合，配合猎鹰轨迹服务搭建了简易的电子围栏管理系统与企业签到 demo
 
 ## Features
 
+- 类型提示
 - 原生组件封装
   - AMapControlBar
   - AMapGeolocation
@@ -18,12 +19,44 @@
   - AMapPositionWatcher
   - AMapVector
 
-## TODO
+## Usage
 
-- [ ] 发布至 NPM
-- [x] 支持 TypeScript
+配置 Github Packages 源
 
-## Getting Started
+```sh
+echo @tanghongxin:registry=https://npm.pkg.github.com > .npmrc
+```
+
+安装
+
+```sh
+pnpm add @tanghongxin/vue3-amap
+```
+
+引入
+
+```js
+import Vue3AMap from '@tanghongxin/vue3-amap'
+import '@tanghongxin/vue3-amap/dist/style.css'
+import App from './app.vue'
+import { createApp } from 'vue'
+
+const app = createApp(App)
+app.use(router)
+app.use(Vue3AMap, {
+  key: '', // 你的高德地图 JS KEY
+  version: '2.0',
+  errorHandler(error) {}, // 报错处理逻辑，可配置 toast 提示等
+})
+```
+
+使用
+
+```text
+TODO
+```
+
+## Dev
 
 搭建
 
@@ -37,12 +70,6 @@ pnpm i
 
 ```sh
 pnpm dev
-```
-
-打包
-
-```sh
-pnpm build
 ```
 
 mock（开发阶段可选开启，避免频繁调用高德接口触发额度限制）
