@@ -1,5 +1,5 @@
 import { message } from 'ant-design-vue';
-import { ERR_DESC_MAP } from 'vue3-amap';
+import { ERR_DESC_MAP } from '@tanghongxin/vue3-amap';
 import { Tip } from '@/model/inputtips';
 
 class AssistantService {

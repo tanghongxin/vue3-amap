@@ -64,6 +64,10 @@ export default defineConfig(({ mode }) => {
     {
       plugins: [
         dts({
+          include: [
+            'src',
+            'types',
+          ],
           outDir: esDir,
           staticImport: true,
           // 需开启，否则使用中无法正确识别组件
@@ -81,7 +85,7 @@ export default defineConfig(({ mode }) => {
           entry: [
             resolve('src/index.ts'),
           ],
-          name: 'vue3-amap',
+          name: '@tanghongxin/vue3-amap',
           fileName: (format) => `index.${format}.js`,
         },
         rollupOptions: {

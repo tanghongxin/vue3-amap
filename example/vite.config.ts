@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => {
       resolve: {
         alias: {
           'axios/lib/adapters/xhr': resolve(__dirname, '../node_modules/axios/lib/adapters/xhr.js'),
-          'vue3-amap': resolve(__dirname, '../src/index.ts'),
+          '@tanghongxin/vue3-amap': resolve(__dirname, '../src/index.ts'),
         },
       },
       server: {
