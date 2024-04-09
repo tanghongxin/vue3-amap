@@ -41,8 +41,8 @@
 <script setup lang="ts">
 import { assistantService } from '@/services';
 import { ref } from 'vue';
-import { debounce } from '@/utils';
 import { Tip } from '@/model/inputtips';
+import { debounce } from '@tanghongxin/utils';
 
 defineOptions({ name: 'AutoComplete' });
 defineProps({
