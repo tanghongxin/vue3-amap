@@ -8,6 +8,9 @@ dependencies:
   '@amap/amap-jsapi-loader':
     specifier: ^1.0.1
     version: 1.0.1
+  '@tanghongxin/utils':
+    specifier: ^0.1.3
+    version: 0.1.3
 
 devDependencies:
   '@ant-design/icons-vue':
@@ -699,6 +702,10 @@ packages:
       core-js: 3.36.0
       nanopop: 2.4.2
     dev: true
+
+  /@tanghongxin/utils@0.1.3:
+    resolution: {integrity: sha512-0+hk7I+sZwoVM+s5BC0OCuIkFvlj8q0Do2aj8sIgivnWfFD+nv6EZRF8AtDJ2hmqeRkuxt2bXUsa6m+ZrfG1ow==, tarball: https://npm.pkg.github.com/download/@tanghongxin/utils/0.1.3/4ab719f6fa2060eda1da05d0de0d2bcd8c0216dd}
+    dev: false
 
   /@trysound/sax@0.2.0:
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}

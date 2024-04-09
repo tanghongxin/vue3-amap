@@ -1,6 +1,6 @@
 {
   "name": "@tanghongxin/vue3-amap",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "author": "hongxin.tang@hotmail.com",
   "description": "基于 vue3 封装的高德地图组件集合，配合猎鹰轨迹服务搭建了简易的电子围栏管理系统与企业签到 demo",
@@ -33,7 +33,8 @@
     "vue": "^3.0.0"
   },
   "dependencies": {
-    "@amap/amap-jsapi-loader": "^1.0.1"
+    "@amap/amap-jsapi-loader": "^1.0.1",
+    "@tanghongxin/utils": "^0.1.3"
   },
   "devDependencies": {
     "@ant-design/icons-vue": "^7.0.1",
