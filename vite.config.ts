@@ -44,6 +44,11 @@ export const commonConfig: UserConfig = {
 export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
 
+  const {
+    peerDependencies = {},
+    dependencies = {},
+  } = read('package.json');
+
   const esDir = resolve('es');
   const distDir = resolve('dist');
 
@@ -106,7 +111,10 @@ export default defineConfig(({ mode }) => {
               dir: distDir,
             },
           ],
-          external: ['vue'],
+          external: [
+            ...Object.keys(peerDependencies),
+            ...Object.keys(dependencies),
+          ],
         },
       },
     },
