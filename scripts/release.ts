@@ -45,9 +45,12 @@ async function main(): Promise<void> {
   run('git stage .');
   run(`git commit -m ':bookmark: release v${newVersion}'`);
   run(`git tag v${newVersion}`);
+  run('git push');
   run('git push --tags');
   run('pnpm package');
   run('pnpm publish');
+
+  process.exit(0);
 }
 
 main();
