@@ -8,14 +8,13 @@ import path from 'path';
 import fs from 'fs';
 import { codeInspectorPlugin } from 'code-inspector-plugin';
 import dts from 'vite-plugin-dts';
+import { readJson } from './scripts/utils';
 
 const resolve = (...paths: string[]) => path.resolve(__dirname, ...paths);
 
-const read = (...paths: string[]) => JSON.parse(fs.readFileSync(resolve(...paths), 'utf-8'));
-
 export const commonConfig: UserConfig = {
   define: {
-    __APP_VERSION__: JSON.stringify(read('package.json').version),
+    __APP_VERSION__: JSON.stringify(readJson('package.json').version),
   },
   plugins: [
     eslint({
@@ -47,12 +46,12 @@ export default defineConfig(({ mode }) => {
   const {
     peerDependencies = {},
     dependencies = {},
-  } = read('package.json');
+  } = readJson('package.json');
 
   const esDir = resolve('es');
   const distDir = resolve('dist');
 
-  const { paths = {} } = read('tsconfig.json').compilerOptions;
+  const { paths = {} } = readJson('tsconfig.json').compilerOptions;
 
   const directories = fs.readdirSync(resolve('node_modules/.pnpm'));
   const vueSharedDir = directories.find((dir) => /^@vue\+shared@\d+\.\d+\.\d+$/.test(dir));

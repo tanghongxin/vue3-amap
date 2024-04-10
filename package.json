@@ -9,7 +9,8 @@
     "build": "vite build example",
     "dev": "vite serve example --host",
     "lint": "eslint . --ext .js,.ts,.vue --ignore-path .gitignore --ignore-path .eslintignore",
-    "lint:fix": "pnpm lint --fix"
+    "lint:fix": "pnpm lint --fix",
+    "release": "vite-node ./scripts/release.ts"
   },
   "repository": {
     "type": "git",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@ant-design/icons-vue": "^7.0.1",
     "@types/node": "^20.11.26",
+    "@types/semver": "^7.5.8",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
     "@typescript-eslint/parser": "^7.2.0",
     "@vitejs/plugin-basic-ssl": "^1.1.0",
@@ -55,12 +57,15 @@
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-vue": "^9.23.0",
+    "inquirer": "^9.2.17",
     "less": "^4.2.0",
     "postcss": "^8.4.35",
     "postcss-html": "^1.6.0",
     "recursive-copy": "^2.0.14",
+    "semver": "^7.6.0",
     "unplugin-vue-components": "^0.26.0",
     "vite": "^5.1.6",
+    "vite-node": "^1.4.0",
     "vite-plugin-compression": "^0.5.1",
     "vite-plugin-dts": "^3.8.1",
     "vite-plugin-eslint": "^1.8.1",
