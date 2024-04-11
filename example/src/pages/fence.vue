@@ -1,7 +1,7 @@
 <template>
   <a-flex class="w-100 h-100" vertical>
     <a-form
-      class="form"
+      class="fence-form"
       layout="inline"
       :model="config"
       :rules
@@ -18,18 +18,8 @@
           allow-clear
           :maxlength="20"
           show-count
-          placeholder="支持中英文、数字、英文短横线与英文下划线"
+          placeholder="支持中英文、数字、英文短横线与下划线"
         />
-      </a-form-item>
-      <a-form-item label="类型" name="type">
-        <a-select v-model:value="config.type" disabled>
-          <a-select-option :value="'polygon'">
-            多边形
-          </a-select-option>
-          <a-select-option :value="'circle'">
-            圆形
-          </a-select-option>
-        </a-select>
       </a-form-item>
 
       <a-form-item
@@ -42,36 +32,49 @@
           allow-clear
           :maxlength="100"
           show-count
-          placeholder="支持中英文、数字、英文短横线与英文下划线"
+          placeholder="支持中英文、数字、英文短横线与下划线"
         />
       </a-form-item>
 
-      <a-form-item>
-        <a-button type="primary" html-type="submit">
-          保存
-        </a-button>
-      </a-form-item>
+      <a-flex>
+        <a-form-item label="类型" name="type">
+          <a-select v-model:value="config.type" disabled>
+            <a-select-option :value="'polygon'">
+              多边形
+            </a-select-option>
+            <a-select-option :value="'circle'">
+              圆形
+            </a-select-option>
+          </a-select>
+        </a-form-item>
 
-      <template v-if="childRef">
-        <a-form-item v-if="childRef.reaOnlyRef">
-          <a-button class="ml-8" @click="childRef.start">
-            {{ childRef.vectorRef ? "继续" : "开始" }}绘制
+        <a-form-item>
+          <a-button type="primary" html-type="submit">
+            保存
           </a-button>
         </a-form-item>
 
-        <template v-else>
-          <a-form-item>
-            <a-button :disabled="!childRef.vectorRef" @click="childRef.stop">
-              结束绘制
+        <template v-if="childRef">
+          <a-form-item v-if="childRef.reaOnlyRef">
+            <a-button @click="childRef.start">
+              {{ childRef.vectorRef ? "继续" : "开始" }}绘制
             </a-button>
           </a-form-item>
-          <a-form-item>
-            <a-button :disabled="!childRef.vectorRef" @click="childRef.clear">
-              清空绘制
-            </a-button>
-          </a-form-item>
+
+          <template v-else>
+            <a-form-item>
+              <a-button :disabled="!childRef.vectorRef" @click="childRef.stop">
+                结束绘制
+              </a-button>
+            </a-form-item>
+            <a-form-item>
+              <a-button :disabled="!childRef.vectorRef" @click="childRef.clear">
+                清空绘制
+              </a-button>
+            </a-form-item>
+          </template>
         </template>
-      </template>
+      </a-flex>
     </a-form>
 
     <a-flex :flex="1">
@@ -184,13 +187,28 @@ const rules = {
 };
 </script>
 
-<style lang="less" scoped>
-.form {
-  height: 30px;
-  margin: 0 8px 30px 8px;
-}
+<style lang="less">
+.fence-form {
+  margin: 0 12px 8px 8px;
 
-.input {
-  width: 385px;
+  .ant-form-item {
+    margin-bottom: 24px !important;
+  }
+
+  .input {
+    width: 360px;
+  }
+
+  .ant-form-item-label {
+    width: 48px;
+    height: 32px;
+  }
+
+  @media (max-width: 575px) {
+    .ant-form-item-label,
+    .ant-form-item-control {
+      flex: none !important;
+    }
+  }
 }
 </style>
