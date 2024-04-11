@@ -9,12 +9,13 @@ import fs from 'fs';
 import { codeInspectorPlugin } from 'code-inspector-plugin';
 import dts from 'vite-plugin-dts';
 import { readJson } from './scripts/utils';
+import { getVersion } from './scripts/pkg';
 
 const resolve = (...paths: string[]) => path.resolve(__dirname, ...paths);
 
 export const commonConfig: UserConfig = {
   define: {
-    __APP_VERSION__: JSON.stringify(readJson('package.json').version),
+    __APP_VERSION__: JSON.stringify(getVersion()),
   },
   plugins: [
     eslint({
@@ -42,11 +43,6 @@ export const commonConfig: UserConfig = {
 
 export default defineConfig(({ mode }) => {
   process.env = { ...process.env, ...loadEnv(mode, process.cwd()) };
-
-  const {
-    peerDependencies = {},
-    dependencies = {},
-  } = readJson('package.json');
 
   const esDir = resolve('es');
   const distDir = resolve('dist');
@@ -89,8 +85,6 @@ export default defineConfig(({ mode }) => {
           entry: [
             resolve('src/index.ts'),
           ],
-          name: '@tanghongxin/vue3-amap',
-          fileName: (format) => `index.${format}.js`,
         },
         rollupOptions: {
           output: [
@@ -111,8 +105,9 @@ export default defineConfig(({ mode }) => {
             },
           ],
           external: [
-            ...Object.keys(peerDependencies),
-            ...Object.keys(dependencies),
+            'vue',
+            '@tanghongxin/utils',
+            '@amap/amap-jsapi-loader',
           ],
         },
       },
