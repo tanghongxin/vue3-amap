@@ -70,7 +70,10 @@ adaptor.onGet(/\/geofence\/list/).reply((config) => [200, {
         createtime: 1710410184643,
         modifytime: 1710410184643,
       },
-    ].filter(({ gfid }) => (config.params.gfids ? `${config.params.gfids}` === `${gfid}` : true)),
+    ].filter(({ gfid }) => {
+      const gfids = config.params.gfids?.length ? config.params.gfids.split(',') : [`${gfid}`];
+      return gfids.includes(`${gfid}`);
+    }),
   },
   errcode: 10000,
   errdetail: null,
