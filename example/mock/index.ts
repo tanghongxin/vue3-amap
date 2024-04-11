@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import Adaptor from 'axios-mock-adapter';
 import request from '@/utils/request';
+import { message } from 'ant-design-vue';
 
 const adaptor = new Adaptor(request, { delayResponse: 600 });
 
@@ -103,3 +104,5 @@ adaptor.onGet(/\/geofence\/status\/location/).reply(() => [200, {
 }]);
 
 adaptor.onAny().passThrough();
+
+setTimeout(message.info, 300, 'mock 已开启，调试数据不具备准确性');
