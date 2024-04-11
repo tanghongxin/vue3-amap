@@ -64,6 +64,12 @@ export default defineConfig(({ mode }) => {
     {
       plugins: [
         dts({
+          beforeWriteFile: (filePath, content) => {
+            if (filePath === `${esDir}/index.d.ts`) {
+              content = `/// <reference path="../types/index.d.ts" />\n${content}`;
+            }
+            return { filePath, content };
+          },
           include: [
             'src',
             'types',
