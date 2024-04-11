@@ -21,12 +21,6 @@
 
 ## Usage
 
-配置 Github Packages 源
-
-```sh
-echo @tanghongxin:registry=https://npm.pkg.github.com > .npmrc
-```
-
 安装
 
 ```sh

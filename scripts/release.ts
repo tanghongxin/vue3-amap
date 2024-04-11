@@ -48,7 +48,7 @@ async function main(): Promise<void> {
   run('git push');
   run('git push --tags');
   run('pnpm package');
-  run('pnpm publish');
+  run('pnpm publish --access public');
 
   process.exit(0);
 }
