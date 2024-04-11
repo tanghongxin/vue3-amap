@@ -1,8 +1,8 @@
 import { execSync } from 'child_process';
 import { readFileSync, writeFileSync } from 'fs';
 
-export function run(command: string): void {
-  execSync(command, { stdio: 'inherit' });
+export function run(command: string): string {
+  return execSync(command, { stdio: 'pipe' }).toString().trim();
 }
 
 export function readJson(filePath: string): any {

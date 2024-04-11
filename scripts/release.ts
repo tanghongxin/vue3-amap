@@ -5,6 +5,24 @@ import { getVersion, updateVersion } from './pkg';
 import { run } from './utils';
 
 async function main(): Promise<void> {
+  try {
+    const branch = run('git rev-parse --abbrev-ref HEAD');
+    if (branch !== 'main') throw new Error('Please use the main branch.');
+  } catch (error) {
+    console.error(error.message);
+    process.exit(1);
+  }
+
+  try {
+    run('git diff-index --quiet HEAD');
+  } catch {
+    console.error('Please make sure your git status is clean and then retry.');
+    process.exit(1);
+  }
+
+  run('pnpm lint');
+  run('pnpm test');
+
   const newVersionInput = await inquirer.prompt({
     type: 'input',
     name: 'version',
@@ -32,13 +50,6 @@ async function main(): Promise<void> {
 
     const { versionIncrement } = await inquirer.prompt(prompt);
     newVersion = inc(getVersion(), versionIncrement as 'major' | 'minor' | 'patch')!;
-  }
-
-  try {
-    run('git diff-index --quiet HEAD');
-  } catch (error) {
-    console.error('Please make sure your git status is clean and then retry.');
-    process.exit(1);
   }
 
   updateVersion(newVersion);
