@@ -1,5 +1,5 @@
 import { createApp } from 'vue';
-import Vue3AMap from '@tanghongxin/vue3-amap';
+import Vue3AMap from '@rthx/vue3-amap';
 import { message } from 'ant-design-vue';
 import App from './app.vue';
 import router from './router';

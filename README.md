@@ -1,4 +1,4 @@
-# @tanghongxin/vue3-amap
+# @rthx/vue3-amap
 
 基于 vue3 封装的高德地图组件集合，配合猎鹰轨迹服务搭建了简易的电子围栏管理系统与企业签到 demo
 
@@ -24,14 +24,14 @@
 安装
 
 ```sh
-pnpm add @tanghongxin/vue3-amap
+pnpm add @rthx/vue3-amap
 ```
 
 引入
 
 ```js
-import Vue3AMap from '@tanghongxin/vue3-amap'
-import '@tanghongxin/vue3-amap/dist/style.css'
+import Vue3AMap from '@rthx/vue3-amap'
+import '@rthx/vue3-amap/dist/style.css'
 import App from './app.vue'
 import { createApp } from 'vue'
 

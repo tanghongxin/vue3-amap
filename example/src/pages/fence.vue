@@ -99,7 +99,7 @@
 import { useRouter, onBeforeRouteLeave } from 'vue-router';
 import { reactive, ref, onBeforeMount } from 'vue';
 import { geoFenceService } from '@/services';
-import { AMapVector } from '@tanghongxin/vue3-amap';
+import { AMapVector } from '@rthx/vue3-amap';
 import { message, Modal } from 'ant-design-vue';
 import { ComponentExposed } from 'vue-component-type-helpers';
 import AutoComplete from '@/components/AutoComplete/index.vue';

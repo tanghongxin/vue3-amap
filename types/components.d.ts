@@ -9,7 +9,7 @@ import {
   AMapSearch,
   AMapToolbar,
   AMapVector,
-} from '@tanghongxin/vue3-amap';
+} from '@rthx/vue3-amap';
 
 declare module 'vue' {
   export interface GlobalComponents {

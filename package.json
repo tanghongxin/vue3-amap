@@ -1,5 +1,5 @@
 {
-  "name": "@tanghongxin/vue3-amap",
+  "name": "@rthx/vue3-amap",
   "version": "0.1.5",
   "license": "MIT",
   "author": "hongxin.tang@hotmail.com",
@@ -43,7 +43,7 @@
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
-    "@tanghongxin/utils": "^0.1.6"
+    "@rthx/utils": "^0.1.7"
   },
   "devDependencies": {
     "@ant-design/icons-vue": "^7.0.1",
