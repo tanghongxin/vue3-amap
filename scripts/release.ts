@@ -1,5 +1,6 @@
-/* eslint-disable no-console */
-import { inc, valid, gt } from 'semver';
+import {
+  inc, valid, gt, ReleaseType,
+} from 'semver';
 import inquirer, { QuestionCollection } from 'inquirer';
 import { getVersion, updateVersion } from './pkg';
 import { run } from './utils';
@@ -29,27 +30,32 @@ async function main(): Promise<void> {
     message: 'Please enter the new version (or leave it blank for options):',
   });
 
+  const curVersion = getVersion();
   let newVersion: string;
 
   if (newVersionInput.version) {
-    if (!valid(newVersionInput.version) || !gt(newVersionInput.version, getVersion())) {
+    if (!valid(newVersionInput.version) || !gt(newVersionInput.version, curVersion)) {
       console.error('Invalid version or version is not greater than the current version.');
       process.exit(1);
     }
     newVersion = newVersionInput.version;
   } else {
-    const options = ['major', 'minor', 'patch'];
-    const defaultOptionIndex = 2;
     const prompt: QuestionCollection<any> = {
       type: 'list',
       name: 'versionIncrement',
       message: 'Please select the version increment:',
-      choices: options,
-      default: defaultOptionIndex,
+      choices: ['major', 'minor', 'patch'].map((release: ReleaseType) => {
+        const version = inc(curVersion, release);
+        return {
+          name: `${release} (${version})`,
+          value: version,
+        };
+      }),
+      default: 2,
     };
 
     const { versionIncrement } = await inquirer.prompt(prompt);
-    newVersion = inc(getVersion(), versionIncrement as 'major' | 'minor' | 'patch')!;
+    newVersion = versionIncrement;
   }
 
   updateVersion(newVersion);

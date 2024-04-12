@@ -64,6 +64,14 @@ module.exports = {
       ],
     }],
   },
+  overrides: [
+    {
+      files: ['./scripts/**/*.ts'],
+      rules: {
+        'no-console': 'off',
+      },
+    },
+  ],
   settings: {
     'import/resolver': {
       node: {
