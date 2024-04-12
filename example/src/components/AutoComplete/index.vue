@@ -42,7 +42,7 @@
 import { assistantService } from '@/services';
 import { ref } from 'vue';
 import { Tip } from '@/model/inputtips';
-import { debounce } from '@tanghongxin/utils';
+import { debounce } from '@rthx/utils';
 
 defineOptions({ name: 'AutoComplete' });
 defineProps({

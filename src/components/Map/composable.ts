@@ -1,5 +1,5 @@
 import { provide, inject } from 'vue';
-import { uuid } from '@tanghongxin/utils';
+import { uuid } from '@rthx/utils';
 
 export interface AMapProvider {
   AMap: typeof AMap

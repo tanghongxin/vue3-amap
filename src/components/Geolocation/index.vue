@@ -3,7 +3,7 @@ import {
   defineComponent, onBeforeUnmount, h, Comment, computed,
 } from 'vue';
 import type { PropType } from 'vue';
-import { immediateInterval } from '@tanghongxin/utils';
+import { immediateInterval } from '@rthx/utils';
 import { useInjectMap } from '~/components/Map/composable';
 
 export default defineComponent({

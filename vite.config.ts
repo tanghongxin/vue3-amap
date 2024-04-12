@@ -112,7 +112,7 @@ export default defineConfig(({ mode }) => {
           ],
           external: [
             'vue',
-            '@tanghongxin/utils',
+            '@rthx/utils',
             '@amap/amap-jsapi-loader',
           ],
         },

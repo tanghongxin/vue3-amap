@@ -2,7 +2,9 @@ import { execSync } from 'child_process';
 import { readFileSync, writeFileSync } from 'fs';
 
 export function run(command: string): string {
-  return execSync(command, { stdio: 'pipe' }).toString().trim();
+  const output = execSync(command, { stdio: 'pipe' }).toString().trim();
+  console.log(output);
+  return output;
 }
 
 export function readJson(filePath: string): any {
