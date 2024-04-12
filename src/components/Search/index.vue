@@ -12,7 +12,7 @@ import {
   defineComponent, onBeforeUnmount, onMounted,
 } from 'vue';
 import type { PropType } from 'vue';
-import { uuid } from '@tanghongxin/utils';
+import { uuid } from '@rthx/utils';
 import { handleError } from '~/core/error';
 import { useInjectMap } from '~/components/Map/composable';
 
