@@ -68,7 +68,7 @@ onBeforeMount(async () => {
     message.warning('暂无围栏，请先创建');
   }
 
-  if (checkedGfids.value.length > 2) {
+  if (checkedGfids.value.length >= 2) {
     message.info('同时预览多个相距较远的围栏时，地图将会以较高比例缩放', 6);
   }
 });
