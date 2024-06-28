@@ -12,7 +12,6 @@ export default defineConfig(({ mode }) => {
   return mergeConfig(
     commonConfig,
     {
-      base: '/vue3-amap/',
       plugins: [
         basicSsl(),
         Components({
