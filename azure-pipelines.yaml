@@ -37,7 +37,7 @@ steps:
     runOptions: 'inline'
     inline: |
       tar -zxvf /tmp/example/dist.tar.gz -C /tmp
-      rm -rf $(DEPLOY_DIR)/vue3-amap
-      mv /tmp/example/dist $(DEPLOY_DIR)/vue3-amap
+      rm -rf $(DEPLOY_DIR)/dist
+      mv /tmp/example/dist $(DEPLOY_DIR)/dist
       rm -rf /tmp/example
   displayName: 'Deploy'

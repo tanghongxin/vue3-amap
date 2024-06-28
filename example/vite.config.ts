@@ -12,7 +12,6 @@ export default defineConfig(({ mode }) => {
   return mergeConfig(
     commonConfig,
     {
-      base: '/vue3-amap/',
       plugins: [
         basicSsl(),
         Components({
@@ -35,15 +34,15 @@ export default defineConfig(({ mode }) => {
         https: true,
         proxy: {
           '/_AMapService': {
-            target: 'https://www.ado.icu',
+            target: 'https://amap.ado.icu',
             changeOrigin: true,
           },
           '/geofence': {
-            target: 'https://www.ado.icu',
+            target: 'https://amap.ado.icu',
             changeOrigin: true,
           },
           '/inputtips': {
-            target: 'https://www.ado.icu',
+            target: 'https://amap.ado.icu',
             changeOrigin: true,
           },
         },
