@@ -14,7 +14,8 @@
     "jsx": "preserve",
     "types": [
       "@types/node",
-      "vite/client"
+      "vite/client",
+      "unplugin-turbo-console/client"
     ]
   },
   "exclude": [

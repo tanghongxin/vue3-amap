@@ -8,6 +8,7 @@ import path from 'path';
 import fs from 'fs';
 import { codeInspectorPlugin } from 'code-inspector-plugin';
 import dts from 'vite-plugin-dts';
+import TurboConsole from 'unplugin-turbo-console/vite';
 import { readJson } from './scripts/utils';
 import { getVersion } from './scripts/pkg';
 
@@ -31,6 +32,11 @@ export const commonConfig: UserConfig = {
     vue(),
     codeInspectorPlugin({
       bundler: 'vite',
+    }),
+    TurboConsole({
+      specifiedEditor: 'code',
+      extendedPathFileNames: ['index'],
+      port: 3890,
     }),
   ],
   resolve: {
