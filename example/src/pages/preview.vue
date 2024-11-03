@@ -8,7 +8,7 @@
       />
       <a-divider />
       <div>
-        <a-qrcode :value="scanUrl" :with="160" />
+        <a-qrcode :value="scanUrl" :size="180" />
         <p class="sign-in">
           在手机上预览 & 签到
         </p>
@@ -83,7 +83,7 @@ onBeforeMount(async () => {
     flex-direction: column;
     flex-wrap: nowrap;
     width: 100%;
-    max-height: 300px;
+    max-height: 280px;
     padding: 2px 8px;
     overflow: auto;
   }
@@ -111,7 +111,7 @@ onBeforeMount(async () => {
     top: 20px;
     right: 20px;
     z-index: 1;
-    width: 210px;
+    width: 230px;
   }
 
   .sign-in {
