@@ -37,6 +37,8 @@ steps:
     runOptions: 'inline'
     inline: |
       tar -zxvf /tmp/example/dist.tar.gz -C /tmp
+      cp $(DEPLOY_DIR)/.user.ini /tmp/example/dist
+      chattr -i $(DEPLOY_DIR)/dist/.user.ini
       rm -rf $(DEPLOY_DIR)/dist
       mv /tmp/example/dist $(DEPLOY_DIR)/dist
       rm -rf /tmp/example
