@@ -83,7 +83,7 @@ onBeforeMount(async () => {
     flex-direction: column;
     flex-wrap: nowrap;
     width: 100%;
-    max-height: 280px;
+    max-height: 250px;
     padding: 2px 8px;
     overflow: auto;
   }
