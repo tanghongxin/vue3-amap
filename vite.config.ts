@@ -2,7 +2,7 @@ import {
   mergeConfig, loadEnv, defineConfig, UserConfig,
 } from 'vite';
 import vue from '@vitejs/plugin-vue';
-import eslint from 'vite-plugin-eslint';
+import eslint from 'vite-plugin-eslint2';
 import svgLoader from 'vite-svg-loader';
 import path from 'path';
 import fs from 'fs';
