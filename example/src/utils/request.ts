@@ -6,12 +6,10 @@ const request = axios.create({
   baseURL: '/geofence',
 });
 
-request.interceptors.request.use(
-  (config) => {
-    globalLoading.value = true;
-    return config;
-  },
-);
+request.interceptors.request.use((config) => {
+  globalLoading.value = true;
+  return config;
+});
 
 request.interceptors.response.use(
   ({ data }) => {

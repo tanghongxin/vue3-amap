@@ -2,8 +2,8 @@ import { provide, inject } from 'vue';
 import { uuid } from '@rthx/utils';
 
 export interface AMapProvider {
-  AMap: typeof AMap
-  map: AMap.Map
+  AMap: typeof AMap;
+  map: AMap.Map;
 }
 
 interface AMapInjection extends AMapProvider {}

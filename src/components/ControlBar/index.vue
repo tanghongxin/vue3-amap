@@ -1,7 +1,5 @@
 <script lang="ts">
-import {
-  defineComponent, onBeforeUnmount, h, Comment,
-} from 'vue';
+import { defineComponent, onBeforeUnmount, h, Comment } from 'vue';
 import type { PropType } from 'vue';
 import { useInjectMap } from '~/components/Map/composable';
 

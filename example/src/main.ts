@@ -9,7 +9,7 @@ if (import.meta.env.MODE === 'development') {
   import('../mock');
 }
 
-// @ts-ignore
+// @ts-expect-error ...
 window._AMapSecurityConfig = {
   serviceHost: `${window.location.protocol}//${window.location.host}/_AMapService`,
 };

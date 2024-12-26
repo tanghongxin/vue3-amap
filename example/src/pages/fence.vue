@@ -8,10 +8,7 @@
       :colon="false"
       @finish="handleSubmit"
     >
-      <a-form-item
-        label="名称"
-        name="name"
-      >
+      <a-form-item label="名称" name="name">
         <a-input
           v-model:value="config.name"
           class="input"
@@ -22,10 +19,7 @@
         />
       </a-form-item>
 
-      <a-form-item
-        label="描述"
-        name="desc"
-      >
+      <a-form-item label="描述" name="desc">
         <a-input
           v-model:value="config.desc"
           class="input"
@@ -39,36 +33,36 @@
       <a-flex>
         <a-form-item label="类型" name="type">
           <a-select v-model:value="config.type" disabled>
-            <a-select-option :value="'polygon'">
-              多边形
-            </a-select-option>
-            <a-select-option :value="'circle'">
-              圆形
-            </a-select-option>
+            <a-select-option :value="'polygon'"> 多边形 </a-select-option>
+            <a-select-option :value="'circle'"> 圆形 </a-select-option>
           </a-select>
         </a-form-item>
 
         <a-form-item>
-          <a-button type="primary" html-type="submit">
-            保存
-          </a-button>
+          <a-button type="primary" html-type="submit"> 保存 </a-button>
         </a-form-item>
 
         <template v-if="childRef">
           <a-form-item v-if="childRef.reaOnlyRef">
             <a-button @click="childRef.start">
-              {{ childRef.vectorRef ? "继续" : "开始" }}绘制
+              {{ childRef.vectorRef ? '继续' : '开始' }}绘制
             </a-button>
           </a-form-item>
 
           <template v-else>
             <a-form-item>
-              <a-button :disabled="!childRef.vectorRef" @click="childRef.stop">
+              <a-button
+                :disabled="!childRef.vectorRef"
+                @click="childRef.stop()"
+              >
                 结束绘制
               </a-button>
             </a-form-item>
             <a-form-item>
-              <a-button :disabled="!childRef.vectorRef" @click="childRef.clear">
+              <a-button
+                :disabled="!childRef.vectorRef"
+                @click="childRef.clear()"
+              >
                 清空绘制
               </a-button>
             </a-form-item>
@@ -151,7 +145,9 @@ onBeforeMount(() => {
 });
 
 const childRef = ref<ComponentExposed<typeof AMapVector> | null>(null);
-const setChildRef = (v) => { childRef.value = v; };
+const setChildRef = (v) => {
+  childRef.value = v;
+};
 
 const handleSubmit = async () => {
   if (!childRef.value.vectorRef) {
@@ -181,9 +177,7 @@ const rules = {
     { required: true, message: '请输入名称' },
     { validator, trigger: 'change' },
   ],
-  desc: [
-    { validator, trigger: 'change' },
-  ],
+  desc: [{ validator, trigger: 'change' }],
 };
 </script>
 

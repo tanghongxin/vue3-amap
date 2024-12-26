@@ -23,14 +23,20 @@
                 </router-link>
               </a-menu-item>
 
-              <a-menu-item v-if="route.path === RouteEnum.FENCE_ADD" :key="RouteEnum.FENCE_ADD">
+              <a-menu-item
+                v-if="route.path === RouteEnum.FENCE_ADD"
+                :key="RouteEnum.FENCE_ADD"
+              >
                 <router-link :to="RouteEnum.FENCE_ADD">
                   <plus-outlined />
                   <span>新建围栏</span>
                 </router-link>
               </a-menu-item>
 
-              <a-menu-item v-if="route.path === RouteEnum.FENCE_EDIT" :key="RouteEnum.FENCE_EDIT">
+              <a-menu-item
+                v-if="route.path === RouteEnum.FENCE_EDIT"
+                :key="RouteEnum.FENCE_EDIT"
+              >
                 <router-link :to="RouteEnum.FENCE_EDIT">
                   <edit-outlined />
                   <span>编辑围栏</span>

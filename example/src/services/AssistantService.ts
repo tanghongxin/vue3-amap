@@ -3,7 +3,6 @@ import { ERR_DESC_MAP } from '@rthx/vue3-amap';
 import { Tip } from '@/model/inputtips';
 
 class AssistantService {
-  // eslint-disable-next-line no-use-before-define
   protected static instance: AssistantService;
 
   static getInstance(): AssistantService {
@@ -29,7 +28,7 @@ class AssistantService {
       { method: 'GET' },
     )
       .then((res) => res.json())
-      .then((res: { info: string, tips: Tip[] }) => {
+      .then((res: { info: string; tips: Tip[] }) => {
         if (res.info === 'OK') return res.tips;
         message.error(ERR_DESC_MAP[res.info]);
         return [];

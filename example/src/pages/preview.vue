@@ -2,25 +2,18 @@
   <div class="w-100 h-100 preview">
     <fence-view :fences="checkedFences" />
     <a-card v-show="fences.length" class="card">
-      <a-checkbox-group
-        v-model:value="checkedGfids"
-        :options
-      />
+      <a-checkbox-group v-model:value="checkedGfids" :options />
       <a-divider />
       <div>
         <a-qrcode :value="scanUrl" :size="180" />
-        <p class="sign-in">
-          在手机上预览 & 签到
-        </p>
+        <p class="sign-in">在手机上预览 & 签到</p>
       </div>
     </a-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import {
-  ref, onBeforeMount, computed,
-} from 'vue';
+import { ref, onBeforeMount, computed } from 'vue';
 import type { PropType } from 'vue';
 import FenceView from '@/components/Fence/view/index.vue';
 import { geoFenceService } from '@/services';
@@ -41,8 +34,12 @@ const props = defineProps({
 const fences = ref<Fence[]>([]);
 
 const checkedGfids = ref([...props.gfids]);
-const checkedFences = computed(() => fences.value.filter(({ gfid }) => checkedGfids.value.includes(gfid)));
-const options = computed(() => fences.value.map(({ name, gfid }) => ({ label: name, value: gfid })));
+const checkedFences = computed(() =>
+  fences.value.filter(({ gfid }) => checkedGfids.value.includes(gfid)),
+);
+const options = computed(() =>
+  fences.value.map(({ name, gfid }) => ({ label: name, value: gfid })),
+);
 
 const router = useRouter();
 const scanUrl = computed(() => {

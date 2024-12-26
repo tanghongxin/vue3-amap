@@ -1,15 +1,15 @@
 export interface Fence {
-  gfid?: number
-  name: string
-  desc: string
-  shape: any
-  type: string
-  createtime?: number
-  modifytime?: number
+  gfid?: number;
+  name: string;
+  desc: string;
+  shape: unknown;
+  type: string;
+  createtime?: number;
+  modifytime?: number;
 }
 
 export interface Status {
-  gfid: number
-  gfname: string
-  in: '1' | '0'
+  gfid: number;
+  gfname: string;
+  in: '1' | '0';
 }

@@ -1,10 +1,6 @@
 <template>
   <fence-view :fences="fences">
-    <a-button
-      class="sign-in__button"
-      shape="round"
-      @click="handleSubmit"
-    >
+    <a-button class="sign-in__button" shape="round" @click="handleSubmit">
       <check-outlined />签到
     </a-button>
     <position-watcher @update:position="position = $event" />

@@ -6,7 +6,12 @@
 
 <script setup lang="ts">
 import {
-  onBeforeUnmount, onMounted, shallowReactive, ref, nextTick, watch,
+  onBeforeUnmount,
+  onMounted,
+  shallowReactive,
+  ref,
+  nextTick,
+  watch,
 } from 'vue';
 import type { PropType } from 'vue';
 import AMapLoader from '@amap/amap-jsapi-loader';
@@ -18,36 +23,37 @@ defineOptions({ name: 'AMapMap' });
 const props = defineProps({
   mapStyle: {
     type: String as PropType<
-      'normal' |
-      'macaron' |
-      'graffiti' |
-      'whitesmoke' |
-      'dark' |
-      'fresh' |
-      'darkblue' |
-      'blue' |
-      'light' |
-      'grey'
+      | 'normal'
+      | 'macaron'
+      | 'graffiti'
+      | 'whitesmoke'
+      | 'dark'
+      | 'fresh'
+      | 'darkblue'
+      | 'blue'
+      | 'light'
+      | 'grey'
     >,
     default: 'normal',
-    validator: (v: string) => [
-      'normal',
-      'macaron',
-      'graffiti',
-      'whitesmoke',
-      'dark',
-      'fresh',
-      'darkblue',
-      'blue',
-      'light',
-      'grey',
-    ].includes(v),
+    validator: (v: string) =>
+      [
+        'normal',
+        'macaron',
+        'graffiti',
+        'whitesmoke',
+        'dark',
+        'fresh',
+        'darkblue',
+        'blue',
+        'light',
+        'grey',
+      ].includes(v),
   },
 });
 
 const emit = defineEmits(['complete', 'destroy']);
 const mapState = shallowReactive<AMapProvider>({ AMap: null, map: null });
-const initialized = ref<Boolean>(false);
+const initialized = ref<boolean>(false);
 const containerRef = ref<HTMLElement>();
 
 useProvideMap(mapState);

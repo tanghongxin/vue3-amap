@@ -1,6 +1,12 @@
 <script lang="ts">
 import {
-  onBeforeUnmount, defineComponent, h, Comment, watch, computed, ComputedRef,
+  onBeforeUnmount,
+  defineComponent,
+  h,
+  Comment,
+  watch,
+  computed,
+  ComputedRef,
 } from 'vue';
 import type { PropType } from 'vue';
 import { useInjectMap } from '~/components/Map/composable';
@@ -31,9 +37,11 @@ export default defineComponent({
 
     const position: ComputedRef<AMap.LngLat> = computed(() => {
       const { lng, lat } = map.getCenter();
-      return new AMap.LngLat(...(
-        props.position?.length ? props.position : [lng, lat]
-      ) as AMap.Vector2);
+      return new AMap.LngLat(
+        ...((props.position?.length
+          ? props.position
+          : [lng, lat]) as AMap.Vector2),
+      );
     });
 
     const optionsRef = computed(() => {

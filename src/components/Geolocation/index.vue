@@ -1,7 +1,5 @@
 <script lang="ts">
-import {
-  defineComponent, onBeforeUnmount, h, Comment, computed,
-} from 'vue';
+import { defineComponent, onBeforeUnmount, h, Comment, computed } from 'vue';
 import type { PropType } from 'vue';
 import { immediateInterval } from '@rthx/utils';
 import { useInjectMap } from '~/components/Map/composable';
@@ -47,18 +45,16 @@ export default defineComponent({
 
     let timer;
 
-    const getCurrentPosition = () => new Promise((resolve, reject) => {
-      geolocation.getCurrentPosition((status, result) => {
-        if (status === 'complete') {
-          resolve([
-            result.position.getLng(),
-            result.position.getLat(),
-          ]);
-        } else {
-          reject(result);
-        }
+    const getCurrentPosition = () =>
+      new Promise((resolve, reject) => {
+        geolocation.getCurrentPosition((status, result) => {
+          if (status === 'complete') {
+            resolve([result.position.getLng(), result.position.getLat()]);
+          } else {
+            reject(result);
+          }
+        });
       });
-    });
 
     const unWatch = () => {
       if (timer) {

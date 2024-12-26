@@ -16,14 +16,23 @@ export default class Factory {
       case 'polygon': {
         const { points } = config;
         return new AMap.Polygon({
-          path: points.split(';').map((position) => new AMap.LngLat(...position.split(',') as unknown as AMap.Vector2)),
+          path: points
+            .split(';')
+            .map(
+              (position) =>
+                new AMap.LngLat(
+                  ...(position.split(',') as unknown as AMap.Vector2),
+                ),
+            ),
         });
       }
       // https://lbs.amap.com/api/javascript-api-v2/documentation#circle
       case 'circle': {
         const { center, radius } = config;
         return new AMap.Circle({
-          center: new AMap.LngLat(...center.split(',') as unknown as AMap.Vector2),
+          center: new AMap.LngLat(
+            ...(center.split(',') as unknown as AMap.Vector2),
+          ),
           radius,
         });
       }
@@ -41,7 +50,10 @@ export default class Factory {
       case AMap.Polygon: {
         return {
           type: 'polygon',
-          points: vector.getPath().map(({ lng, lat }) => `${lng},${lat}`).join(';'),
+          points: vector
+            .getPath()
+            .map(({ lng, lat }) => `${lng},${lat}`)
+            .join(';'),
         };
       }
       case AMap.Circle: {

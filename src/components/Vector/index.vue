@@ -3,9 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-  computed, Comment, watch,
-} from 'vue';
+import { computed, Comment, watch } from 'vue';
 import type { PropType } from 'vue';
 import use from './composable';
 
@@ -16,16 +14,18 @@ defineOptions({
 const props = defineProps({
   config: {
     type: Object as PropType<{
-      type: string // 矢量图形类型
-      shape: any // 矢量图形构造函数选项
-      [key: string]: any
+      type: string; // 矢量图形类型
+      shape: unknown; // 矢量图形构造函数选项
+      [key: string]: unknown;
     }>,
     default: () => ({}),
   },
 });
 
 const {
-  drawerRef, vectorRef, editorRef,
+  drawerRef,
+  vectorRef,
+  editorRef,
   factory,
   start,
   stop,
@@ -48,9 +48,13 @@ const generateConfig = () => ({
 });
 
 defineExpose({
-  start, stop, clear, vectorRef, reaOnlyRef, generateConfig,
+  start,
+  stop,
+  clear,
+  vectorRef,
+  reaOnlyRef,
+  generateConfig,
 });
 </script>
 
-<style lang="less">
-</style>
+<style lang="less"></style>
