@@ -1,6 +1,4 @@
-import {
-  mergeConfig, loadEnv, defineConfig, UserConfig,
-} from 'vite';
+import { mergeConfig, loadEnv, defineConfig, UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import eslint from 'vite-plugin-eslint2';
 import svgLoader from 'vite-svg-loader';
@@ -56,12 +54,16 @@ export default defineConfig(({ mode }) => {
   const { paths = {} } = readJson('tsconfig.json').compilerOptions;
 
   const directories = fs.readdirSync(resolve('node_modules/.pnpm'));
-  const vueSharedDir = directories.find((dir) => /^@vue\+shared@\d+\.\d+\.\d+$/.test(dir));
+  const vueSharedDir = directories.find((dir) =>
+    /^@vue\+shared@\d+\.\d+\.\d+$/.test(dir),
+  );
 
   if (vueSharedDir) {
     Object.assign(paths, {
       // https://github.com/qmhc/vite-plugin-dts/blob/main/README.md#type-errors-that-are-unable-to-infer-types-from-packages-in-node_modules
-      '@vue/shared': [`node_modules/.pnpm/${vueSharedDir}/node_modules/@vue/shared/dist/shared.esm-bundler.js`],
+      '@vue/shared': [
+        `node_modules/.pnpm/${vueSharedDir}/node_modules/@vue/shared/dist/shared.esm-bundler.js`,
+      ],
     });
   }
 
@@ -76,10 +78,7 @@ export default defineConfig(({ mode }) => {
             }
             return { filePath, content };
           },
-          include: [
-            'src',
-            'types',
-          ],
+          include: ['src', 'types'],
           outDir: esDir,
           staticImport: true,
           // 需开启，否则使用中无法正确识别组件
@@ -94,9 +93,7 @@ export default defineConfig(({ mode }) => {
         sourcemap: false,
         outDir: distDir,
         lib: {
-          entry: [
-            resolve('src/index.ts'),
-          ],
+          entry: [resolve('src/index.ts')],
         },
         rollupOptions: {
           output: [
@@ -116,11 +113,7 @@ export default defineConfig(({ mode }) => {
               dir: distDir,
             },
           ],
-          external: [
-            'vue',
-            '@rthx/utils',
-            '@amap/amap-jsapi-loader',
-          ],
+          external: ['vue', '@rthx/utils', '@amap/amap-jsapi-loader'],
         },
       },
     },

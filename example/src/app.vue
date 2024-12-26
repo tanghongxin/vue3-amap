@@ -17,7 +17,9 @@ import { globalLoading } from '@/utils/share';
 import { h } from 'vue';
 
 Spin.setDefaultIndicator({
-  indicator: h('div', { class: 'loader-wrap' }, [h('div', { class: 'loader' })]),
+  indicator: h('div', { class: 'loader-wrap' }, [
+    h('div', { class: 'loader' }),
+  ]),
 });
 </script>
 

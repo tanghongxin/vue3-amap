@@ -1,15 +1,12 @@
 <template>
-  <a-map-marker
-    v-if="position?.length"
-    :position="position"
-  />
+  <a-map-marker v-if="position?.length" :position="position" />
   <a-map-geolocation
     watch-position
     :show-button="false"
     :show-circle="false"
     :show-marker="false"
     :pan-to-location="false"
-    @update:position="$emit('update:position', position = $event)"
+    @update:position="$emit('update:position', (position = $event))"
   />
 </template>
 

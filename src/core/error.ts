@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import config from './config';
 
 // https://lbs.amap.com/api/webservice/guide/tools/info
@@ -31,7 +30,8 @@ export const ERR_DESC_MAP = Object.freeze({
   MISSING_REQUIRED_PARAMS: '缺少必填参数',
   ILLEGAL_REQUEST: '请求协议非法',
   UNKNOWN_ERROR: '其他未知错误',
-  INSUFFICIENT_ABROAD_PRIVILEGES: '查询坐标或规划点(包括起点、终点、途经点)在海外,但没有海外地图权限',
+  INSUFFICIENT_ABROAD_PRIVILEGES:
+    '查询坐标或规划点(包括起点、终点、途经点)在海外,但没有海外地图权限',
   ILLEGAL_CONTENT: '查询信息存在非法内容',
   OUT_OF_SERVICE: '规划点(包括起点、终点、途经点)不在中国陆地范围内',
   NO_ROADS_NEARBY: '划点(起点、终点、途经点)附近搜不到路',

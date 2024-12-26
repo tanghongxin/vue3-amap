@@ -22,11 +22,14 @@ export default defineConfig(({ mode }) => {
             }),
           ],
         }),
-        ...mode === 'production' ? [viteCompression()] : [],
+        ...(mode === 'production' ? [viteCompression()] : []),
       ],
       resolve: {
         alias: {
-          'axios/lib/adapters/xhr': resolve(__dirname, '../node_modules/axios/lib/adapters/xhr.js'),
+          'axios/lib/adapters/xhr': resolve(
+            __dirname,
+            '../node_modules/axios/lib/adapters/xhr.js',
+          ),
           '@rthx/vue3-amap': resolve(__dirname, '../src/index.ts'),
         },
       },

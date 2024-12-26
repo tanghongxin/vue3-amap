@@ -1,14 +1,11 @@
-/* eslint-disable max-classes-per-file */
-/* eslint-disable no-unused-vars */
-
 declare global {
   namespace AMap {
     export class ControlBar {
-      constructor(opts: any);
+      constructor(opts: unknown);
     }
 
     export class Autocomplete {
-      constructor(opts: any);
+      constructor(opts: unknown);
     }
   }
 }

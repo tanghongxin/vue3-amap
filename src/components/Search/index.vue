@@ -1,16 +1,11 @@
 <template>
   <div class="a-map__search" :style="props.position">
-    <input
-      :id="id"
-      placeholder="输入地名进行搜索"
-    >
+    <input :id="id" placeholder="输入地名进行搜索" />
   </div>
 </template>
 
 <script lang="ts">
-import {
-  defineComponent, onBeforeUnmount, onMounted,
-} from 'vue';
+import { defineComponent, onBeforeUnmount, onMounted } from 'vue';
 import type { PropType } from 'vue';
 import { uuid } from '@rthx/utils';
 import { handleError } from '~/core/error';
@@ -39,8 +34,12 @@ export default defineComponent({
         placeSearch.search(e.poi.name);
       });
 
-      autoComplete.on('error', ({ info }) => handleError({ info, target: '输入提示' }));
-      placeSearch.on('error', ({ info }) => handleError({ info, target: '搜索服务' }));
+      autoComplete.on('error', ({ info }) =>
+        handleError({ info, target: '输入提示' }),
+      );
+      placeSearch.on('error', ({ info }) =>
+        handleError({ info, target: '搜索服务' }),
+      );
     });
 
     onBeforeUnmount(() => {

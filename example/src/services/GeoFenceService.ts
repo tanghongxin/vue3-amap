@@ -3,17 +3,22 @@ import { AxiosInstance } from 'axios';
 import req from '@/utils/request';
 
 class GeoFenceService {
-  // eslint-disable-next-line no-use-before-define
   private static instance: GeoFenceService;
 
   static getInstance(): GeoFenceService {
     if (!this.instance) {
-      this.instance = new GeoFenceService(req, import.meta.env.VITE_AMAP_TRACK_SID);
+      this.instance = new GeoFenceService(
+        req,
+        import.meta.env.VITE_AMAP_TRACK_SID,
+      );
     }
     return this.instance;
   }
 
-  private constructor(private request: AxiosInstance, private sid: string) {}
+  private constructor(
+    private request: AxiosInstance,
+    private sid: string,
+  ) {}
 
   /**
    * 创建圆形围栏
@@ -22,8 +27,16 @@ class GeoFenceService {
    * @returns
    */
   private addCircle({
-    name = '', desc = '', center, radius,
-  }: { name: string, desc?: string, center: string, radius: string }) {
+    name = '',
+    desc = '',
+    center,
+    radius,
+  }: {
+    name: string;
+    desc?: string;
+    center: string;
+    radius: string;
+  }) {
     return this.request<never, { gfid: number }>({
       method: 'post',
       url: '/add/circle',
@@ -47,8 +60,18 @@ class GeoFenceService {
    * @returns
    */
   private updateCircle({
-    gfid, name = '', desc = '', center, radius,
-  }: { gfid: number, name: string, desc?: string, center: string, radius: number }) {
+    gfid,
+    name = '',
+    desc = '',
+    center,
+    radius,
+  }: {
+    gfid: number;
+    name: string;
+    desc?: string;
+    center: string;
+    radius: number;
+  }) {
     return this.request<never, void>({
       method: 'post',
       url: '/update/circle',
@@ -72,8 +95,14 @@ class GeoFenceService {
    * @param {*} param0
    */
   private addPolygon({
-    name = '', desc = '', points,
-  }: { name: string, desc?: string, points: string }) {
+    name = '',
+    desc = '',
+    points,
+  }: {
+    name: string;
+    desc?: string;
+    points: string;
+  }) {
     return this.request<never, { gfid: number }>({
       method: 'post',
       url: '/add/polygon',
@@ -95,8 +124,16 @@ class GeoFenceService {
    * @param {*} param0
    */
   private updatePolygon({
-    gfid, name = '', desc = '', points,
-  }: { gfid: number, name: string, desc?: string, points: string }) {
+    gfid,
+    name = '',
+    desc = '',
+    points,
+  }: {
+    gfid: number;
+    name: string;
+    desc?: string;
+    points: string;
+  }) {
     return this.request<never, void>({
       method: 'post',
       url: '/update/polygon',
@@ -118,7 +155,9 @@ class GeoFenceService {
   }
 
   update({ type, ...rest }) {
-    return type === 'circle' ? this.updateCircle(rest) : this.updatePolygon(rest);
+    return type === 'circle'
+      ? this.updateCircle(rest)
+      : this.updatePolygon(rest);
   }
 
   /**
@@ -147,14 +186,21 @@ class GeoFenceService {
    * @param {*} param0
    * @returns
    */
-  async list({ gfids, page = 1, pagesize = 50 }: { gfids?: number[], page?: number, pagesize?: number } = {}) {
-    const { results, ...rest } = await this.request<never, { count: number, results: Fence[] }>({
+  async list({
+    gfids,
+    page = 1,
+    pagesize = 50,
+  }: { gfids?: number[]; page?: number; pagesize?: number } = {}) {
+    const { results, ...rest } = await this.request<
+      never,
+      { count: number; results: Fence[] }
+    >({
       method: 'get',
       url: '/list',
       params: {
         sid: this.sid,
         outputshape: '1',
-        ...gfids?.length ? { gfids: gfids.join(',') } : {},
+        ...(gfids?.length ? { gfids: gfids.join(',') } : {}),
         page,
         pagesize,
       },
@@ -191,15 +237,23 @@ class GeoFenceService {
    * @returns
    */
   private statusByLocation({
-    location, gfids, page = 1, pagesize = 50,
-  }: { location: number[], gfids?: number[], page?: number, pagesize?: number }) {
-    return this.request<never, { count: number, results: Status[] }>({
+    location,
+    gfids,
+    page = 1,
+    pagesize = 50,
+  }: {
+    location: number[];
+    gfids?: number[];
+    page?: number;
+    pagesize?: number;
+  }) {
+    return this.request<never, { count: number; results: Status[] }>({
       method: 'get',
       url: '/status/location',
       params: {
         sid: this.sid,
         location: location.join(','),
-        ...gfids?.length ? { gfids: gfids.join(',') } : {},
+        ...(gfids?.length ? { gfids: gfids.join(',') } : {}),
         page,
         pagesize,
       },
@@ -211,7 +265,13 @@ class GeoFenceService {
    * @param {*} param0
    * @returns
    */
-  async isWithinFences({ location, gfids }: { location: number[], gfids?: number[] }) {
+  async isWithinFences({
+    location,
+    gfids,
+  }: {
+    location: number[];
+    gfids?: number[];
+  }) {
     const { results } = await this.statusByLocation({ location, gfids });
     return results.find((r) => `${r.in}` === '1');
   }

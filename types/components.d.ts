@@ -13,16 +13,16 @@ import {
 
 declare module 'vue' {
   export interface GlobalComponents {
-    AMapControlBar: typeof AMapControlBar
-    AMapFitView: typeof AMapFitView
-    AMapGeolocation: typeof AMapGeolocation
-    AMapMap: typeof AMapMap
-    AMapMapType: typeof AMapMapType
-    AMapMarker: typeof AMapMarker
-    AMapScale: typeof AMapScale
-    AMapSearch: typeof AMapSearch
-    AMapToolbar: typeof AMapToolbar
-    AMapVector: typeof AMapVector
+    AMapControlBar: typeof AMapControlBar;
+    AMapFitView: typeof AMapFitView;
+    AMapGeolocation: typeof AMapGeolocation;
+    AMapMap: typeof AMapMap;
+    AMapMapType: typeof AMapMapType;
+    AMapMarker: typeof AMapMarker;
+    AMapScale: typeof AMapScale;
+    AMapSearch: typeof AMapSearch;
+    AMapToolbar: typeof AMapToolbar;
+    AMapVector: typeof AMapVector;
   }
 }
 

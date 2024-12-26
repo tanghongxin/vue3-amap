@@ -1,8 +1,8 @@
 interface Config {
-  key: string
-  version: string
-  plugins?: string[]
-  errorHandler?: Function
+  key: string;
+  version: string;
+  plugins?: string[];
+  errorHandler?: (err: Error) => void;
 }
 
 const config: Config = {

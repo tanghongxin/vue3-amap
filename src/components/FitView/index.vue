@@ -54,8 +54,8 @@ const { map } = useInjectMap();
 
     &:hover,
     &:focus {
-      color:  #40a9ff;
-      border-color:#40a9ff;
+      color: #40a9ff;
+      border-color: #40a9ff;
       background: #fff;
     }
   }

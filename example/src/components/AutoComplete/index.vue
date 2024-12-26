@@ -18,10 +18,7 @@
               {{ item.value }}
             </p>
           </template>
-          <template
-            v-if="typeof item.address === 'string'"
-            #description
-          >
+          <template v-if="typeof item.address === 'string'" #description>
             <p class="ellipsis" :title="item.address">
               {{ item.address }}
             </p>

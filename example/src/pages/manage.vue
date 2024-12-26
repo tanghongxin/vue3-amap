@@ -4,12 +4,8 @@
       <a-dropdown>
         <template #overlay>
           <a-menu @click="handleAdd">
-            <a-menu-item key="circle">
-              圆形围栏
-            </a-menu-item>
-            <a-menu-item key="polygon">
-              多边形围栏
-            </a-menu-item>
+            <a-menu-item key="circle"> 圆形围栏 </a-menu-item>
+            <a-menu-item key="polygon"> 多边形围栏 </a-menu-item>
           </a-menu>
         </template>
         <a-button type="primary">
@@ -18,10 +14,7 @@
         </a-button>
       </a-dropdown>
 
-      <a-popconfirm
-        title="是否确定删除选中围栏？"
-        @confirm="handleDelete"
-      >
+      <a-popconfirm title="是否确定删除选中围栏？" @confirm="handleDelete">
         <a-button danger :disabled="!state.selectedRowKeys.length">
           删除
         </a-button>
@@ -38,12 +31,10 @@
         预览
       </a-button>
 
-      <a-button @click="handleSearch">
-        刷新
-      </a-button>
+      <a-button @click="handleSearch"> 刷新 </a-button>
     </a-space>
 
-    <br><br>
+    <br /><br />
 
     <a-table
       bordered
@@ -52,7 +43,7 @@
       :data-source="state.dataSource"
       :row-selection="{
         selectedRowKeys: state.selectedRowKeys,
-        onChange: onSelectChange
+        onChange: onSelectChange,
       }"
       :pagination="false"
       :scroll="{ y: 'calc(100vh - 300px)' }"
@@ -62,9 +53,7 @@
 
 <script setup lang="ts">
 import { geoFenceService } from '@/services';
-import {
-  reactive, ref, onActivated, onBeforeMount,
-} from 'vue';
+import { reactive, ref, onActivated, onBeforeMount } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { DownOutlined } from '@ant-design/icons-vue';
 import dayjs from 'dayjs';
