@@ -1,5 +1,5 @@
 import { Fence, Status } from '@/model/fence';
-import { AxiosInstance } from 'axios';
+import { type AxiosInstance } from 'axios';
 import req from '@/utils/request';
 
 class GeoFenceService {

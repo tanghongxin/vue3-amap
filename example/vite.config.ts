@@ -50,6 +50,9 @@ export default defineConfig(({ mode }) => {
           },
         },
       },
+      optimizeDeps: {
+        include: ['ant-design-vue/es'],
+      },
     },
     true,
   );

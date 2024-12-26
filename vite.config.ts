@@ -1,4 +1,4 @@
-import { mergeConfig, loadEnv, defineConfig, UserConfig } from 'vite';
+import { mergeConfig, loadEnv, defineConfig, type UserConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import eslint from 'vite-plugin-eslint2';
 import svgLoader from 'vite-svg-loader';

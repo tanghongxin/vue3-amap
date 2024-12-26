@@ -1,6 +1,7 @@
 import { readFileSync, writeFileSync } from 'fs';
 
-export function readJson(filePath: string): unknown {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function readJson(filePath: string): Record<string, any> {
   const fileContent = readFileSync(filePath, 'utf8');
   return JSON.parse(fileContent);
 }
