@@ -5,14 +5,6 @@ import pluginVue from 'eslint-plugin-vue';
 import vueParser from 'vue-eslint-parser';
 import prettierConfig from '@vue/eslint-config-prettier';
 
-const importRules = {
-  'prefer-promise-reject-errors': 'off',
-  'import/extensions': 'off',
-  'import/no-extraneous-dependencies': 'off',
-  'import/no-unresolved': 'off',
-  'import/prefer-default-export': 'off',
-};
-
 const tsRules = {
   '@typescript-eslint/no-shadow': 'error',
   '@typescript-eslint/no-unused-vars': ['warn', { ignoreRestSiblings: true }],
@@ -86,21 +78,6 @@ export default [
   },
   {
     files: ['**/*.js', '**/*.ts', '**/*.vue'],
-    settings: {
-      'import/resolver': {
-        node: {
-          extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', 'svg'],
-          moduleDirectory: ['node_modules'],
-        },
-        alias: {
-          extensions: ['.js', '.jsx', '.ts', '.tsx', '.vue', 'svg'],
-          map: [
-            ['@rthx/vue3-amap', './src/index.ts'],
-            ['@', './example/src'],
-          ],
-        },
-      },
-    },
     rules: {
       'class-methods-use-this': 'off',
       'func-names': 'off',
@@ -121,7 +98,7 @@ export default [
       'no-shadow': 'off',
       'no-unused-vars': 'off',
       'no-useless-constructor': 'off',
-      ...importRules,
+      'prefer-promise-reject-errors': 'off',
       ...tsRules,
       ...vueRules,
     },
