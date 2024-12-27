@@ -7,14 +7,14 @@ import fs from 'fs';
 import { codeInspectorPlugin } from 'code-inspector-plugin';
 import dts from 'vite-plugin-dts';
 import TurboConsole from 'unplugin-turbo-console/vite';
-import { readJson } from './scripts/utils';
-import { getVersion } from './scripts/pkg';
+import tsConfig from './tsconfig.json';
+import pkg from './package.json';
 
 const resolve = (...paths: string[]) => path.resolve(__dirname, ...paths);
 
 export const commonConfig: UserConfig = {
   define: {
-    __APP_VERSION__: JSON.stringify(getVersion()),
+    __APP_VERSION__: JSON.stringify(pkg.version),
   },
   plugins: [
     eslint({
@@ -51,7 +51,7 @@ export default defineConfig(({ mode }) => {
   const esDir = resolve('es');
   const distDir = resolve('dist');
 
-  const { paths = {} } = readJson('tsconfig.json').compilerOptions;
+  const { paths = {} } = tsConfig.compilerOptions;
 
   const directories = fs.readdirSync(resolve('node_modules/.pnpm'));
   const vueSharedDir = directories.find((dir) =>
@@ -113,7 +113,10 @@ export default defineConfig(({ mode }) => {
               dir: distDir,
             },
           ],
-          external: ['vue', '@rthx/utils', '@amap/amap-jsapi-loader'],
+          external: [
+            ...Object.keys(pkg.peerDependencies),
+            ...Object.keys(pkg.dependencies),
+          ],
         },
       },
     },
