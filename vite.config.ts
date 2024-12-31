@@ -108,6 +108,12 @@ export default defineConfig(({ mode }) => {
             {
               format: 'es',
               entryFileNames: '[name].js',
+              assetFileNames: (assetInfo) => {
+                if (assetInfo.name && assetInfo.name.endsWith('.css')) {
+                  return 'index.css';
+                }
+                return assetInfo.name;
+              },
               preserveModules: false,
               exports: undefined,
               dir: distDir,
