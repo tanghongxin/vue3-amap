@@ -1,5 +1,7 @@
 # Changelog
 
+## [0.1.14](https://github.com/tanghongxin/vue3-amap/compare/v0.1.13...v0.1.14) (2025-01-15)
+
 ## [0.1.13](https://github.com/tanghongxin/vue3-amap/compare/v0.1.12...v0.1.13) (2024-12-31)
 
 ### 🐛 Bug Fixes | Bug 修复
