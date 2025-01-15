@@ -21,13 +21,13 @@
 
 ## Usage
 
-安装
+### 安装
 
 ```sh
 pnpm add @rthx/vue3-amap
 ```
 
-引入
+### 引入
 
 ```js
 import Vue3AMap from '@rthx/vue3-amap'
@@ -44,7 +44,19 @@ app.use(Vue3AMap, {
 })
 ```
 
-使用
+### 配置全局组件类型提示（如有）
+
+增加 ```@rthx/vue3-amap/global``` 至 ```tsconfig.json``` 下 ```compilerOptions``` 的 ```types``` 字段中
+
+```json
+{
+  "compilerOptions": {
+    "types": ["@rthx/vue3-amap/global"]
+  }
+}
+```
+
+### 使用
 
 ```text
 TODO
