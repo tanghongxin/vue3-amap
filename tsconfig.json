@@ -6,7 +6,6 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": ".",
     "paths": {
-      "@rthx/vue3-amap": ["src/index.ts"],
       "@/*": ["example/src/*"],
       "~/*": ["src/*"]
     },

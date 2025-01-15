@@ -38,8 +38,16 @@
   },
   "main": "./dist/index.js",
   "module": "./es/index.js",
+  "exports": {
+    ".": {
+      "import": "./es/index.js",
+      "require": "./dist/index.js"
+    },
+    "./global": {
+      "types": "./types/components.d.ts"
+    }
+  },
   "style": "./dist/index.css",
-  "typings": "./es/index.d.ts",
   "peerDependencies": {
     "vue": "^3.0.0"
   },
